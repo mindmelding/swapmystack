@@ -1,15 +1,15 @@
-# stacktrim
+# App Spend Audit
 
 Find the Shopify apps a store pays for and doesn't use.
 
-stacktrim reads three things you already have: the public storefront, the theme file, and the bills export. It lines them up and tells you which apps are billed but not running, which ones do the same job twice, and what old apps left behind in the code. Each finding comes with a dollar figure, a confidence level, and the evidence behind it.
+App Spend Audit reads three things you already have: the public storefront, the theme file, and the bills export. It lines them up and tells you which apps are billed but not running, which ones do the same job twice, and what old apps left behind in the code. Each finding comes with a dollar figure, a confidence level, and the evidence behind it.
 
 It runs on your machine and needs nothing beyond Python 3.10. No accounts, no API keys, no store login.
 
 ```
-$ stacktrim audit linen-and-pine.example --theme theme.zip --bills bills.csv
+$ appspend audit linen-and-pine.example --theme theme.zip --bills bills.csv
 
-stacktrim · linen-and-pine.example
+appspend · linen-and-pine.example
 read: 2 storefront pages, theme (9 files), bills (11 apps, through 2026-08-01)
 
 App spend      $680/mo
@@ -30,19 +30,19 @@ Open [`examples/demo-report.html`](examples/demo-report.html) to see the full re
 ## Install
 
 ```
-pipx install git+https://github.com/mindmelding/stacktrim
+pipx install git+https://github.com/mindmelding/appspend
 ```
 
-Or run it from a checkout with `python3 -m stacktrim`.
+Or run it from a checkout with `python3 -m appspend`.
 
 ## Use
 
 | Command | What it does |
 |---|---|
-| `stacktrim audit STORE [--theme T] [--bills B]` | Full audit. Writes an HTML report and records the run. |
-| `stacktrim scan STORE` | Quick list of the apps a storefront loads. |
-| `stacktrim history STORE` | Past audits of a store, so you can see what changed. |
-| `stacktrim catalog [QUERY]` | The apps stacktrim can recognize. |
+| `appspend audit STORE [--theme T] [--bills B]` | Full audit. Writes an HTML report and records the run. |
+| `appspend scan STORE` | Quick list of the apps a storefront loads. |
+| `appspend history STORE` | Past audits of a store, so you can see what changed. |
+| `appspend catalog [QUERY]` | The apps appspend can recognize. |
 
 Audit flags: `--out report.html`, `--json audit.json`, `--md summary.md`, `--pages N` (default 3), `--no-history`, `--db PATH`, and `--catalog custom.json` for your own fingerprints.
 
@@ -50,9 +50,9 @@ Any input works on its own. A storefront scan alone lists apps and overlaps. Add
 
 ### Getting the inputs
 
-- **Storefront:** just the domain. stacktrim reads the home page, one product page and one collection page.
+- **Storefront:** just the domain. appspend reads the home page, one product page and one collection page.
 - **Theme:** Shopify admin, Online Store, Themes, the `...` menu on the live theme, Download theme file. Shopify emails a zip. Pass the zip or the unzipped folder.
-- **Bills:** Settings, Billing, Export bills. Shopify emails a CSV. Shopify doesn't publish the column layout, so stacktrim finds the columns by name. A plain two-column sheet works too:
+- **Bills:** Settings, Billing, Export bills. Shopify emails a CSV. Shopify doesn't publish the column layout, so appspend finds the columns by name. A plain two-column sheet works too:
 
   ```
   app,monthly_cost
@@ -62,7 +62,7 @@ Any input works on its own. A storefront scan alone lists apps and overlaps. Add
 
 ## How it decides
 
-**What it reads on the storefront.** Shopify marks app blocks and app embeds in the page, and it injects older apps through a `ScriptTag` loader. stacktrim reads those markers first, then checks script, stylesheet, iframe and image URLs against a catalog of 126 apps in 34 categories. It ignores links in navigation text, so a "Read our Trustpilot reviews" link doesn't count as Trustpilot running.
+**What it reads on the storefront.** Shopify marks app blocks and app embeds in the page, and it injects older apps through a `ScriptTag` loader. appspend reads those markers first, then checks script, stylesheet, iframe and image URLs against a catalog of 126 apps in 34 categories. It ignores links in navigation text, so a "Read our Trustpilot reviews" link doesn't count as Trustpilot running.
 
 **Findings, from most to least certain:**
 
@@ -77,13 +77,13 @@ Any input works on its own. A storefront scan alone lists apps and overlaps. Add
 
 **What it won't flag.** Back-office apps (shipping, accounting, bulk editing) and apps that often run without storefront code (helpdesks, email, fraud screening) are never called "not running" just because the storefront is quiet. From a theme alone, "not running" stays a lead to check, because many apps load without touching theme files.
 
-**Limits worth knowing.** Some apps only load on checkout, account or specific product pages. stacktrim checks three pages by default, so confirm before you uninstall. Snippets rendered by a variable name look orphaned to static analysis. The bills parser was built against Shopify's export as best documented, and it tells you which columns it picked (`--json` shows them) so a wrong guess is easy to spot.
+**Limits worth knowing.** Some apps only load on checkout, account or specific product pages. appspend checks three pages by default, so confirm before you uninstall. Snippets rendered by a variable name look orphaned to static analysis. The bills parser was built against Shopify's export as best documented, and it tells you which columns it picked (`--json` shows them) so a wrong guess is easy to spot.
 
 ## Privacy and manners
 
 - It reads public pages only, one request per page, with no retries and no way around blocks. The user agent names the tool and nothing about you.
 - Reports are single HTML files with no scripts and no outside requests. You can email one to a client as is.
-- Run history lives in `~/.stacktrim/history.sqlite` on your machine.
+- Run history lives in `~/.appspend/history.sqlite` on your machine.
 
 ## Development
 
@@ -92,6 +92,6 @@ python3 -m unittest discover -s tests -t .
 python3 examples/build_demo.py   # rebuild the sample report
 ```
 
-The fingerprint catalog is `stacktrim/data/apps.json`, one app per line. An entry needs an `id`, `name`, `category`, and `urls` (substrings of script URLs) and/or `keys` (matched against app handles, snippet names and bill lines, lowercase letters and digits only). Mark `"storefront": false` for back-office apps and `"optional": true` for apps that often run with no storefront code. The longest matching pattern wins, so `cdn-loyalty.yotpo.com` beats `yotpo.com`.
+The fingerprint catalog is `appspend/data/apps.json`, one app per line. An entry needs an `id`, `name`, `category`, and `urls` (substrings of script URLs) and/or `keys` (matched against app handles, snippet names and bill lines, lowercase letters and digits only). Mark `"storefront": false` for back-office apps and `"optional": true` for apps that often run with no storefront code. The longest matching pattern wins, so `cdn-loyalty.yotpo.com` beats `yotpo.com`.
 
 When a scan reports an unrecognized app handle or script host, that's the next catalog entry to add.

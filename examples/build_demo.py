@@ -6,8 +6,8 @@ import sys
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from stacktrim.report import render_html, render_json, render_markdown  # noqa: E402
-from tests.test_stacktrim import full_audit  # noqa: E402
+from appspend.report import render_html, render_json, render_markdown  # noqa: E402
+from tests.test_appspend import full_audit  # noqa: E402
 
 audit = full_audit()
 out = Path(__file__).parent

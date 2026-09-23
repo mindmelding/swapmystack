@@ -7,14 +7,14 @@ import zipfile
 from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
 
-from stacktrim import history
-from stacktrim.analyze import analyze
-from stacktrim.bills import parse_amount, parse_bills, parse_date
-from stacktrim.cli import main
-from stacktrim.fingerprints import Catalog
-from stacktrim.report import render_html, render_markdown, render_text
-from stacktrim.scan import Page, normalize_store, scan_storefront
-from stacktrim.theme import scan_theme
+from appspend import history
+from appspend.analyze import analyze
+from appspend.bills import parse_amount, parse_bills, parse_date
+from appspend.cli import main
+from appspend.fingerprints import Catalog
+from appspend.report import render_html, render_markdown, render_text
+from appspend.scan import Page, normalize_store, scan_storefront
+from appspend.theme import scan_theme
 
 FIX = Path(__file__).parent / "fixtures"
 CATALOG = Catalog.load()

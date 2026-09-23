@@ -1,7 +1,7 @@
 {
-  "tool": "stacktrim 0.1.0",
+  "tool": "appspend 0.1.0",
   "store": "https://linen-and-pine.example",
-  "generated_at": "2026-09-23T09:42:35Z",
+  "generated_at": "2026-09-23T11:25:33Z",
   "catalog_version": "2026.09.22",
   "summary": {
     "apps_found": 12,
@@ -534,7 +534,7 @@
       }
     },
     "theme": {
-      "source": "/Users/sean/Desktop/mindmelding/stacktrim/tests/fixtures/theme",
+      "source": "/Users/sean/Desktop/mindmelding/appspend/tests/fixtures/theme",
       "files": 9,
       "detections": {
         "judgeme": [
@@ -619,7 +619,7 @@
       "unknown_handles": []
     },
     "bills": {
-      "source": "/Users/sean/Desktop/mindmelding/stacktrim/tests/fixtures/bills_shopify.csv",
+      "source": "/Users/sean/Desktop/mindmelding/appspend/tests/fixtures/bills_shopify.csv",
       "format": "shopify-export",
       "columns": {
         "name": "Description",

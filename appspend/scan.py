@@ -22,7 +22,7 @@ from urllib.parse import urljoin, urlparse
 from . import __version__
 from .fingerprints import Catalog
 
-USER_AGENT = f"stacktrim/{__version__} (Shopify app-stack audit; public pages only)"
+USER_AGENT = f"appspend/{__version__} (Shopify app spend audit; public pages only)"
 MAX_BYTES = 8_000_000
 
 Fetcher = Callable[[str], "Page"]

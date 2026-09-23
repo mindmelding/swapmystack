@@ -111,7 +111,7 @@ class Audit:
 
     def to_dict(self) -> dict:
         return {
-            "tool": f"stacktrim {__version__}",
+            "tool": f"appspend {__version__}",
             "store": self.store,
             "generated_at": self.generated_at,
             "catalog_version": self.catalog_version,
@@ -207,7 +207,7 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
                 detail=(f"You pay {_money(it.monthly)}/mo, and none of its code appeared in "
                         f"{' or '.join(where)}. Either it was never set up, it was switched off, "
                         f"or it only loads on a page we did not check."
-                        + ("" if it.app else " stacktrim doesn't recognize this app yet, so treat this as a lead to check.")),
+                        + ("" if it.app else " appspend doesn't recognize this app yet, so treat this as a lead to check.")),
                 action=f"Ask who uses {it.name}. If nobody does, uninstall it in Settings > Apps.",
                 confidence=conf, monthly_savings=it.monthly, apps=[it.name],
             ))

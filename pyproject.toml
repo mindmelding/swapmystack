@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "stacktrim"
+name = "appspend"
 version = "0.1.0"
 description = "Find wasted Shopify app spend from public storefront code, theme files and bills."
 readme = "README.md"
@@ -11,10 +11,10 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.scripts]
-stacktrim = "stacktrim.cli:main"
+appspend = "appspend.cli:main"
 
 [tool.setuptools]
-packages = ["stacktrim"]
+packages = ["appspend"]
 
 [tool.setuptools.package-data]
-stacktrim = ["data/*.json"]
+appspend = ["data/*.json"]

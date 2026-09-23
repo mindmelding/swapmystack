@@ -1,6 +1,6 @@
-# App stack audit: linen-and-pine.example
+# App Spend Audit: linen-and-pine.example
 
-_Read: 2 storefront pages, theme (9 files), bills (11 apps, through 2026-08-01). Generated 2026-09-23T09:42:35Z._
+_Read: 2 storefront pages, theme (9 files), bills (11 apps, through 2026-08-01). Generated 2026-09-23T11:25:33Z._
 
 **Likely savings: $83/mo ($996/yr)** out of $680/mo in app spend.
 
