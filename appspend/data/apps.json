@@ -1,5 +1,5 @@
 {
- "version": "2026.09.23",
+ "version": "2026.09.23b",
  "categories": {
   "reviews": {"label": "Product reviews", "exclusive": true, "free_option": "Judge.me has a free plan that covers core reviews."},
   "email": {"label": "Email marketing", "exclusive": true, "free_option": "Shopify Email includes a free monthly send allowance."},
@@ -39,7 +39,15 @@
   "wholesale": {"label": "Wholesale", "exclusive": true, "free_option": null},
   "push": {"label": "Push notifications", "exclusive": true, "free_option": null},
   "instagram": {"label": "Instagram feeds", "exclusive": true, "free_option": null},
-  "store_protection": {"label": "Bot and country blocking", "exclusive": true, "free_option": null}
+  "store_protection": {"label": "Bot and country blocking", "exclusive": true, "free_option": null},
+  "tracking_infra": {"label": "Tracking infrastructure", "exclusive": false, "free_option": null},
+  "abuse": {"label": "Returns and bot abuse", "exclusive": true, "free_option": null},
+  "suites": {"label": "Multi-product suites", "exclusive": false, "free_option": null},
+  "testing": {"label": "A/B and price testing", "exclusive": true, "free_option": null},
+  "geolocation": {"label": "Geolocation redirects", "exclusive": true, "free_option": null},
+  "urgency": {"label": "Countdown and urgency", "exclusive": true, "free_option": null},
+  "forms": {"label": "Form builders", "exclusive": true, "free_option": "Shopify Forms is free."},
+  "store_locator": {"label": "Store locators", "exclusive": true, "free_option": null}
  },
  "apps": [
   {"id": "judgeme", "name": "Judge.me", "category": "reviews", "urls": ["judge.me", "judgeme"], "keys": ["judgeme"]},
@@ -75,7 +83,7 @@
   {"id": "rise", "name": "Rise.ai", "category": "gift_cards", "urls": ["rise-ai.com"], "keys": ["riseai"]},
   {"id": "refersion", "name": "Refersion", "category": "referrals", "urls": ["refersion.com"], "keys": ["refersion"], "optional": true},
   {"id": "friendbuy", "name": "Friendbuy", "category": "referrals", "urls": ["friendbuy"], "keys": ["friendbuy"]},
-  {"id": "impact", "name": "impact.com", "category": "referrals", "urls": ["impactradius-event.com", "impactcdn.com"], "keys": ["impactradius"], "optional": true},
+  {"id": "impact", "name": "impact.com", "category": "referrals", "urls": ["impactradius-event.com", "impactcdn.com"], "keys": ["impactradius", "impactcom"], "optional": true},
   {"id": "grin", "name": "GRIN", "category": "influencer", "urls": ["grin-sdk", "grin.co"], "keys": ["grinsdk", "grininfluencer"], "optional": true},
   {"id": "rebuy", "name": "Rebuy", "category": "upsell", "urls": ["rebuyengine.com"], "keys": ["rebuy"]},
   {"id": "reconvert", "name": "ReConvert", "category": "upsell", "urls": ["reconvert"], "keys": ["reconvert"]},
@@ -104,7 +112,7 @@
   {"id": "fullstory", "name": "FullStory", "category": "heatmaps", "urls": ["fullstory.com"], "keys": ["fullstory"]},
   {"id": "triplewhale", "name": "Triple Whale", "category": "attribution", "urls": ["triplewhale", "triplepixel"], "keys": ["triplewhale", "triplepixel"], "optional": true},
   {"id": "northbeam", "name": "Northbeam", "category": "attribution", "urls": ["northbeam.io"], "keys": ["northbeam"], "optional": true},
-  {"id": "elevar", "name": "Elevar", "category": "attribution", "urls": ["getelevar.com"], "keys": ["elevar"]},
+  {"id": "elevar", "name": "Elevar", "category": "tracking_infra", "urls": ["getelevar.com"], "keys": ["elevar"]},
   {"id": "polar", "name": "Polar Analytics", "category": "attribution", "urls": ["polaranalytics"], "keys": ["polaranalytics"], "optional": true},
   {"id": "recharge", "name": "Recharge", "category": "subscriptions", "urls": ["rechargeapps.com", "rechargecdn.com", "rechargepayments.com"], "keys": ["recharge"]},
   {"id": "skio", "name": "Skio", "category": "subscriptions", "urls": ["skio.com"], "keys": ["skio"]},
@@ -162,7 +170,7 @@
   {"id": "stocky", "name": "Stocky", "category": "operations", "urls": [], "keys": ["stocky"], "storefront": false},
   {"id": "shopifyflow", "name": "Shopify Flow", "category": "operations", "urls": [], "keys": ["shopifyflow"], "storefront": false, "free": true},
   {"id": "dynamicyield", "name": "Dynamic Yield", "category": "personalization", "urls": ["dynamicyield.com"], "keys": ["dynamicyield"]},
-  {"id": "yofi", "name": "Yofi", "category": "fraud", "urls": ["botnot.io"], "keys": ["yofi", "botnot"], "optional": true},
+  {"id": "yofi", "name": "Yofi", "category": "abuse", "urls": ["botnot.io"], "keys": ["yofi", "botnot"], "optional": true},
   {"id": "meta_pixel", "name": "Facebook & Instagram", "category": "ad_channels", "urls": ["connect.facebook.net"], "keys": ["facebookinstagram", "metapixel"], "free": true},
   {"id": "tiktok", "name": "TikTok", "category": "ad_channels", "urls": ["analytics.tiktok.com"], "keys": ["tiktokpixel"], "free": true},
   {"id": "snapchat", "name": "Snapchat Ads", "category": "ad_channels", "urls": ["intg.snapchat.com", "sc-static.net"], "keys": ["snapchatads"], "free": true},
@@ -176,8 +184,24 @@
   {"id": "bundler", "name": "Bundler", "category": "bundles", "urls": ["bundler.app"], "keys": ["bundler"]},
   {"id": "globo_options", "name": "Globo Product Options", "category": "bundles", "urls": ["globosoftware"], "keys": ["globoproductoptions"]},
   {"id": "easyban", "name": "Easy Ban", "category": "store_protection", "urls": [], "keys": ["easyban"]},
-  {"id": "consentmo", "name": "Consentmo GDPR", "category": "consent", "urls": ["consentmo"], "keys": ["consentmo"]},
-  {"id": "gdprbackpack", "name": "GDPR/CCPA Backpack", "category": "consent", "urls": [], "keys": ["gdprbackpack"]},
-  {"id": "wrapped", "name": "Wrapped (gift wrap)", "category": "bundles", "urls": [], "keys": ["wrapped"], "exact": true}
+  {"id": "consentmo", "name": "Consentmo GDPR", "category": "consent", "urls": ["consentmo"], "keys": ["consentmo", "gdprbackpack"]},
+  {"id": "wrapped", "name": "Wrapped (gift wrap)", "category": "bundles", "urls": [], "keys": ["wrapped"], "exact": true},
+  {"id": "yotpo_platform", "name": "Yotpo (product unclear)", "category": "suites", "urls": ["cdn-widgetsrepository.yotpo.com"], "keys": []},
+  {"id": "intelligems", "name": "Intelligems", "category": "testing", "urls": ["intelligems"], "keys": ["intelligems"]},
+  {"id": "blotout", "name": "Blotout EdgeTag", "category": "tracking_infra", "urls": ["edgetag", "blotout"], "keys": ["blotout", "edgetag"]},
+  {"id": "freegifts", "name": "Free Gifts (auto add)", "category": "upsell", "urls": [], "keys": ["freegifts"]},
+  {"id": "powerfulforms", "name": "Powerful Form Builder", "category": "forms", "urls": [], "keys": ["powerfulformbuilder"]},
+  {"id": "applovin", "name": "AppLovin", "category": "ad_channels", "urls": ["applovin"], "keys": ["applovin"], "free": true},
+  {"id": "countdown30", "name": "Countdown Timer", "category": "urgency", "urls": [], "keys": ["countdowntimer"]},
+  {"id": "mntn", "name": "MNTN", "category": "ad_channels", "urls": ["mountain.com", "mntn"], "keys": ["mntn"], "free": true},
+  {"id": "aftersell", "name": "AfterSell", "category": "upsell", "urls": ["aftersell"], "keys": ["aftersell"]},
+  {"id": "geopro", "name": "Geolocation redirect app", "category": "geolocation", "urls": [], "keys": ["easylocation", "geoprogeolocation"]},
+  {"id": "eg_autoadd", "name": "EG Auto Add to Cart", "category": "upsell", "urls": [], "keys": ["egautoaddtocart"]},
+  {"id": "accessibly", "name": "Accessibly", "category": "accessibility", "urls": [], "keys": ["accessiblyapp"]},
+  {"id": "expertvoice", "name": "ExpertVoice", "category": "verification", "urls": ["expertvoice"], "keys": ["expertvoice"]},
+  {"id": "minmaxify", "name": "MinMaxify Order Limits", "category": "operations", "urls": [], "keys": ["minmaxify"], "storefront": true},
+  {"id": "storerank", "name": "StoreRank AI", "category": "personalization", "urls": [], "keys": ["storerankai"]},
+  {"id": "firework", "name": "Firework", "category": "ugc", "urls": ["fw.tv", "fireworktv"], "keys": ["firework"]},
+  {"id": "mappy", "name": "Mappy Store Locator", "category": "store_locator", "urls": [], "keys": ["mappystorelocator"]}
  ]
 }

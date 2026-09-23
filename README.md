@@ -65,7 +65,7 @@ Any input works on its own. A storefront scan alone lists apps and overlaps. Add
 
 ## How it decides
 
-**What it reads on the storefront.** Shopify marks app blocks and app embeds in the page, and it injects older apps through a `ScriptTag` loader. appspend reads those markers first, then checks script, stylesheet, iframe and image URLs against a catalog of 137 apps in 39 categories. It ignores links in navigation text, so a "Read our Trustpilot reviews" link doesn't count as Trustpilot running.
+**What it reads on the storefront.** Shopify marks app blocks and app embeds in the page, and it injects older apps through a `ScriptTag` loader. appspend reads those markers first, then checks script, stylesheet, iframe and image URLs against a catalog of 153 apps in 47 categories. It ignores links in navigation text, so a "Read our Trustpilot reviews" link doesn't count as Trustpilot running.
 
 **Findings, from most to least certain:**
 

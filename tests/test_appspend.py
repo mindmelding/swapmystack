@@ -47,7 +47,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_longest_url_pattern_wins(self):
         self.assertEqual(CATALOG.match_url("https://cdn-loyalty.yotpo.com/loader/x.js").id, "yotpo_loyalty")
-        self.assertEqual(CATALOG.match_url("https://cdn-widgetsrepository.yotpo.com/v1/loader").id, "yotpo")
+        self.assertEqual(CATALOG.match_url("https://staticw2.yotpo.com/abc/widget.js").id, "yotpo")
 
     def test_key_matching_on_bill_names_and_handles(self):
         self.assertEqual(CATALOG.match_key("Judge.me Product Reviews - Awesome plan").id, "judgeme")
@@ -56,6 +56,15 @@ class CatalogTests(unittest.TestCase):
         self.assertIsNone(CATALOG.match_key("order-limits-magic"))
         self.assertEqual(CATALOG.match_key("inbox").id, "shopify_inbox")
         self.assertIsNone(CATALOG.match_key("typeforms-embed"))  # generic words only match exactly
+
+    def test_known_false_overlaps_stay_fixed(self):
+        # Consentmo ships an embed called gdpr-backpack: one app, not two
+        self.assertEqual(CATALOG.match_key("gdpr-backpack").id, "consentmo")
+        # Yotpo's unified loader serves reviews, loyalty and subscriptions: not proof of reviews
+        self.assertEqual(CATALOG.match_url("https://cdn-widgetsrepository.yotpo.com/v1/loader/x").id, "yotpo_platform")
+        self.assertEqual(CATALOG.match_url("https://staticw2.yotpo.com/abc/widget.js").id, "yotpo")
+        # server-side tagging and attribution dashboards are different jobs
+        self.assertFalse(CATALOG.categories[CATALOG.apps["elevar"].category].exclusive)
 
     def test_no_url_pattern_matches_platform_hosts(self):
         for host in ("https://cdn.shopify.com/s/files/1/theme.js", "https://shop.app/pay", "https://www.google.com/x"):
