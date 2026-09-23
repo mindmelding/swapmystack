@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 from . import __version__
+from . import alternatives as alts
 from .bills import AppSpend, BillsResult, median
 from .fingerprints import App, Catalog, norm
 from .scan import ScanResult
@@ -73,12 +74,17 @@ class Finding:
     apps: list[str] = field(default_factory=list)
     evidence: list[str] = field(default_factory=list)
     category: str | None = None
+    switch_cost: str | None = None
+    covers: list[str] = field(default_factory=list)
+    misses: list[str] = field(default_factory=list)
+    sources: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
             "kind": self.kind, "category": self.category, "title": self.title, "detail": self.detail, "action": self.action,
             "confidence": self.confidence, "monthly_savings": round(self.monthly_savings, 2),
             "annual_savings": round(self.monthly_savings * 12, 2), "apps": self.apps, "evidence": self.evidence,
+            "switch_cost": self.switch_cost, "covers": self.covers, "misses": self.misses, "sources": self.sources,
         }
 
 
@@ -139,6 +145,46 @@ def _money(v: float) -> str:
     return f"${v:,.0f}" if v >= 100 or v == int(v) else f"${v:,.2f}"
 
 
+def _cheaper_path(it: Item, path, have_bills: bool) -> Finding:
+    best = path.best
+    listed = path.incumbent_price.label()
+    paying = f" You pay {_money(it.monthly)}/mo." if have_bills and it.monthly else f" {it.name} lists at {listed}."
+    effort = f" Switching effort: {path.switch_cost}. {path.switch_note}".rstrip()
+    stale = f" Prices checked {path.checked}; recheck before quoting them." if path.stale() else ""
+    saving = 0.0
+    if path.strategy == "replace" and best:
+        title = f"Cheaper path for {it.name}: {best.name} ({best.price.label()})"
+        action = f"List the {it.name} features your team uses and check each against {best.name} before the next renewal."
+        if have_bills and it.monthly and best.price.low is not None:
+            saving = max(0.0, round(it.monthly - best.price.low, 2))
+    elif path.strategy == "remove":
+        title = f"{it.name} may not be needed"
+        action = f"Confirm what {it.name} still does for you. If nothing another tool doesn't, remove it."
+        if have_bills:
+            saving = it.monthly
+    elif path.strategy == "downgrade":
+        title = f"{it.name}: a cheaper plan is the realistic saving"
+        action = f"Compare your {it.name} usage against the plan tiers. Most brands overbuy headroom."
+    else:
+        title = f"{it.name}: negotiate rather than switch"
+        action = f"Switching {it.name} costs more than it saves. Ask for a better rate or annual terms at renewal."
+    sources = [s for s in [path.incumbent_source] + [a.source for a in path.alternatives[:1]] if s]
+    return Finding(
+        kind="cheaper_path", title=title,
+        detail=(paying.strip() + effort + stale),
+        action=action,
+        confidence="low" if path.strategy in ("replace", "remove") else "info",
+        monthly_savings=saving, apps=[it.name], category=it.category, switch_cost=path.switch_cost,
+        covers=list(best.covers) if best and path.strategy == "replace" else [],
+        misses=list(best.misses) if best and path.strategy == "replace" else [],
+        sources=[f"{_domain(s)} (checked {path.checked})" for s in sources],
+    )
+
+
+def _domain(url: str) -> str:
+    return url.split("//")[-1].split("/")[0].removeprefix("www.")
+
+
 def build_inventory(catalog: Catalog, scan: ScanResult | None, theme: ThemeResult | None,
                     bills: BillsResult | None) -> list[Item]:
     items: dict[str, Item] = {}
@@ -181,7 +227,8 @@ def build_inventory(catalog: Catalog, scan: ScanResult | None, theme: ThemeResul
 
 
 def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult | None = None,
-            bills: BillsResult | None = None, pages_checked: int = 0) -> Audit:
+            bills: BillsResult | None = None, pages_checked: int = 0,
+            paths: dict | None = None) -> Audit:
     inventory = build_inventory(catalog, scan, theme, bills)
     findings: list[Finding] = []
     have_bills = bills is not None
@@ -314,11 +361,22 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
                         confidence="info", apps=[it.name],
                     ))
 
-    # 6. Paid apps where Shopify or a vendor offers the core job free.
+    # 6. Cheaper paths: researched replacements, downgrades or negotiation, sourced and dated.
+    paths = alts.load() if paths is None else paths
     flagged = {a for f in findings if f.kind in ("paid_no_trace", "overlap") for a in f.apps}
+    covered: set[str] = set()
+    for it in inventory:
+        path = paths.get(it.app.id) if it.app else None
+        live = it.billed_active if have_bills else it.detected
+        if not path or not live or it.name in flagged or (it.app and it.app.free):
+            continue
+        covered.add(it.name)
+        findings.append(_cheaper_path(it, path, have_bills))
+
+    # 7. No researched path yet: fall back to the category's free option, bills only.
     if have_bills:
         for it in inventory:
-            if not it.category or it.name in flagged or it.monthly < 20:
+            if not it.category or it.name in flagged or it.name in covered or it.monthly < 20:
                 continue
             free = catalog.categories[it.category].free_option
             if free:
@@ -330,7 +388,8 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
                     confidence="low", monthly_savings=it.monthly, apps=[it.name],
                 ))
 
-    findings.sort(key=lambda f: (CONFIDENCE_ORDER[f.confidence], -f.monthly_savings))
+    findings.sort(key=lambda f: (CONFIDENCE_ORDER[f.confidence], alts.SWITCH_ORDER.get(f.switch_cost or "low", 0),
+                                 -f.monthly_savings))
 
     claimed = {e["detail"] for it in inventory if not it.app for e in it.storefront + it.theme}
     unknown = sorted((set(scan.unknown_handles) if scan else set()) | set(theme.unknown_handles if theme else []) - claimed)

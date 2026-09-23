@@ -10,6 +10,7 @@ import sys
 from .analyze import Audit, Finding
 
 CONF_LABEL = {"high": "High confidence", "medium": "Likely", "low": "Worth checking", "info": "For your records"}
+SWITCH_LABEL = {"low": "Easy switch", "medium": "Some work to switch", "high": "Hard to switch"}
 
 
 def _m(v: float) -> str:
@@ -129,6 +130,9 @@ ol.findings li::before{content:counter(f,decimal-leading-zero);font:12px/2.1 var
 .f-detail{margin:0 0 10px;color:var(--ink-2);max-width:40em}
 .f-action{margin:0;font-style:italic;max-width:40em}
 .f-evidence{margin:10px 0 0;font:12px/1.6 var(--mono);color:var(--ink-3);word-break:break-all}
+.f-fit{display:grid;grid-template-columns:72px minmax(0,1fr);gap:4px 12px;margin:12px 0 0;font-size:15px;max-width:44em}
+.f-fit dt{font:11px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3)}
+.f-fit dd{margin:0;color:var(--ink-2)}
 .f-side{text-align:right}
 .f-side .amt{font:400 28px/1.1 var(--display);color:var(--ink);font-variant-numeric:lining-nums}
 .f-side .per{font:12px var(--mono);color:var(--ink-3)}
@@ -169,10 +173,21 @@ def _finding_html(f: Finding) -> str:
     if f.monthly_savings:
         side = f'<div class="amt">{_m(f.monthly_savings)}</div><div class="per">per month · {_m(f.monthly_savings * 12)}/yr</div>'
     ev = f'<p class="f-evidence">{" · ".join(_e(x) for x in f.evidence)}</p>' if f.evidence else ""
+    if f.covers or f.misses:
+        ev += '<dl class="f-fit">'
+        if f.covers:
+            ev += f'<dt>Covers</dt><dd>{_e("; ".join(f.covers))}</dd>'
+        if f.misses:
+            ev += f'<dt>Misses</dt><dd>{_e("; ".join(f.misses))}</dd>'
+        ev += "</dl>"
+    if f.sources:
+        ev += f'<p class="f-evidence">Source: {" · ".join(_e(x) for x in f.sources)}</p>'
     return (
         f'<li><div><h3 class="f-title">{_e(f.title)}</h3>'
         f'<p class="f-detail">{_e(f.detail)}</p><p class="f-action">{_e(f.action)}</p>{ev}</div>'
-        f'<div class="f-side">{side}<span class="pill {f.confidence}">{_e(CONF_LABEL[f.confidence])}</span></div></li>'
+        f'<div class="f-side">{side}<span class="pill {f.confidence}">{_e(CONF_LABEL[f.confidence])}</span>'
+        + (f'<br><span class="pill">{_e(SWITCH_LABEL[f.switch_cost])}</span>' if f.switch_cost else "")
+        + '</div></li>'
     )
 
 
@@ -224,6 +239,9 @@ def render_html(audit: Audit) -> str:
         "Storefront evidence comes from the public HTML your store serves: app blocks and embeds Shopify marks in the page, "
         "the ScriptTags it injects, and script URLs from known app vendors. Nothing behind a login was read.",
         "Savings count only where a bill shows the charge. Overlap savings assume you keep the most expensive app in the group.",
+        "Cheaper paths come from researched pricing pages and app listings, each with its source and the date it was checked. "
+        "“Covers” and “Misses” compare the suggested option to the app you run today. Switching effort accounts for data "
+        "migration, contracts and retraining, which often matter more than the price gap.",
         "“Paid, no trace” means we did not see the app on the pages we checked. Some apps only load on checkout, account or "
         "specific product pages, so confirm before uninstalling.",
         "Back-office apps such as shipping, accounting and bulk editors never show on the storefront and are never flagged for that.",

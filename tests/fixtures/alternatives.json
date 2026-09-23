@@ -1,0 +1,11 @@
+{"entries": [
+ {"app": "privy", "incumbent_price": {"low": 30, "high": 499, "unit": "month", "note": "by contacts", "source": "https://www.privy.com/pricing", "checked": "2026-09-23"},
+  "switch_cost": "low", "switch_note": "Forms rebuild in an hour; subscribers stay in your email tool.", "strategy": "replace",
+  "alternatives": [{"name": "Shopify Forms", "kind": "shopify-native", "price": {"low": 0, "high": 0, "unit": "month", "note": "free"},
+   "source": "https://apps.shopify.com/shopify-forms", "checked": "2026-09-23", "covers": ["Pop-up and inline signup forms", "Discount on signup"], "misses": ["Spin-to-win", "Exit-intent targeting rules"], "app_store_rating": "4.4"}]},
+ {"app": "klaviyo", "incumbent_price": {"low": 20, "high": 2000, "unit": "month", "note": "by profiles", "source": "https://www.klaviyo.com/pricing", "checked": "2026-01-02"},
+  "switch_cost": "high", "switch_note": "Flows, segments and years of engagement data.", "strategy": "negotiate", "alternatives": []},
+ {"app": "hotjar", "incumbent_price": {"low": 0, "high": 213, "unit": "month", "note": "by sessions", "source": "https://www.hotjar.com/pricing", "checked": "2026-09-23"},
+  "switch_cost": "low", "switch_note": "Just a script swap.", "strategy": "replace",
+  "alternatives": [{"name": "Microsoft Clarity", "kind": "free", "price": {"low": 0, "high": 0, "unit": "month", "note": "free"}, "source": "https://clarity.microsoft.com", "checked": "2026-09-23", "covers": ["Heatmaps", "Session recordings"], "misses": ["Surveys"], "app_store_rating": ""}]}
+]}

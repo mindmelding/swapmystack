@@ -20,7 +20,7 @@ NOT_PAID = {"ad_channels"}  # free sales-channel pixels say nothing about app sp
 
 OUT_FIELDS = [
     "domain", "name", "status", "shopify", "paid_apps", "overlaps", "score",
-    "pitch", "apps", "unrecognized", "pages_read",
+    "pitch", "apps", "easy_paths", "unrecognized", "pages_read",
 ]
 
 
@@ -35,17 +35,20 @@ class Row:
     overlaps: list[str] = field(default_factory=list)
     all_apps: list[str] = field(default_factory=list)
     unrecognized: list[str] = field(default_factory=list)
+    easy_paths: list[str] = field(default_factory=list)   # "Privy → Shopify Forms (free)"
     pages_read: int = 0
 
     @property
     def score(self) -> int:
         """Overlaps are the strongest outside signal of waste; paid app count sets the size of the prize."""
-        return len(self.overlaps) * 5 + len(self.paid_apps)
+        return len(self.overlaps) * 5 + len(self.easy_paths) * 2 + len(self.paid_apps)
 
     @property
     def pitch(self) -> str:
         if self.overlaps:
             return f"Runs {self.overlaps[0]}. Most stores keep one."
+        if self.easy_paths:
+            return f"Easy switch: {self.easy_paths[0]}."
         if len(self.paid_apps) >= 8:
             return f"Runs {len(self.paid_apps)} third-party apps. Worth a bills check."
         return ""
@@ -55,7 +58,7 @@ class Row:
             "domain": self.domain, "name": self.name, "status": self.status,
             "shopify": "yes" if self.shopify else "no", "paid_apps": len(self.paid_apps),
             "overlaps": " | ".join(self.overlaps), "score": self.score, "pitch": self.pitch,
-            "apps": "; ".join(self.all_apps), "unrecognized": "; ".join(self.unrecognized),
+            "apps": "; ".join(self.all_apps), "easy_paths": " | ".join(self.easy_paths), "unrecognized": "; ".join(self.unrecognized),
             "pages_read": self.pages_read, **self.extra,
         }
 
@@ -104,6 +107,9 @@ def scan_one(row: Row, catalog: Catalog, pages: int, fetcher: Fetcher | None) ->
     row.overlaps = [f"{' + '.join(f.apps)} ({catalog.categories[f.category].label.lower()})"
                     for f in audit.findings if f.kind == "overlap" and f.category]
     row.unrecognized = audit.unknown_handles
+    for f in audit.findings:
+        if f.kind == "cheaper_path" and f.switch_cost == "low" and f.title.startswith("Cheaper path for "):
+            row.easy_paths.append(f.title.removeprefix("Cheaper path for ").replace(": ", " → ", 1))
     return row
 
 

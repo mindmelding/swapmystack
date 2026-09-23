@@ -230,6 +230,48 @@ class AnalyzeTests(unittest.TestCase):
         self.assertTrue(any(f.kind == "overlap" for f in a.findings))  # Judge.me + Loox still visible
 
 
+class CheaperPathTests(unittest.TestCase):
+    def setUp(self):
+        from appspend import alternatives
+        self.paths = alternatives.load(FIX / "alternatives.json")
+        scan = scan_storefront("linen-and-pine.example", CATALOG, fetcher=fake_fetcher)
+        self.bills = parse_bills(FIX / "bills_shopify.csv", CATALOG)
+        self.audit = analyze(CATALOG, scan, scan_theme(FIX / "theme", CATALOG), self.bills, paths=self.paths)
+        self.scan_only = analyze(CATALOG, scan, paths=self.paths)
+
+    def test_replace_path_with_bills_counts_the_gap(self):
+        f = next(f for f in self.audit.findings if f.kind == "cheaper_path" and "Privy" in f.apps)
+        self.assertIn("Shopify Forms (free)", f.title)
+        self.assertEqual(f.monthly_savings, 30.0)
+        self.assertEqual(f.confidence, "low")
+        self.assertIn("Spin-to-win", f.misses)
+        self.assertTrue(any("privy.com" in s for s in f.sources))
+
+    def test_negotiate_path_has_no_savings_and_flags_stale_prices(self):
+        f = next(f for f in self.audit.findings if f.kind == "cheaper_path" and "Klaviyo" in f.apps)
+        self.assertEqual(f.monthly_savings, 0)
+        self.assertEqual(f.confidence, "info")
+        self.assertIn("recheck", f.detail)
+
+    def test_apps_already_flagged_unused_get_no_path(self):
+        self.assertFalse(any(f.kind == "cheaper_path" and "Hotjar" in f.apps for f in self.audit.findings))
+
+    def test_scan_only_shows_list_price(self):
+        f = next(f for f in self.scan_only.findings if f.kind == "cheaper_path" and "Privy" in f.apps)
+        self.assertIn("lists at $30–$499/mo", f.detail)
+        self.assertEqual(f.monthly_savings, 0)
+
+    def test_bad_entry_rejected(self):
+        from appspend import alternatives
+        with self.assertRaises(ValueError):
+            alternatives._load_entries({"entries": [{"app": "x", "switch_cost": "trivial", "strategy": "replace"}]})
+
+    def test_html_renders_fit(self):
+        html = render_html(self.audit)
+        self.assertIn("Easy switch", html)
+        self.assertIn("Spin-to-win", html)
+
+
 class OutputTests(unittest.TestCase):
     def test_renderers(self):
         a = full_audit()
