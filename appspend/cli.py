@@ -1,4 +1,4 @@
-"""Command line: appspend audit | scan | history | catalog."""
+"""Command line: appspend audit | scan | batch | history | catalog."""
 
 from __future__ import annotations
 
@@ -84,6 +84,31 @@ def cmd_scan(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_batch(args: argparse.Namespace) -> int:
+    from .batch import read_domains, run_batch, write_csv
+
+    catalog = Catalog.load(args.catalog)
+    rows = read_domains(args.domains)
+    if not rows:
+        print("No domains found in that file.", file=sys.stderr)
+        return 2
+    out = Path(args.out or Path(args.domains).with_name(Path(args.domains).stem + "-scan.csv"))
+
+    def progress(i, n, r):
+        tag = f"{len(r.paid_apps)} paid apps" + (f", {len(r.overlaps)} overlap" if r.overlaps else "") if r.shopify else r.status
+        _status(f"[{i}/{n}] {r.domain}: {tag}")
+
+    ranked = run_batch(rows, catalog, pages=args.pages, delay=args.delay, progress=progress)
+    write_csv(ranked, out)
+    ok = [r for r in ranked if r.shopify]
+    print(f"\n{len(ok)} of {len(ranked)} are Shopify storefronts. {sum(1 for r in ok if r.overlaps)} show an overlap.\n")
+    for r in ranked[: args.top]:
+        if r.shopify and r.score:
+            print(f"  {r.score:>3}  {r.domain:<32} {r.pitch or ', '.join(r.paid_apps[:4])}")
+    print(f"\nFull results: {out.resolve()}")
+    return 0
+
+
 def cmd_history(args: argparse.Namespace) -> int:
     with history.connect(args.db) as conn:
         rows = history.runs(conn, normalize_store(args.store))
@@ -137,6 +162,14 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--pages", type=int, default=3)
     s.add_argument("--json", action="store_true")
     s.set_defaults(func=cmd_scan)
+
+    bt = sub.add_parser("batch", help="scan a list of storefronts and rank them by likely findings")
+    bt.add_argument("domains", help=".txt with one domain per line, or a CSV with a 'domain' column")
+    bt.add_argument("--out", help="results CSV (default: <input>-scan.csv)")
+    bt.add_argument("--pages", type=int, default=2, help="pages per store (default 2)")
+    bt.add_argument("--delay", type=float, default=1.0, help="seconds between stores (default 1)")
+    bt.add_argument("--top", type=int, default=20, help="rows to print (default 20)")
+    bt.set_defaults(func=cmd_batch)
 
     h = sub.add_parser("history", help="past audits for a store")
     h.add_argument("store")

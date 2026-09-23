@@ -261,6 +261,23 @@ class OutputTests(unittest.TestCase):
             data = json.loads((Path(tmp) / "r.json").read_text())
             self.assertGreater(data["summary"]["savings_monthly_confirmed"], 0)
 
+    def test_batch_ranks_overlaps_first(self):
+        from appspend.batch import read_domains, run_batch, write_csv
+        with tempfile.TemporaryDirectory() as tmp:
+            src = Path(tmp) / "d.csv"
+            src.write_text("domain,name,city\nlinen-and-pine.example,Linen & Pine,Oceanside\nnowhere.example,Gone,Vista\nlinen-and-pine.example,dupe,x\n")
+            rows = read_domains(src)
+            self.assertEqual(len(rows), 2)  # duplicate dropped
+            ranked = run_batch(rows, CATALOG, delay=0, fetcher=fake_fetcher)
+            top = ranked[0]
+            self.assertEqual(top.domain, "linen-and-pine.example")
+            self.assertTrue(any("Judge.me" in o and "Loox" in o for o in top.overlaps))
+            self.assertIn("Most stores keep one", top.pitch)
+            self.assertTrue(ranked[1].status.startswith("unreachable"))
+            out = Path(tmp) / "r.csv"
+            write_csv(ranked, out)
+            self.assertIn("Oceanside", out.read_text())  # extra columns carried through
+
     def test_cli_needs_input(self):
         with redirect_stderr(io.StringIO()):
             self.assertEqual(main(["audit"]), 2)

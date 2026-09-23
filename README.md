@@ -41,8 +41,11 @@ Or run it from a checkout with `python3 -m appspend`.
 |---|---|
 | `appspend audit STORE [--theme T] [--bills B]` | Full audit. Writes an HTML report and records the run. |
 | `appspend scan STORE` | Quick list of the apps a storefront loads. |
+| `appspend batch LIST` | Scan many storefronts politely and rank them by likely findings. Writes a CSV. |
 | `appspend history STORE` | Past audits of a store, so you can see what changed. |
 | `appspend catalog [QUERY]` | The apps appspend can recognize. |
+
+`batch` takes a text file with one domain per line, or a CSV with a `domain` column. Other columns (city, category, source) are carried into the results. It reads 2 pages per store and waits 1 second between stores; `--pages` and `--delay` change that. With no bills, it can't see dollars, so it ranks by overlaps first and app count second. Those are the stores worth asking for a bills export.
 
 Audit flags: `--out report.html`, `--json audit.json`, `--md summary.md`, `--pages N` (default 3), `--no-history`, `--db PATH`, and `--catalog custom.json` for your own fingerprints.
 

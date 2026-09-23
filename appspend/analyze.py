@@ -72,10 +72,11 @@ class Finding:
     monthly_savings: float = 0.0
     apps: list[str] = field(default_factory=list)
     evidence: list[str] = field(default_factory=list)
+    category: str | None = None
 
     def to_dict(self) -> dict:
         return {
-            "kind": self.kind, "title": self.title, "detail": self.detail, "action": self.action,
+            "kind": self.kind, "category": self.category, "title": self.title, "detail": self.detail, "action": self.action,
             "confidence": self.confidence, "monthly_savings": round(self.monthly_savings, 2),
             "annual_savings": round(self.monthly_savings * 12, 2), "apps": self.apps, "evidence": self.evidence,
         }
@@ -240,7 +241,7 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
             title=f"{len(group)} {cat.label.lower()} apps doing one job",
             detail=f"{', '.join(names[:-1])} and {names[-1]} are {'both' if len(names) == 2 else 'all'} running.{money} Stores rarely need more than one.",
             action=f"Pick one. Savings assume you keep the most expensive; keeping a cheaper one saves more.",
-            confidence=conf, monthly_savings=saving, apps=names,
+            confidence=conf, monthly_savings=saving, apps=names, category=cid,
         ))
 
     # 3. Code on the storefront from apps you no longer pay for.
