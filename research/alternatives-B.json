@@ -1,0 +1,663 @@
+{
+ "entries": [
+  {
+   "app": "judgeme",
+   "incumbent_price": {
+    "low": 0,
+    "high": 15,
+    "unit": "month",
+    "note": "Two flat plans: Forever Free ($0) and Awesome ($15/mo). Price does not scale with orders on the listing.",
+    "source": "https://apps.shopify.com/judgeme",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "Dropping from Awesome to Forever Free keeps the same app and review data, so nothing is migrated; you only lose the Awesome-only widgets and integrations.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Judge.me Forever Free plan",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Same app, free plan"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited product and store reviews",
+      "Unlimited photo and video reviews",
+      "Review widget, star rating badge, carousels",
+      "Google reviews sync and rich snippets",
+      "Reviews importer, Shop App/Etsy/Amazon sync"
+     ],
+     "misses": [
+      "AI replies, summaries and translations (Awesome only)",
+      "130+ integrations incl. Klaviyo and Gorgias (Awesome only)",
+      "Q&A and Reviews Page widgets (Awesome's 16 widgets)",
+      "Google Shopping and Meta/TikTok Shop sync (Awesome only)"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Star rating, carousel and testimonial widgets",
+      "Photo reviews and media gallery",
+      "Automated email review requests, QR codes, pop-ups",
+      "Review moderation and rich snippets",
+      "Bulk review import"
+     ],
+     "misses": [
+      "Import sources not named on the listing (Judge.me not confirmed)",
+      "No Q&A widget listed",
+      "No Google Shopping or Meta/TikTok Shop sync listed",
+      "No AI summaries/translations listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "yotpo",
+   "incumbent_price": {
+    "low": 0,
+    "high": 119,
+    "unit": "month",
+    "note": "Free up to 50 orders/mo; Starter $15 and Pro $119 are starting prices that change with order volume. Top of range above $119 not published on the listing; yotpo.com/pricing shows demo requests, no figures.",
+    "source": "https://apps.shopify.com/yotpo-social-reviews",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Judge.me names Yotpo as an import source, so history carries over, but widgets, Google Shopping feed and review-request flows must be rebuilt and seller-rating setup redone.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome; not order-based"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Imports reviews from Yotpo (named on listing)",
+      "Unlimited photo/video reviews",
+      "Google Shopping and rich snippets",
+      "Q&A widget and AI summaries (Awesome)",
+      "Klaviyo and Gorgias integrations (Awesome)"
+     ],
+     "misses": [
+      "Google Seller Rating not listed (Yotpo Pro lists it)",
+      "Smart sorting not listed (Yotpo Pro lists it)",
+      "Custom review questions not listed (Yotpo Pro lists them)"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Photo reviews and star/carousel/testimonial widgets",
+      "Automated email review requests",
+      "Rich snippets",
+      "Bulk review import"
+     ],
+     "misses": [
+      "Yotpo import not named on listing",
+      "No Google Shopping Ads feed or Seller Rating listed",
+      "No AI review summaries listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "okendo",
+   "incumbent_price": {
+    "low": 0,
+    "high": 299,
+    "unit": "month",
+    "note": "By monthly orders: Free (50), Essential $19 (200), Growth $119 (1,500), Power $299 (3,500). okendo.io/pricing shows Enterprise custom pricing above that (contact sales).",
+    "source": "https://apps.shopify.com/okendo-reviews",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Review history must be imported but neither Judge.me nor Air Reviews names Okendo as a source, and any Okendo loyalty, quiz or survey use would need separate replacement.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome; not order-based"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited reviews with photos/videos",
+      "Q&A widget and AI summaries (Awesome)",
+      "TikTok Shop and Meta sync (Awesome)",
+      "Klaviyo integration (Awesome)",
+      "Reviews importer"
+     ],
+     "misses": [
+      "Okendo import not named on listing ('other platforms' only)",
+      "No loyalty program, surveys or quizzes listed",
+      "Walmart syndication not listed (Okendo lists Walmart)"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Photo reviews and display widgets",
+      "Automated email review requests and incentives",
+      "Moderation and rich snippets",
+      "Klaviyo and Shopify Flow integration"
+     ],
+     "misses": [
+      "Okendo import not named on listing",
+      "No Q&A widget listed",
+      "No loyalty, surveys or quizzes",
+      "No AI summaries listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "stamped",
+   "incumbent_price": {
+    "low": 23,
+    "high": 299,
+    "unit": "month",
+    "note": "By monthly orders: Reviews $23 (200), $99 (1,000), $199 (5,000); Loyalty bundle $299 (5,000). stamped.io pricing page returned 403, not checked.",
+    "source": "https://apps.shopify.com/product-reviews-addon",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Stamped is not named as an import source by the alternatives, and brands on the Loyalty plan lose their points program and need a separate loyalty app.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome; not order-based"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited reviews with photos/videos",
+      "Q&A widget (Awesome)",
+      "SMS review requests",
+      "Coupons and referrals (Awesome)",
+      "Reviews importer"
+     ],
+     "misses": [
+      "Stamped import not named on listing ('other platforms' only)",
+      "No points-based loyalty program listed (Stamped Loyalty plan)"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Photo reviews and display widgets",
+      "Email requests, pop-ups, QR codes",
+      "Moderation and rich snippets",
+      "Bulk review import"
+     ],
+     "misses": [
+      "Stamped import not named on listing",
+      "No Q&A listed",
+      "No loyalty program",
+      "No SMS review requests listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "loox",
+   "incumbent_price": {
+    "low": 0,
+    "high": 299.99,
+    "unit": "month",
+    "note": "Free up to 500 orders; Convert $49.99 incl. 300 orders plus $50 per extra 300 orders; Unlimited $299.99.",
+    "source": "https://apps.shopify.com/loox",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "Judge.me names Loox as an import source, so the main work is re-placing widgets and review-request emails in the theme.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome; not order-based"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Imports reviews from Loox (named on listing)",
+      "Unlimited photo and video reviews on the free plan",
+      "AI replies, summaries, translations (Awesome)",
+      "Coupons and referrals (Awesome)",
+      "Carousels and rich snippets"
+     ],
+     "misses": [
+      "AI Smart Sorting and Review Highlights not listed",
+      "Review Stories not listed"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Photo reviews, media gallery and grid layouts",
+      "Email requests with promotional incentives",
+      "Rich snippets",
+      "Bulk review import"
+     ],
+     "misses": [
+      "Loox import not named on listing",
+      "No video reviews listed",
+      "No referrals listed",
+      "No AI summaries or translations listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "bazaarvoice",
+   "incumbent_price": {
+    "low": null,
+    "high": null,
+    "unit": "month",
+    "note": "Contact sales. Listing is free to install; 'External charges may be billed by Bazaarvoice Inc. separately' and the account must be set up with Bazaarvoice directly.",
+    "source": "https://apps.shopify.com/bazaarvoice-reviews-photos-social",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "high",
+   "switch_note": "Enterprise contract terms, reviews shared across the Bazaarvoice network and any retailer syndication would be lost or need re-sourcing, and no alternative listing names Bazaarvoice as an import source.",
+   "strategy": "negotiate",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited reviews with photos/videos",
+      "Q&A widget and AI summaries (Awesome)",
+      "Google Shopping, Meta and TikTok Shop sync (Awesome)",
+      "Shop App, Etsy, Amazon sync"
+     ],
+     "misses": [
+      "Bazaarvoice import not named on listing",
+      "No Bazaarvoice global network distribution of reviews",
+      "No dedicated enterprise tier or account team listed"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Okendo (Power plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 119,
+      "high": 299,
+      "unit": "month",
+      "note": "Growth $119 (1,500 orders) or Power $299 (3,500 orders); Enterprise custom above that"
+     },
+     "source": "https://apps.shopify.com/okendo-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Syndication to Shop, TikTok, Google, Klaviyo, Walmart and 50+ apps",
+      "Q&A widget and AI review summaries (Growth+)",
+      "Email and SMS integrations, advanced reporting (Power)",
+      "Managed onboarding (Power)"
+     ],
+     "misses": [
+      "Bazaarvoice import not named on listing",
+      "No Bazaarvoice network distribution",
+      "Stores above 3,500 orders/mo need Enterprise (custom price)"
+     ],
+     "app_store_rating": "4.8 (1,427 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "gorgias",
+   "incumbent_price": {
+    "low": 10,
+    "high": 900,
+    "unit": "month",
+    "note": "By tickets: Starter $10 (50), Basic $60 (300), Pro $360 (2,000), Advanced $900 (5,000); overage $0.40/ticket on Starter, $36-40 per 100 tickets above. Not priced per agent.",
+    "source": "https://apps.shopify.com/helpdesk",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "high",
+   "switch_note": "Ticket history, macros, rules and integrations must be migrated or rebuilt and every agent retrained on a new inbox.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify Inbox",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free"
+     },
+     "source": "https://apps.shopify.com/inbox",
+     "checked": "2026-09-23",
+     "covers": [
+      "Live chat on the online store",
+      "AI sales agent that reads catalog, inventory and policies",
+      "Product recommendations and FAQ automation",
+      "Assisted-order analytics",
+      "20+ languages"
+     ],
+     "misses": [
+      "No email ticketing, macros or SLAs listed",
+      "No social, SMS or voice channels listed",
+      "Too thin for a 20+ person support team: no ticket queues or detailed agent reporting listed",
+      "Reviews mention weak human handoff"
+     ],
+     "app_store_rating": "4.5 (5,787 reviews)"
+    },
+    {
+     "name": "Commslayer: AI Helpdesk & Chat",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 299,
+      "unit": "month",
+      "note": "By conversations: Free (300), $39 (800), $99 (2,000), $299 (6,000); unlimited seats"
+     },
+     "source": "https://apps.shopify.com/commslayer",
+     "checked": "2026-09-23",
+     "covers": [
+      "Email, live chat, WhatsApp, Instagram, Facebook, TikTok",
+      "Macros, rules, auto-labels, escalation",
+      "Shopify order edit, refund, cancel from the helpdesk",
+      "Help center on custom domain",
+      "Listing names migration from Gorgias"
+     ],
+     "misses": [
+      "No voice or SMS channel listed (Gorgias offers both)",
+      "Far fewer integrations listed than Gorgias's 100+",
+      "No AI Shopping Assistant equivalent listed",
+      "Largest plan caps at 6,000 conversations/mo"
+     ],
+     "app_store_rating": "4.9 (230 reviews)",
+     "recommended": true
+    }
+   ]
+  },
+  {
+   "app": "instafeed",
+   "incumbent_price": {
+    "low": 0,
+    "high": 20,
+    "unit": "month",
+    "note": "By features/feeds: Starter free, Pro $8 (tagging, up to 3 feeds), Plus $20 (unlimited feeds, UGC).",
+    "source": "https://apps.shopify.com/instafeed",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "A feed widget is one section or block, so moving plans or removing it takes minutes with no data to migrate.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Instafeed Starter plan",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Same app, free plan"
+     },
+     "source": "https://apps.shopify.com/instafeed",
+     "checked": "2026-09-23",
+     "covers": [
+      "Grid or slider feed layout",
+      "Instagram Reels",
+      "Hourly auto-sync"
+     ],
+     "misses": [
+      "No product/collection tagging or shop buttons (Pro)",
+      "No Stories (Pro)",
+      "Single feed only; multiple feeds need Pro/Plus",
+      "No UGC or custom uploads (Plus)"
+     ],
+     "app_store_rating": "4.9 (2,156 reviews)"
+    },
+    {
+     "name": "Theme editor image/collage sections (Online Store 2.0)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Built into OS 2.0 themes; no cost mentioned"
+     },
+     "source": "https://help.shopify.com/en/manual/online-store/themes/theme-structure/sections-and-blocks",
+     "checked": "2026-09-23",
+     "covers": [
+      "Image and collage blocks added without code",
+      "Place anywhere on templates",
+      "No app script on the storefront"
+     ],
+     "misses": [
+      "No Instagram auto-sync; posts uploaded by hand",
+      "No shoppable tagging from posts",
+      "No Reels/Stories import"
+     ],
+     "app_store_rating": ""
+    }
+   ]
+  },
+  {
+   "app": "swym",
+   "incumbent_price": {
+    "low": 29.99,
+    "high": 99.99,
+    "unit": "month",
+    "note": "By monthly wishlist actions: Starter $29.99 (3,000), Pro $59.99 (10,000), Premium $99.99 (25,000); Enterprise custom (100,000+) per getswym.com.",
+    "source": "https://apps.shopify.com/swym-relay",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Existing shopper wishlists and Klaviyo/Attentive alert flows would need migrating or rebuilding, and the wishlist buttons re-placed in the theme.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Wishlist by Square",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free"
+     },
+     "source": "https://apps.shopify.com/wishlist-by-square",
+     "checked": "2026-09-23",
+     "covers": [
+      "Guest wishlists without customer accounts",
+      "Favorites and Save for Later lists",
+      "Add to cart from saved items",
+      "Saved-product and wishlist-value analytics",
+      "15 languages"
+     ],
+     "misses": [
+      "No price-drop or back-in-stock alerts listed",
+      "No email/ESP integration listed",
+      "No wishlist sharing listed",
+      "Launched June 2025; short track record"
+     ],
+     "app_store_rating": "5.0 (119 reviews)"
+    },
+    {
+     "name": "Wishlist Hero",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 29,
+      "unit": "month",
+      "note": "By wishlist additions: Free (500), Silver $4 (1,000), Gold Plus $17 (5,000), Platinum $29 (10,000)"
+     },
+     "source": "https://apps.shopify.com/wishlist-hero",
+     "checked": "2026-09-23",
+     "covers": [
+      "Guest wishlists",
+      "Email and social sharing",
+      "Low-stock and price-drop email alerts",
+      "Klaviyo, Mailchimp, GA4, Meta pixel integration (Silver+)",
+      "REST and JavaScript APIs (Gold Plus+)"
+     ],
+     "misses": [
+      "No Meta ads retargeting audiences or customer segments listed (Swym Pro)",
+      "No Attentive or Tapcart integration listed",
+      "Top plan caps at 10,000 additions/mo"
+     ],
+     "app_store_rating": "4.7 (412 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "pagefly",
+   "incumbent_price": {
+    "low": 0,
+    "high": 299,
+    "unit": "month",
+    "note": "By published pages/sections and AI credits: Free (1 slot), Builder $24 (5+, add $5 per 5 slots), Accelerate $99 (unlimited), Enterprise $299.",
+    "source": "https://apps.shopify.com/pagefly",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "high",
+   "switch_note": "Every page and section built in PageFly has to be rebuilt in the theme editor or another builder.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Online Store 2.0 theme editor (sections and blocks)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Built into OS 2.0 themes; no cost mentioned"
+     },
+     "source": "https://help.shopify.com/en/manual/online-store/themes/theme-structure/sections-and-blocks",
+     "checked": "2026-09-23",
+     "covers": [
+      "Add and rearrange sections on home, product, collection, page and blog templates",
+      "Text, image, button and collage blocks without code",
+      "Metafield dynamic sources",
+      "App blocks from installed apps",
+      "Duplicate, hide, copy/paste sections"
+     ],
+     "misses": [
+      "Limited to the sections your theme ships; no drag-anywhere layout",
+      "No A/B testing or heatmaps",
+      "25 sections per template cap",
+      "No PageFly-style template library"
+     ],
+     "app_store_rating": ""
+    },
+    {
+     "name": "GemPages (Build plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 29,
+      "unit": "month",
+      "note": "Free (1 published page) or Build $29 (unlimited pages)"
+     },
+     "source": "https://apps.shopify.com/gempages",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited published pages on Build",
+      "400+ CRO templates and sections",
+      "Image/URL-to-layout AI",
+      "Countdown timers, stock counters, bundles"
+     ],
+     "misses": [
+      "Funnels and post-purchase upsells need the $59 Optimize plan",
+      "Heatmaps not listed",
+      "Cart drawer not listed",
+      "Free plan limited to 1 page"
+     ],
+     "app_store_rating": "4.9 (4,245 reviews)"
+    }
+   ]
+  }
+ ]
+}

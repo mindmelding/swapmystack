@@ -9,7 +9,9 @@ sys.path.insert(0, str(ROOT))
 from appspend.report import render_html, render_json, render_markdown  # noqa: E402
 from tests.test_appspend import full_audit  # noqa: E402
 
-audit = full_audit()
+from appspend import alternatives  # noqa: E402
+
+audit = full_audit(paths=alternatives.load())
 out = Path(__file__).parent
 (out / "demo-report.html").write_text(render_html(audit))
 (out / "demo-report.md").write_text(render_markdown(audit))

@@ -1,6 +1,6 @@
 # App Spend Audit: linen-and-pine.example
 
-_Read: 2 storefront pages, theme (9 files), bills (11 apps, through 2026-08-01). Generated 2026-09-23T11:25:33Z._
+_Read: 2 storefront pages, theme (9 files), bills (11 apps, through 2026-08-01). Generated 2026-09-23T13:46:29Z._
 
 **Likely savings: $83/mo ($996/yr)** out of $680/mo in app spend.
 
@@ -26,33 +26,33 @@ _Read: 2 storefront pages, theme (9 files), bills (11 apps, through 2026-08-01).
    Snippets from PageFly, Sumo, Wishlist Hero (343 bytes) are no longer rendered anywhere. This is what uninstalled apps usually leave behind.  
    → Delete them in a duplicate theme, preview, then publish.
 
-6. **A free option exists for Rebuy** · $249/mo _(Worth checking)_  
-   You pay $249/mo. Shopify Search & Discovery includes free product recommendations. It may not match every feature you use.  
-   → Compare the features you use against the free option before your next renewal.
+6. **Cheaper path for Privy: Shopify Forms (free)** · $30/mo _(Worth checking)_  
+   You pay $30/mo. Switching effort: low. Popups and forms rebuild in an afternoon and contacts already sit in Shopify customer records.  
+   → List the Privy features your team uses and check each against Shopify Forms before the next renewal.
 
-7. **A free option exists for Klaviyo** · $150/mo _(Worth checking)_  
-   You pay $150/mo. Shopify Email includes a free monthly send allowance. It may not match every feature you use.  
-   → Compare the features you use against the free option before your next renewal.
+7. **Cheaper path for Rebuy: Frequently Bought Together (Code Black Belt) ($0–$40/mo)** · $249/mo _(Worth checking)_  
+   You pay $249/mo. Switching effort: medium. Cheaper apps cover bundles and product recommendations, but not Rebuy's cart drawer and personalization rules; brands using those need more than one replacement.  
+   → List the Rebuy features your team uses and check each against Frequently Bought Together (Code Black Belt) before the next renewal.
 
-8. **A free option exists for Privy** · $30/mo _(Worth checking)_  
-   You pay $30/mo. Shopify Forms is free and feeds Shopify Email. It may not match every feature you use.  
-   → Compare the features you use against the free option before your next renewal.
-
-9. **1 app embed switched off but still installed** _(For your records)_  
+8. **1 app embed switched off but still installed** _(For your records)_  
    These apps are installed but their theme embed is disabled. If they are paid, you pay for nothing.  
    → Uninstall any you no longer plan to switch back on.
 
-10. **Rebuy went from $99 to $249 a month** _(For your records)_  
+9. **Rebuy went from $99 to $249 a month** _(For your records)_  
    A 152% rise between 2026-05 and 2026-08. Plan changes often happen through usage tiers nobody chose.  
    → Check which plan you're on against what you use. Ask for the old rate or an annual price.
 
-11. **Klaviyo went from $100 to $150 a month** _(For your records)_  
+10. **Klaviyo went from $100 to $150 a month** _(For your records)_  
    A 50% rise between 2026-05 and 2026-08. Plan changes often happen through usage tiers nobody chose.  
    → Check which plan you're on against what you use. Ask for the old rate or an annual price.
 
-12. **Gorgias usage fees jumped to $71.50** _(For your records)_  
+11. **Gorgias usage fees jumped to $71.50** _(For your records)_  
    Last month's usage charges were 3.4x the usual $21.  
    → Find what drove the usage. Metered apps often have caps you can set.
+
+12. **Klaviyo: a cheaper plan is the realistic saving** _(For your records)_  
+   You pay $150/mo. Switching effort: medium. Flows, segments and templates must be rebuilt and event history does not carry over, so most savings come from suppressing unengaged profiles to drop a tier.  
+   → Compare your Klaviyo usage against the plan tiers. Most brands overbuy headroom.
 
 ## Apps
 

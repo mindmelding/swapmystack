@@ -58,7 +58,8 @@ def render_text(audit: Audit, color: bool | None = None) -> str:
         out.append(b("Findings"))
         for n, f in enumerate(audit.findings, 1):
             money = f"  {_m(f.monthly_savings)}/mo" if f.monthly_savings else ""
-            out.append(f"{n:>2}. {f.title}{r(money)}  {d('[' + CONF_LABEL[f.confidence] + ']')}")
+            tag = CONF_LABEL[f.confidence] + (f" · {SWITCH_LABEL[f.switch_cost].lower()}" if f.switch_cost else "")
+            out.append(f"{n:>2}. {f.title}{r(money)}  {d('[' + tag + ']')}")
             out.append(d(f"    {f.action}"))
         out.append("")
 

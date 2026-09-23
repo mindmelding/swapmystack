@@ -1,0 +1,700 @@
+{
+  "entries": [
+    {
+      "app": "klaviyo",
+      "incumbent_price": {
+        "low": 20,
+        "high": null,
+        "unit": "month",
+        "note": "By active profiles (email) plus SMS/MMS credits. Free to 250 profiles; Email $20 at 251-500 contacts; SMS $15 for 1,250 credits. Higher tiers render client-side on klaviyo.com/pricing and were not captured; Klaviyo Advanced is contact sales.",
+        "source": "https://apps.shopify.com/klaviyo-email-marketing",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "medium",
+      "switch_note": "Flows, segments and templates must be rebuilt and event history does not carry over, so most savings come from suppressing unengaged profiles to drop a tier.",
+      "strategy": "downgrade",
+      "alternatives": [
+        {
+          "name": "Shopify Messaging (Shopify Email)",
+          "kind": "shopify-native",
+          "price": {
+            "low": 0,
+            "high": null,
+            "unit": "month",
+            "note": "First 10,000 emails/month free, then from $1 per 1,000 emails. SMS/WhatsApp pricing not shown on listing."
+          },
+          "source": "https://apps.shopify.com/shopify-email",
+          "checked": "2026-09-23",
+          "covers": [
+            "Email campaigns with ready-made templates",
+            "Abandoned cart and browse abandonment automations",
+            "Segmentation and targeting on Shopify customer data",
+            "Click-through and conversion reporting",
+            "Works with Shopify Forms and Flow"
+          ],
+          "misses": [
+            "Listing shows no predictive analytics or send-time optimization, both on Klaviyo's Email plan",
+            "Review notes default templates do not allow HTML/Liquid edits",
+            "No role-based access or multi-user workflow listed; thin for 20+ person marketing teams"
+          ],
+          "app_store_rating": "4.8 (4,522 reviews)"
+        },
+        {
+          "name": "Omnisend",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 59,
+            "unit": "month",
+            "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+          },
+          "source": "https://apps.shopify.com/omnisend",
+          "checked": "2026-09-23",
+          "covers": [
+            "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+            "SMS messaging (Pro plan)",
+            "Popups and signup forms",
+            "Segmentation and A/B testing"
+          ],
+          "misses": [
+            "No predictive analytics listed",
+            "No deliverability AI or send-time optimization listed",
+            "Product recommendation blocks not listed"
+          ],
+          "app_store_rating": "4.7 (3,182 reviews)"
+        }
+      ]
+    },
+    {
+      "app": "mailchimp",
+      "incumbent_price": {
+        "low": 13,
+        "high": null,
+        "unit": "month",
+        "note": "By contacts. Essentials from $13, Standard from $20, Premium from $350. Top-of-range price by contact tier not shown in fetched pages.",
+        "source": "https://apps.shopify.com/mailchimp",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "low",
+      "switch_note": "Contacts export cleanly and Mailchimp automation caps (4 on Essentials) mean little workflow to rebuild; retraining is light.",
+      "strategy": "replace",
+      "alternatives": [
+        {
+          "name": "Shopify Messaging (Shopify Email)",
+          "kind": "shopify-native",
+          "price": {
+            "low": 0,
+            "high": null,
+            "unit": "month",
+            "note": "First 10,000 emails/month free, then from $1 per 1,000 emails. SMS/WhatsApp pricing not shown on listing."
+          },
+          "source": "https://apps.shopify.com/shopify-email",
+          "checked": "2026-09-23",
+          "covers": [
+            "Email campaigns with ready-made templates",
+            "Abandoned cart and browse abandonment automations",
+            "Segmentation and targeting on Shopify customer data",
+            "Click-through and conversion reporting",
+            "Works with Shopify Forms and Flow"
+          ],
+          "misses": [
+            "No landing pages or social posting, which Mailchimp includes",
+            "No surveys",
+            "No multivariate testing (Mailchimp Premium)"
+          ],
+          "app_store_rating": "4.8 (4,522 reviews)"
+        },
+        {
+          "name": "Omnisend",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 59,
+            "unit": "month",
+            "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+          },
+          "source": "https://apps.shopify.com/omnisend",
+          "checked": "2026-09-23",
+          "covers": [
+            "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+            "SMS messaging (Pro plan)",
+            "Popups and signup forms",
+            "Segmentation and A/B testing"
+          ],
+          "misses": [
+            "No landing pages or social posting listed",
+            "No multivariate testing listed",
+            "No phone support listed"
+          ],
+          "app_store_rating": "4.7 (3,182 reviews)"
+        }
+      ]
+    },
+    {
+      "app": "attentive",
+      "incumbent_price": {
+        "low": null,
+        "high": null,
+        "unit": "month",
+        "note": "Contact sales. Priced on message volume, subscriber list size, channels and AI products; AI Pro/AI Grow are extra flat fees. Month-to-month and long-term agreements offered.",
+        "source": "https://www.attentive.com/pricing",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "high",
+      "switch_note": "Long-term agreements lock spend, and moving SMS subscribers means carrying opt-in consent records and number changes without losing the list.",
+      "strategy": "negotiate",
+      "alternatives": [
+        {
+          "name": "Postscript SMS Marketing",
+          "kind": "low-cost",
+          "price": {
+            "low": 49,
+            "high": 500,
+            "unit": "month",
+            "note": "Starter $49 minimum spend ($0.009/SMS); Growth $100; Professional $500 ($0.007/SMS). Plus carrier fees; message volume drives real cost."
+          },
+          "source": "https://apps.shopify.com/postscript-sms-marketing",
+          "checked": "2026-09-23",
+          "covers": [
+            "SMS campaigns and automations",
+            "Unlimited segments",
+            "Subscriber acquisition tools",
+            "Dedicated CSM on Professional"
+          ],
+          "misses": [
+            "No email channel; Attentive bundles email, RCS and push",
+            "No AI Journeys-style pay-per-click AI product listed",
+            "White-glove managed service not listed below Professional"
+          ],
+          "app_store_rating": "4.7 (1,208 reviews)"
+        },
+        {
+          "name": "Klaviyo SMS",
+          "kind": "low-cost",
+          "price": {
+            "low": 15,
+            "high": null,
+            "unit": "month",
+            "note": "SMS plan $15/month for up to 1,250 SMS/MMS credits; scales by credits. Higher tiers not captured."
+          },
+          "source": "https://apps.shopify.com/klaviyo-email-marketing",
+          "checked": "2026-09-23",
+          "covers": [
+            "SMS/MMS campaigns",
+            "Two-way conversations",
+            "Transactional SMS",
+            "Segmentation shared with Klaviyo email"
+          ],
+          "misses": [
+            "No RCS or push channel listed",
+            "No managed/white-glove campaign service listed",
+            "Needs Klaviyo as the email platform to share segments"
+          ],
+          "app_store_rating": "4.7 (3,317 reviews)"
+        },
+        {
+          "name": "Omnisend",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 59,
+            "unit": "month",
+            "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+          },
+          "source": "https://apps.shopify.com/omnisend",
+          "checked": "2026-09-23",
+          "covers": [
+            "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+            "SMS messaging (Pro plan)",
+            "Popups and signup forms",
+            "Segmentation and A/B testing"
+          ],
+          "misses": [
+            "No RCS or push channel listed",
+            "No managed/white-glove service listed",
+            "SMS is Pro-plan only"
+          ],
+          "app_store_rating": "4.7 (3,182 reviews)"
+        }
+      ]
+    },
+    {
+      "app": "postscript",
+      "incumbent_price": {
+        "low": 49,
+        "high": 500,
+        "unit": "month",
+        "note": "Plan fee from $49 minimum spend (Starter) to $500 (Professional), plus per-message fees ($0.007-0.009/SMS, $0.024-0.045/MMS) and carrier fees. Message volume drives total cost.",
+        "source": "https://apps.shopify.com/postscript-sms-marketing",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "medium",
+      "switch_note": "Subscriber lists with consent records, keywords and toll-free number must move, and SMS flows must be rebuilt.",
+      "strategy": "downgrade",
+      "alternatives": [
+        {
+          "name": "Klaviyo SMS",
+          "kind": "low-cost",
+          "price": {
+            "low": 15,
+            "high": null,
+            "unit": "month",
+            "note": "SMS plan $15/month for up to 1,250 SMS/MMS credits; scales by credits. Higher tiers not captured."
+          },
+          "source": "https://apps.shopify.com/klaviyo-email-marketing",
+          "checked": "2026-09-23",
+          "covers": [
+            "SMS/MMS campaigns",
+            "Two-way conversations",
+            "Transactional SMS",
+            "Segmentation shared with Klaviyo email"
+          ],
+          "misses": [
+            "No dedicated onboarding specialist or CSM on the $15 plan",
+            "Per-message cost beyond 1,250 credits not captured",
+            "Branded short links not listed"
+          ],
+          "app_store_rating": "4.7 (3,317 reviews)"
+        },
+        {
+          "name": "Omnisend",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 59,
+            "unit": "month",
+            "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+          },
+          "source": "https://apps.shopify.com/omnisend",
+          "checked": "2026-09-23",
+          "covers": [
+            "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+            "SMS messaging (Pro plan)",
+            "Popups and signup forms",
+            "Segmentation and A/B testing"
+          ],
+          "misses": [
+            "No dedicated CSM listed",
+            "No custom opt-in keyword tooling listed",
+            "SMS requires the $59+ Pro plan"
+          ],
+          "app_store_rating": "4.7 (3,182 reviews)"
+        }
+      ]
+    },
+    {
+      "app": "yotpo_loyalty",
+      "incumbent_price": {
+        "low": 199,
+        "high": null,
+        "unit": "month",
+        "note": "Free under 100 orders/month. Pro $199 base plus $0.08-$0.20 per order above 500 orders; enterprise pricing for 5,000+ orders.",
+        "source": "https://apps.shopify.com/swell",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "medium",
+      "switch_note": "Points balances, VIP status and referral links must be exported and reimported, and customers see a new rewards page.",
+      "strategy": "replace",
+      "alternatives": [
+        {
+          "name": "BON Loyalty Program & Rewards",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 129,
+            "unit": "month",
+            "note": "Free to 150 orders; Starter $15 (300 orders); Basic $29 (500 orders); Growth $129 (listing says unlimited orders)."
+          },
+          "source": "https://apps.shopify.com/bon-loyalty-rewards",
+          "checked": "2026-09-23",
+          "covers": [
+            "Points and rewards",
+            "Referral program with anti-cheat",
+            "VIP tiers (Growth plan)",
+            "Shopify POS earn/redeem (Basic and up)",
+            "Klaviyo integration (Starter and up)"
+          ],
+          "misses": [
+            "Webhooks not listed",
+            "ReCharge integration not listed",
+            "Checkout redemption not listed"
+          ],
+          "app_store_rating": "5.0 (1,940 reviews)"
+        },
+        {
+          "name": "Smile: Loyalty Program Rewards",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 199,
+            "unit": "month",
+            "note": "Free to 200 orders; Essential $15 (500); Standard $79 (1,000); Growth $199 (2,500 orders + $20 per extra 100)."
+          },
+          "source": "https://apps.shopify.com/smile-io",
+          "checked": "2026-09-23",
+          "covers": [
+            "Points, rewards and referrals on free plan",
+            "POS integration on free plan",
+            "VIP tiers and point expiration (Growth)",
+            "Checkout redemption on Shopify Plus (Growth)"
+          ],
+          "misses": [
+            "VIP tiers only on the $199 Growth plan",
+            "Webhooks not listed",
+            "Integrations capped at 1-2 below Growth"
+          ],
+          "app_store_rating": "4.9 (4,600 reviews)"
+        }
+      ]
+    },
+    {
+      "app": "loyaltylion",
+      "incumbent_price": {
+        "low": 199,
+        "high": null,
+        "unit": "month",
+        "note": "Free to 400 orders/month; Classic $199; above 500 orders/month Advanced and Plus are custom quotes.",
+        "source": "https://apps.shopify.com/loyaltylion",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "medium",
+      "switch_note": "Points balances and tier status must migrate, and built-in Klaviyo flows and the custom loyalty page must be rebuilt.",
+      "strategy": "replace",
+      "alternatives": [
+        {
+          "name": "BON Loyalty Program & Rewards",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 129,
+            "unit": "month",
+            "note": "Free to 150 orders; Starter $15 (300 orders); Basic $29 (500 orders); Growth $129 (listing says unlimited orders)."
+          },
+          "source": "https://apps.shopify.com/bon-loyalty-rewards",
+          "checked": "2026-09-23",
+          "covers": [
+            "Points and rewards",
+            "Referral program with anti-cheat",
+            "VIP tiers (Growth plan)",
+            "Shopify POS earn/redeem (Basic and up)",
+            "Klaviyo integration (Starter and up)"
+          ],
+          "misses": [
+            "Revenue attribution reporting not listed",
+            "Free loyalty page design service not listed",
+            "Built-in Klaviyo flows not listed (integration only)"
+          ],
+          "app_store_rating": "5.0 (1,940 reviews)"
+        },
+        {
+          "name": "Smile: Loyalty Program Rewards",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 199,
+            "unit": "month",
+            "note": "Free to 200 orders; Essential $15 (500); Standard $79 (1,000); Growth $199 (2,500 orders + $20 per extra 100)."
+          },
+          "source": "https://apps.shopify.com/smile-io",
+          "checked": "2026-09-23",
+          "covers": [
+            "Points, rewards and referrals on free plan",
+            "POS integration on free plan",
+            "VIP tiers and point expiration (Growth)",
+            "Checkout redemption on Shopify Plus (Growth)"
+          ],
+          "misses": [
+            "VIP tiers need the $199 Growth plan",
+            "Revenue attribution not listed",
+            "Priority onboarding not listed"
+          ],
+          "app_store_rating": "4.9 (4,600 reviews)"
+        }
+      ]
+    },
+    {
+      "app": "rise",
+      "incumbent_price": {
+        "low": 19.99,
+        "high": 199.99,
+        "unit": "month",
+        "note": "By monthly orders: Starter $19.99 (100 orders), Small-Business $59.99 (400), Pro $199.99 (2,000); overage $0.10-$0.20 per order.",
+        "source": "https://apps.shopify.com/rise-ai",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "medium",
+      "switch_note": "Outstanding gift card and store credit balances are live liabilities that must be moved or honored, and the customer wallet and cashback rules must be rebuilt.",
+      "strategy": "replace",
+      "alternatives": [
+        {
+          "name": "Shopify gift cards + native store credit",
+          "kind": "shopify-native",
+          "price": {
+            "low": 0,
+            "high": null,
+            "unit": "month",
+            "note": "No app fee. Stores created after May 12, 2025 pay third-party transaction fees on store-credit-paid amounts unless on Plus with Shopify Payments. Gift card plan requirements not found on fetched pages."
+          },
+          "source": "https://help.shopify.com/en/manual/customers/store-credit",
+          "checked": "2026-09-23",
+          "covers": [
+            "Sell gift card products and create gift cards in admin",
+            "Issue store credit per customer with optional per-issuance expiry",
+            "Store credit redeemable online, on POS and in the Shop app",
+            "Physical POS gift cards via Shopify Hardware Store"
+          ],
+          "misses": [
+            "No bulk store credit issuing tool mentioned; issuing is per customer",
+            "Store credit applies as full amount only and not to recurring subscription bills",
+            "No cashback, loyalty or customer wallet features",
+            "No AI retention agent"
+          ],
+          "app_store_rating": ""
+        },
+        {
+          "name": "Govalo Gift Card Suite",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 399,
+            "unit": "month",
+            "note": "Essential free + 2.9% fee; Premium $79 + 2.25%; Enterprise $399 + 1.5%. Percentage fee on gift card sales drives cost."
+          },
+          "source": "https://apps.shopify.com/govalo",
+          "checked": "2026-09-23",
+          "covers": [
+            "Custom digital gift card designs",
+            "Store credit",
+            "Bulk sending",
+            "Klaviyo/Omnisend integrations and balance lookup"
+          ],
+          "misses": [
+            "No loyalty or cashback program listed",
+            "Percentage fee can exceed Rise's flat plan at volume",
+            "Only 25 reviews, 24% one-star"
+          ],
+          "app_store_rating": "4.1 (25 reviews)"
+        }
+      ]
+    },
+    {
+      "app": "privy",
+      "incumbent_price": {
+        "low": 24,
+        "high": 1740,
+        "unit": "month",
+        "note": "Pop-ups by pageviews ($24 at 10,000 views); Email by mailable contacts ($30 at 1,500 up to $1,740 at 250,000); SMS credits extra; custom above 250,000 contacts; strategists +$150.",
+        "source": "https://www.privy.com/pricing",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "low",
+      "switch_note": "Popups and forms rebuild in an afternoon and contacts already sit in Shopify customer records.",
+      "strategy": "replace",
+      "alternatives": [
+        {
+          "name": "Shopify Forms",
+          "kind": "shopify-native",
+          "price": {
+            "low": 0,
+            "high": 0,
+            "unit": "month",
+            "note": "Free."
+          },
+          "source": "https://apps.shopify.com/shopify-forms",
+          "checked": "2026-09-23",
+          "covers": [
+            "Pop-up and inline signup forms",
+            "Discount incentives and customer tagging",
+            "Email and SMS consent collection",
+            "Targeting and performance analytics"
+          ],
+          "misses": [
+            "Reviews ask for quizzes and games, so no spin-to-win style displays",
+            "No pageview-based display types like Privy's full popup library",
+            "Sending needs a separate app (Shopify Email)"
+          ],
+          "app_store_rating": "4.4 (729 reviews)"
+        },
+        {
+          "name": "Omnisend",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 59,
+            "unit": "month",
+            "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+          },
+          "source": "https://apps.shopify.com/omnisend",
+          "checked": "2026-09-23",
+          "covers": [
+            "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+            "SMS messaging (Pro plan)",
+            "Popups and signup forms",
+            "Segmentation and A/B testing"
+          ],
+          "misses": [
+            "No dedicated strategist add-on listed",
+            "Popup template range not detailed on listing",
+            "SMS only on Pro plan"
+          ],
+          "app_store_rating": "4.7 (3,182 reviews)"
+        }
+      ]
+    },
+    {
+      "app": "recharge",
+      "incumbent_price": {
+        "low": 25,
+        "high": 499,
+        "unit": "month",
+        "note": "App Store lists $25 Starter for first 50 subscribers; vendor page lists Starter $99 + 1.49% + $0.19 and Plus $499 + 1.34% + $0.19; Custom is contact sales. Transaction volume drives real cost.",
+        "source": "https://getrecharge.com/pricing/",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "high",
+      "switch_note": "Active subscriptions depend on stored payment tokens that must migrate without re-asking customers for cards, plus portal and dunning changes subscribers notice.",
+      "strategy": "replace",
+      "alternatives": [
+        {
+          "name": "Shopify Subscriptions",
+          "kind": "shopify-native",
+          "price": {
+            "low": 0,
+            "high": 0,
+            "unit": "month",
+            "note": "Free."
+          },
+          "source": "https://apps.shopify.com/shopify-subscriptions",
+          "checked": "2026-09-23",
+          "covers": [
+            "Auto-billed weekly/monthly/yearly subscriptions with discounts",
+            "Customer skip, pause and cancel",
+            "Works with Checkout, Customer Accounts and POS",
+            "Subscription reporting"
+          ],
+          "misses": [
+            "Reviews: no standardized billing dates across customers",
+            "Reviews: customers cannot change products inside a subscription",
+            "No bundles, build-a-box or loyalty features",
+            "3.7 rating (19% one-star); too thin for complex subscription programs"
+          ],
+          "app_store_rating": "3.7 (816 reviews)"
+        },
+        {
+          "name": "Appstle Subscriptions",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 100,
+            "unit": "month",
+            "note": "Free to $500/mo subscription revenue; Starter $10 (to $5,000); Business $30 (to $15,000); Business Premium $100 (to $100,000). 0% transaction fee listed."
+          },
+          "source": "https://apps.shopify.com/subscriptions-by-appstle",
+          "checked": "2026-09-23",
+          "covers": [
+            "Pay-as-you-go and prepaid subscriptions",
+            "Migration support",
+            "Customer portal and churn control",
+            "Build-a-box and bundles (Business)",
+            "Product swap (Business Premium)"
+          ],
+          "misses": [
+            "Above $100,000/mo revenue pricing is on request",
+            "Recharge SDK not matched; APIs by request only",
+            "Hands-on implementation team not listed"
+          ],
+          "app_store_rating": "5.0 (8,781 reviews)"
+        }
+      ]
+    },
+    {
+      "app": "rebuy",
+      "incumbent_price": {
+        "low": 25,
+        "high": 534,
+        "unit": "month",
+        "note": "By orders per month and packages chosen: from $25 for one package; Platform One listed at $534; higher volumes contact sales; Premium Support +$499.",
+        "source": "https://www.rebuyengine.com/pricing",
+        "checked": "2026-09-23"
+      },
+      "switch_cost": "low",
+      "switch_note": "No customer data moves; cart, upsell widgets and A/B tests are rebuilt on theme.",
+      "strategy": "replace",
+      "alternatives": [
+        {
+          "name": "Shopify Search & Discovery",
+          "kind": "shopify-native",
+          "price": {
+            "low": 0,
+            "high": 0,
+            "unit": "month",
+            "note": "Free."
+          },
+          "source": "https://apps.shopify.com/search-and-discovery",
+          "checked": "2026-09-23",
+          "covers": [
+            "AI product recommendations with related/complementary products",
+            "Search with synonyms and typo tolerance",
+            "Filters",
+            "Recommendation performance analytics"
+          ],
+          "misses": [
+            "No cart drawer or in-cart upsells",
+            "No post-purchase or checkout offers",
+            "No A/B testing flows",
+            "2.7 rating; reviews report bad search results"
+          ],
+          "app_store_rating": "2.7 (503 reviews)"
+        },
+        {
+          "name": "Frequently Bought Together (Code Black Belt)",
+          "kind": "low-cost",
+          "price": {
+            "low": 0,
+            "high": 39.99,
+            "unit": "month",
+            "note": "Free to 3 bundles; $14.99 (50 orders), $19.99 (500 orders), $39.99 (500+ orders)."
+          },
+          "source": "https://apps.shopify.com/frequently-bought-together",
+          "checked": "2026-09-23",
+          "covers": [
+            "AI and manual bundle recommendations on product pages",
+            "Bundle discounts (percent, fixed, free item, free shipping)",
+            "Review app integrations",
+            "Performance analytics"
+          ],
+          "misses": [
+            "No cart drawer",
+            "No checkout or post-purchase upsells",
+            "No search/collections or A/B testing"
+          ],
+          "app_store_rating": "4.9 (1,202 reviews)"
+        },
+        {
+          "name": "Upcart (Cart Drawer Cart Upsell)",
+          "kind": "low-cost",
+          "price": {
+            "low": 29.99,
+            "high": 54.99,
+            "unit": "month",
+            "note": "$29.99 (0-200 orders), $34.99 (201-500), $54.99 (501-1,000). Higher tiers not shown."
+          },
+          "source": "https://apps.shopify.com/upcart-cart-builder",
+          "checked": "2026-09-23",
+          "covers": [
+            "Custom cart drawer and sticky cart",
+            "AI in-cart upsells and cross-sells",
+            "Free shipping progress bar rewards",
+            "One-click add-ons"
+          ],
+          "misses": [
+            "No post-purchase or checkout offers listed",
+            "No search/collections merchandising",
+            "No A/B testing listed"
+          ],
+          "app_store_rating": "4.7 (942 reviews)"
+        }
+      ]
+    }
+  ]
+}

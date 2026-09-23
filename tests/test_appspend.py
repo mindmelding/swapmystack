@@ -31,11 +31,12 @@ def fake_fetcher(url: str) -> Page:
     return Page(url, 200, (FIX / name).read_text())
 
 
-def full_audit():
+def full_audit(paths=None):
+    """paths={} keeps the tests independent of the shipped research data; pass None to use it."""
     scan = scan_storefront("linen-and-pine.example", CATALOG, fetcher=fake_fetcher)
     theme = scan_theme(FIX / "theme", CATALOG)
     bills = parse_bills(FIX / "bills_shopify.csv", CATALOG)
-    return analyze(CATALOG, scan, theme, bills)
+    return analyze(CATALOG, scan, theme, bills, paths={} if paths is None else paths)
 
 
 class CatalogTests(unittest.TestCase):
@@ -223,11 +224,39 @@ class AnalyzeTests(unittest.TestCase):
         self.assertAlmostEqual(a.total_monthly_spend, 680.14, places=2)  # August run rate, usage averaged
         self.assertEqual(a.findings[0].confidence, "high")
 
+    def test_inline_mentions_alone_do_not_make_an_overlap(self):
+        from appspend.scan import Evidence
+        scan = scan_storefront("linen-and-pine.example", CATALOG, fetcher=fake_fetcher)
+        scan.detections["attentive"] = [Evidence("inline", "creatives.attn.tv", "/")]
+        scan.detections["postscript"] = [Evidence("scripttag", "sdk.postscript.io/sdk.js", "/")]
+        a = analyze(CATALOG, scan, paths={})
+        self.assertFalse(any(f.kind == "overlap" and "Attentive" in f.apps for f in a.findings))
+        scan.detections["attentive"].append(Evidence("scripttag", "cdn.attn.tv/x/dtag.js", "/"))
+        a = analyze(CATALOG, scan, paths={})
+        self.assertTrue(any(f.kind == "overlap" and "Attentive" in f.apps for f in a.findings))
+        # inline code that loads a real script file does count (accessiBe, LoyaltyLion load this way)
+        scan.detections["attentive"] = [Evidence("inline", "cdn.attn.tv/brand/dtag.js", "/")]
+        a = analyze(CATALOG, scan, paths={})
+        self.assertTrue(any(f.kind == "overlap" and "Attentive" in f.apps for f in a.findings))
+
     def test_scan_only_mode_has_no_money(self):
         scan = scan_storefront("linen-and-pine.example", CATALOG, fetcher=fake_fetcher)
         a = analyze(CATALOG, scan)
         self.assertEqual(a.savings("high", "medium", "low"), 0)
         self.assertTrue(any(f.kind == "overlap" for f in a.findings))  # Judge.me + Loox still visible
+
+
+class ShippedDataTests(unittest.TestCase):
+    def test_shipped_alternatives_are_valid_and_sourced(self):
+        from appspend import alternatives
+        paths = alternatives.load()
+        self.assertGreaterEqual(len(paths), 30)
+        for app_id, p in paths.items():
+            self.assertIn(app_id, CATALOG.apps)
+            self.assertTrue(p.incumbent_source.startswith("https://"), app_id)
+            for a in p.alternatives:
+                self.assertTrue(a.source.startswith("https://"), f"{app_id}: {a.name}")
+                self.assertTrue(a.checked, f"{app_id}: {a.name}")
 
 
 class CheaperPathTests(unittest.TestCase):

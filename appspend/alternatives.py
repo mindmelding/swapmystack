@@ -31,12 +31,14 @@ class Price:
 
     def label(self) -> str:
         if self.low is None and self.high is None:
-            return self.note or "price not published"
+            return (self.note.split(". ")[0].rstrip(".") if self.note else "price not published")
         if self.low == 0 and not self.high:
             return "free"
         per = "/mo" if self.unit == "month" else f" {self.unit}"
+        if self.low is not None and self.high is None and self.low > 0:
+            return f"from ${self.low:,.0f}{per}"
         if self.high and self.high != self.low:
-            return f"${self.low:,.0f}–${self.high:,.0f}{per}"
+            return f"${(self.low or 0):,.0f}–${self.high:,.0f}{per}"
         return f"${self.low:,.0f}{per}"
 
 
@@ -50,6 +52,7 @@ class Alternative:
     covers: tuple[str, ...]
     misses: tuple[str, ...]
     rating: str
+    recommended: bool = False
 
 
 @dataclass(frozen=True)
@@ -72,7 +75,24 @@ class Path_:
 
     @property
     def best(self) -> Alternative | None:
+        """A researched pick if one is marked, else the first option rated 4.0+ (or unrated), else the first listed."""
+        for a in self.alternatives:
+            if a.recommended:
+                return a
+        for a in self.alternatives:
+            r = rating_value(a.rating)
+            if r is None or r >= MIN_RATING:
+                return a
         return self.alternatives[0] if self.alternatives else None
+
+
+MIN_RATING = 4.0
+
+
+def rating_value(text: str) -> float | None:
+    import re
+    m = re.match(r"\s*(\d(?:\.\d)?)", text or "")
+    return float(m.group(1)) if m else None
 
 
 def _load_entries(data: dict) -> dict[str, Path_]:
@@ -90,6 +110,7 @@ def _load_entries(data: dict) -> dict[str, Path_]:
                 source=a.get("source", ""), checked=a.get("checked", ""),
                 covers=tuple(a.get("covers") or ()), misses=tuple(a.get("misses") or ()),
                 rating=a.get("app_store_rating") or "",
+                recommended=bool(a.get("recommended")),
             )
             for a in e.get("alternatives", [])
         )

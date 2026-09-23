@@ -1,18 +1,19 @@
 {
   "tool": "appspend 0.1.0",
   "store": "https://linen-and-pine.example",
-  "generated_at": "2026-09-23T11:25:33Z",
-  "catalog_version": "2026.09.22",
+  "generated_at": "2026-09-23T13:46:29Z",
+  "catalog_version": "2026.09.23b",
   "summary": {
     "apps_found": 12,
     "monthly_app_spend": 680.14,
     "savings_monthly_confirmed": 83.0,
-    "savings_monthly_possible": 429.0,
+    "savings_monthly_possible": 279.0,
     "savings_annual_confirmed": 996.0
   },
   "findings": [
     {
       "kind": "paid_no_trace",
+      "category": null,
       "title": "Hotjar is billed but not running on your store",
       "detail": "You pay $39/mo, and none of its code appeared in 3 storefront pages or the theme files. Either it was never set up, it was switched off, or it only loads on a page we did not check.",
       "action": "Ask who uses Hotjar. If nobody does, uninstall it in Settings > Apps.",
@@ -22,10 +23,15 @@
       "apps": [
         "Hotjar"
       ],
-      "evidence": []
+      "evidence": [],
+      "switch_cost": null,
+      "covers": [],
+      "misses": [],
+      "sources": []
     },
     {
       "kind": "overlap",
+      "category": "chat",
       "title": "2 chat and helpdesk apps doing one job",
       "detail": "Gorgias and Tidio are both running. Together they cost $127/mo. Stores rarely need more than one.",
       "action": "Pick one. Savings assume you keep the most expensive; keeping a cheaper one saves more.",
@@ -36,10 +42,15 @@
         "Gorgias",
         "Tidio"
       ],
-      "evidence": []
+      "evidence": [],
+      "switch_cost": null,
+      "covers": [],
+      "misses": [],
+      "sources": []
     },
     {
       "kind": "overlap",
+      "category": "reviews",
       "title": "2 product reviews apps doing one job",
       "detail": "Loox and Judge.me are both running. Together they cost $44.99/mo. Stores rarely need more than one.",
       "action": "Pick one. Savings assume you keep the most expensive; keeping a cheaper one saves more.",
@@ -50,10 +61,15 @@
         "Loox",
         "Judge.me"
       ],
-      "evidence": []
+      "evidence": [],
+      "switch_cost": null,
+      "covers": [],
+      "misses": [],
+      "sources": []
     },
     {
       "kind": "leftover_code",
+      "category": null,
       "title": "Swym Wishlist Plus code is live but not on your bills",
       "detail": "We found 1 trace of Swym Wishlist Plus but no charge in the export. It is on a free plan, billed somewhere else, or uninstalled with its code left behind. Leftover scripts slow every page.",
       "action": "If you don't use Swym Wishlist Plus, remove its app embed and snippets from the theme.",
@@ -65,10 +81,15 @@
       ],
       "evidence": [
         "swym-relay"
-      ]
+      ],
+      "switch_cost": null,
+      "covers": [],
+      "misses": [],
+      "sources": []
     },
     {
       "kind": "theme_leftovers",
+      "category": null,
       "title": "3 app snippets left behind in the theme",
       "detail": "Snippets from PageFly, Sumo, Wishlist Hero (343 bytes) are no longer rendered anywhere. This is what uninstalled apps usually leave behind.",
       "action": "Delete them in a duplicate theme, preview, then publish.",
@@ -84,49 +105,75 @@
         "snippets/pagefly-app-header.liquid",
         "snippets/old-popup.liquid",
         "snippets/wishlisthero-header.liquid"
-      ]
-    },
-    {
-      "kind": "free_option",
-      "title": "A free option exists for Rebuy",
-      "detail": "You pay $249/mo. Shopify Search & Discovery includes free product recommendations. It may not match every feature you use.",
-      "action": "Compare the features you use against the free option before your next renewal.",
-      "confidence": "low",
-      "monthly_savings": 249.0,
-      "annual_savings": 2988.0,
-      "apps": [
-        "Rebuy"
       ],
-      "evidence": []
+      "switch_cost": null,
+      "covers": [],
+      "misses": [],
+      "sources": []
     },
     {
-      "kind": "free_option",
-      "title": "A free option exists for Klaviyo",
-      "detail": "You pay $150/mo. Shopify Email includes a free monthly send allowance. It may not match every feature you use.",
-      "action": "Compare the features you use against the free option before your next renewal.",
-      "confidence": "low",
-      "monthly_savings": 150.0,
-      "annual_savings": 1800.0,
-      "apps": [
-        "Klaviyo"
-      ],
-      "evidence": []
-    },
-    {
-      "kind": "free_option",
-      "title": "A free option exists for Privy",
-      "detail": "You pay $30/mo. Shopify Forms is free and feeds Shopify Email. It may not match every feature you use.",
-      "action": "Compare the features you use against the free option before your next renewal.",
+      "kind": "cheaper_path",
+      "category": "popups",
+      "title": "Cheaper path for Privy: Shopify Forms (free)",
+      "detail": "You pay $30/mo. Switching effort: low. Popups and forms rebuild in an afternoon and contacts already sit in Shopify customer records.",
+      "action": "List the Privy features your team uses and check each against Shopify Forms before the next renewal.",
       "confidence": "low",
       "monthly_savings": 30.0,
       "annual_savings": 360.0,
       "apps": [
         "Privy"
       ],
-      "evidence": []
+      "evidence": [],
+      "switch_cost": "low",
+      "covers": [
+        "Pop-up and inline signup forms",
+        "Discount incentives and customer tagging",
+        "Email and SMS consent collection",
+        "Targeting and performance analytics"
+      ],
+      "misses": [
+        "Reviews ask for quizzes and games, so no spin-to-win style displays",
+        "No pageview-based display types like Privy's full popup library",
+        "Sending needs a separate app (Shopify Email)"
+      ],
+      "sources": [
+        "privy.com (checked 2026-09-23)",
+        "apps.shopify.com (checked 2026-09-23)"
+      ]
+    },
+    {
+      "kind": "cheaper_path",
+      "category": "upsell",
+      "title": "Cheaper path for Rebuy: Frequently Bought Together (Code Black Belt) ($0\u2013$40/mo)",
+      "detail": "You pay $249/mo. Switching effort: medium. Cheaper apps cover bundles and product recommendations, but not Rebuy's cart drawer and personalization rules; brands using those need more than one replacement.",
+      "action": "List the Rebuy features your team uses and check each against Frequently Bought Together (Code Black Belt) before the next renewal.",
+      "confidence": "low",
+      "monthly_savings": 249.0,
+      "annual_savings": 2988.0,
+      "apps": [
+        "Rebuy"
+      ],
+      "evidence": [],
+      "switch_cost": "medium",
+      "covers": [
+        "AI and manual bundle recommendations on product pages",
+        "Bundle discounts (percent, fixed, free item, free shipping)",
+        "Review app integrations",
+        "Performance analytics"
+      ],
+      "misses": [
+        "No cart drawer",
+        "No checkout or post-purchase upsells",
+        "No search/collections or A/B testing"
+      ],
+      "sources": [
+        "rebuyengine.com (checked 2026-09-23)",
+        "apps.shopify.com (checked 2026-09-23)"
+      ]
     },
     {
       "kind": "disabled_embeds",
+      "category": null,
       "title": "1 app embed switched off but still installed",
       "detail": "These apps are installed but their theme embed is disabled. If they are paid, you pay for nothing.",
       "action": "Uninstall any you no longer plan to switch back on.",
@@ -136,10 +183,15 @@
       "apps": [
         "Wisepops"
       ],
-      "evidence": []
+      "evidence": [],
+      "switch_cost": null,
+      "covers": [],
+      "misses": [],
+      "sources": []
     },
     {
       "kind": "price_creep",
+      "category": null,
       "title": "Rebuy went from $99 to $249 a month",
       "detail": "A 152% rise between 2026-05 and 2026-08. Plan changes often happen through usage tiers nobody chose.",
       "action": "Check which plan you're on against what you use. Ask for the old rate or an annual price.",
@@ -149,10 +201,15 @@
       "apps": [
         "Rebuy"
       ],
-      "evidence": []
+      "evidence": [],
+      "switch_cost": null,
+      "covers": [],
+      "misses": [],
+      "sources": []
     },
     {
       "kind": "price_creep",
+      "category": null,
       "title": "Klaviyo went from $100 to $150 a month",
       "detail": "A 50% rise between 2026-05 and 2026-08. Plan changes often happen through usage tiers nobody chose.",
       "action": "Check which plan you're on against what you use. Ask for the old rate or an annual price.",
@@ -162,10 +219,15 @@
       "apps": [
         "Klaviyo"
       ],
-      "evidence": []
+      "evidence": [],
+      "switch_cost": null,
+      "covers": [],
+      "misses": [],
+      "sources": []
     },
     {
       "kind": "usage_spike",
+      "category": null,
       "title": "Gorgias usage fees jumped to $71.50",
       "detail": "Last month's usage charges were 3.4x the usual $21.",
       "action": "Find what drove the usage. Metered apps often have caps you can set.",
@@ -175,7 +237,32 @@
       "apps": [
         "Gorgias"
       ],
-      "evidence": []
+      "evidence": [],
+      "switch_cost": null,
+      "covers": [],
+      "misses": [],
+      "sources": []
+    },
+    {
+      "kind": "cheaper_path",
+      "category": "email",
+      "title": "Klaviyo: a cheaper plan is the realistic saving",
+      "detail": "You pay $150/mo. Switching effort: medium. Flows, segments and templates must be rebuilt and event history does not carry over, so most savings come from suppressing unengaged profiles to drop a tier.",
+      "action": "Compare your Klaviyo usage against the plan tiers. Most brands overbuy headroom.",
+      "confidence": "info",
+      "monthly_savings": 0.0,
+      "annual_savings": 0.0,
+      "apps": [
+        "Klaviyo"
+      ],
+      "evidence": [],
+      "switch_cost": "medium",
+      "covers": [],
+      "misses": [],
+      "sources": [
+        "apps.shopify.com (checked 2026-09-23)",
+        "apps.shopify.com (checked 2026-09-23)"
+      ]
     }
   ],
   "inventory": [

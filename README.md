@@ -76,11 +76,16 @@ Any input works on its own. A storefront scan alone lists apps and overlaps. Add
 | Code with no bill | App code is live but nothing on the bill. Free plan, or leftovers | No. It slows pages |
 | Theme leftovers | Snippets nothing renders any more, and switched-off embeds | No |
 | Price creep, usage spikes | Recurring price up 15% or more, or usage fees at 1.5x their usual level | No, for your records |
-| Free option | Shopify or a vendor offers the core job free | Shown apart as "worth checking" |
+| Cheaper path | A researched cheaper tool, a cheaper plan, or a note to negotiate, with what it covers and misses, the switching effort, and a dated source | With a bill, the price gap, shown apart as "worth checking" |
+| Free option | Fallback for apps with no researched path yet | Shown apart as "worth checking" |
 
 **What it won't flag.** Back-office apps (shipping, accounting, bulk editing) and apps that often run without storefront code (helpdesks, email, fraud screening) are never called "not running" just because the storefront is quiet. From a theme alone, "not running" stays a lead to check, because many apps load without touching theme files.
 
 **Limits worth knowing.** Some apps only load on checkout, account or specific product pages. appspend checks three pages by default, so confirm before you uninstall. Snippets rendered by a variable name look orphaned to static analysis. The bills parser was built against Shopify's export as best documented, and it tells you which columns it picked (`--json` shows them) so a wrong guess is easy to spot.
+
+### Cheaper paths
+
+`appspend/data/alternatives.json` holds researched options for the 31 paid apps seen most often on San Diego stores. Every price and every "covers"/"misses" line comes from a vendor pricing page or App Store listing, with its URL and the date it was checked. The report warns when an entry is older than 90 days. The suggested option is the one marked `recommended`, or else the first rated 4.0 or better, so a free app with a weak rating never becomes the headline. Sticky tools (email, SMS, subscriptions with saved payment methods) get "downgrade" or "negotiate" advice rather than a swap.
 
 ## Privacy and manners
 

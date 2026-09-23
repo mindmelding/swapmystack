@@ -36,6 +36,12 @@ class Item:
         return bool(self.storefront or self.theme)
 
     @property
+    def loads(self) -> bool:
+        """Evidence that the app's code actually loads. A URL merely mentioned inside inline script
+        (an image host, a config string) proves much less than a script tag or an app embed."""
+        return any(e["source"] != "inline" or _is_script_url(e["detail"]) for e in self.storefront + self.theme)
+
+    @property
     def monthly(self) -> float:
         return self.spend.monthly if (self.spend and self.billed_active) else 0.0
 
@@ -143,6 +149,12 @@ class Audit:
 
 def _money(v: float) -> str:
     return f"${v:,.0f}" if v >= 100 or v == int(v) else f"${v:,.2f}"
+
+
+def _is_script_url(detail: str) -> bool:
+    """Inline code that builds a <script> for a .js file or an SDK loader is how many vendors load."""
+    path = detail.split("?")[0].lower()
+    return path.endswith(".js") or "/js/" in path or "/sdk" in path or "loader" in path
 
 
 def _cheaper_path(it: Item, path, have_bills: bool) -> Finding:
@@ -268,7 +280,7 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
         cat = catalog.categories[it.category]
         if not cat.exclusive:
             continue
-        live = it.billed_active if have_bills else it.detected
+        live = it.billed_active if have_bills else it.loads
         if live and not (it.app and it.app.free):
             by_cat.setdefault(it.category, []).append(it)
     for cid, group in by_cat.items():
@@ -367,7 +379,7 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
     covered: set[str] = set()
     for it in inventory:
         path = paths.get(it.app.id) if it.app else None
-        live = it.billed_active if have_bills else it.detected
+        live = it.billed_active if have_bills else it.loads
         if not path or not live or it.name in flagged or (it.app and it.app.free):
             continue
         covered.add(it.name)

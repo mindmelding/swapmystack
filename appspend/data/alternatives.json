@@ -1,0 +1,2074 @@
+{
+ "version": "2026-09-23",
+ "entries": [
+  {
+   "app": "klaviyo",
+   "incumbent_price": {
+    "low": 20,
+    "high": null,
+    "unit": "month",
+    "note": "By active profiles (email) plus SMS/MMS credits. Free to 250 profiles; Email $20 at 251-500 contacts; SMS $15 for 1,250 credits. Higher tiers render client-side on klaviyo.com/pricing and were not captured; Klaviyo Advanced is contact sales.",
+    "source": "https://apps.shopify.com/klaviyo-email-marketing",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Flows, segments and templates must be rebuilt and event history does not carry over, so most savings come from suppressing unengaged profiles to drop a tier.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Shopify Messaging (Shopify Email)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": null,
+      "unit": "month",
+      "note": "First 10,000 emails/month free, then from $1 per 1,000 emails. SMS/WhatsApp pricing not shown on listing."
+     },
+     "source": "https://apps.shopify.com/shopify-email",
+     "checked": "2026-09-23",
+     "covers": [
+      "Email campaigns with ready-made templates",
+      "Abandoned cart and browse abandonment automations",
+      "Segmentation and targeting on Shopify customer data",
+      "Click-through and conversion reporting",
+      "Works with Shopify Forms and Flow"
+     ],
+     "misses": [
+      "Listing shows no predictive analytics or send-time optimization, both on Klaviyo's Email plan",
+      "Review notes default templates do not allow HTML/Liquid edits",
+      "No role-based access or multi-user workflow listed; thin for 20+ person marketing teams"
+     ],
+     "app_store_rating": "4.8 (4,522 reviews)"
+    },
+    {
+     "name": "Omnisend",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 59,
+      "unit": "month",
+      "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+     },
+     "source": "https://apps.shopify.com/omnisend",
+     "checked": "2026-09-23",
+     "covers": [
+      "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+      "SMS messaging (Pro plan)",
+      "Popups and signup forms",
+      "Segmentation and A/B testing"
+     ],
+     "misses": [
+      "No predictive analytics listed",
+      "No deliverability AI or send-time optimization listed",
+      "Product recommendation blocks not listed"
+     ],
+     "app_store_rating": "4.7 (3,182 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "mailchimp",
+   "incumbent_price": {
+    "low": 13,
+    "high": null,
+    "unit": "month",
+    "note": "By contacts. Essentials from $13, Standard from $20, Premium from $350. Top-of-range price by contact tier not shown in fetched pages.",
+    "source": "https://apps.shopify.com/mailchimp",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "Contacts export cleanly and Mailchimp automation caps (4 on Essentials) mean little workflow to rebuild; retraining is light.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify Messaging (Shopify Email)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": null,
+      "unit": "month",
+      "note": "First 10,000 emails/month free, then from $1 per 1,000 emails. SMS/WhatsApp pricing not shown on listing."
+     },
+     "source": "https://apps.shopify.com/shopify-email",
+     "checked": "2026-09-23",
+     "covers": [
+      "Email campaigns with ready-made templates",
+      "Abandoned cart and browse abandonment automations",
+      "Segmentation and targeting on Shopify customer data",
+      "Click-through and conversion reporting",
+      "Works with Shopify Forms and Flow"
+     ],
+     "misses": [
+      "No landing pages or social posting, which Mailchimp includes",
+      "No surveys",
+      "No multivariate testing (Mailchimp Premium)"
+     ],
+     "app_store_rating": "4.8 (4,522 reviews)"
+    },
+    {
+     "name": "Omnisend",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 59,
+      "unit": "month",
+      "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+     },
+     "source": "https://apps.shopify.com/omnisend",
+     "checked": "2026-09-23",
+     "covers": [
+      "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+      "SMS messaging (Pro plan)",
+      "Popups and signup forms",
+      "Segmentation and A/B testing"
+     ],
+     "misses": [
+      "No landing pages or social posting listed",
+      "No multivariate testing listed",
+      "No phone support listed"
+     ],
+     "app_store_rating": "4.7 (3,182 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "attentive",
+   "incumbent_price": {
+    "low": null,
+    "high": null,
+    "unit": "month",
+    "note": "Contact sales. Priced on message volume, subscriber list size, channels and AI products; AI Pro/AI Grow are extra flat fees. Month-to-month and long-term agreements offered.",
+    "source": "https://www.attentive.com/pricing",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "high",
+   "switch_note": "Long-term agreements lock spend, and moving SMS subscribers means carrying opt-in consent records and number changes without losing the list.",
+   "strategy": "negotiate",
+   "alternatives": [
+    {
+     "name": "Postscript SMS Marketing",
+     "kind": "low-cost",
+     "price": {
+      "low": 49,
+      "high": 500,
+      "unit": "month",
+      "note": "Starter $49 minimum spend ($0.009/SMS); Growth $100; Professional $500 ($0.007/SMS). Plus carrier fees; message volume drives real cost."
+     },
+     "source": "https://apps.shopify.com/postscript-sms-marketing",
+     "checked": "2026-09-23",
+     "covers": [
+      "SMS campaigns and automations",
+      "Unlimited segments",
+      "Subscriber acquisition tools",
+      "Dedicated CSM on Professional"
+     ],
+     "misses": [
+      "No email channel; Attentive bundles email, RCS and push",
+      "No AI Journeys-style pay-per-click AI product listed",
+      "White-glove managed service not listed below Professional"
+     ],
+     "app_store_rating": "4.7 (1,208 reviews)"
+    },
+    {
+     "name": "Klaviyo SMS",
+     "kind": "low-cost",
+     "price": {
+      "low": 15,
+      "high": null,
+      "unit": "month",
+      "note": "SMS plan $15/month for up to 1,250 SMS/MMS credits; scales by credits. Higher tiers not captured."
+     },
+     "source": "https://apps.shopify.com/klaviyo-email-marketing",
+     "checked": "2026-09-23",
+     "covers": [
+      "SMS/MMS campaigns",
+      "Two-way conversations",
+      "Transactional SMS",
+      "Segmentation shared with Klaviyo email"
+     ],
+     "misses": [
+      "No RCS or push channel listed",
+      "No managed/white-glove campaign service listed",
+      "Needs Klaviyo as the email platform to share segments"
+     ],
+     "app_store_rating": "4.7 (3,317 reviews)"
+    },
+    {
+     "name": "Omnisend",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 59,
+      "unit": "month",
+      "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+     },
+     "source": "https://apps.shopify.com/omnisend",
+     "checked": "2026-09-23",
+     "covers": [
+      "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+      "SMS messaging (Pro plan)",
+      "Popups and signup forms",
+      "Segmentation and A/B testing"
+     ],
+     "misses": [
+      "No RCS or push channel listed",
+      "No managed/white-glove service listed",
+      "SMS is Pro-plan only"
+     ],
+     "app_store_rating": "4.7 (3,182 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "postscript",
+   "incumbent_price": {
+    "low": 49,
+    "high": 500,
+    "unit": "month",
+    "note": "Plan fee from $49 minimum spend (Starter) to $500 (Professional), plus per-message fees ($0.007-0.009/SMS, $0.024-0.045/MMS) and carrier fees. Message volume drives total cost.",
+    "source": "https://apps.shopify.com/postscript-sms-marketing",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Subscriber lists with consent records, keywords and toll-free number must move, and SMS flows must be rebuilt.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Klaviyo SMS",
+     "kind": "low-cost",
+     "price": {
+      "low": 15,
+      "high": null,
+      "unit": "month",
+      "note": "SMS plan $15/month for up to 1,250 SMS/MMS credits; scales by credits. Higher tiers not captured."
+     },
+     "source": "https://apps.shopify.com/klaviyo-email-marketing",
+     "checked": "2026-09-23",
+     "covers": [
+      "SMS/MMS campaigns",
+      "Two-way conversations",
+      "Transactional SMS",
+      "Segmentation shared with Klaviyo email"
+     ],
+     "misses": [
+      "No dedicated onboarding specialist or CSM on the $15 plan",
+      "Per-message cost beyond 1,250 credits not captured",
+      "Branded short links not listed"
+     ],
+     "app_store_rating": "4.7 (3,317 reviews)"
+    },
+    {
+     "name": "Omnisend",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 59,
+      "unit": "month",
+      "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+     },
+     "source": "https://apps.shopify.com/omnisend",
+     "checked": "2026-09-23",
+     "covers": [
+      "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+      "SMS messaging (Pro plan)",
+      "Popups and signup forms",
+      "Segmentation and A/B testing"
+     ],
+     "misses": [
+      "No dedicated CSM listed",
+      "No custom opt-in keyword tooling listed",
+      "SMS requires the $59+ Pro plan"
+     ],
+     "app_store_rating": "4.7 (3,182 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "yotpo_loyalty",
+   "incumbent_price": {
+    "low": 199,
+    "high": null,
+    "unit": "month",
+    "note": "Free under 100 orders/month. Pro $199 base plus $0.08-$0.20 per order above 500 orders; enterprise pricing for 5,000+ orders.",
+    "source": "https://apps.shopify.com/swell",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Points balances, VIP status and referral links must be exported and reimported, and customers see a new rewards page.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "BON Loyalty Program & Rewards",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 129,
+      "unit": "month",
+      "note": "Free to 150 orders; Starter $15 (300 orders); Basic $29 (500 orders); Growth $129 (listing says unlimited orders)."
+     },
+     "source": "https://apps.shopify.com/bon-loyalty-rewards",
+     "checked": "2026-09-23",
+     "covers": [
+      "Points and rewards",
+      "Referral program with anti-cheat",
+      "VIP tiers (Growth plan)",
+      "Shopify POS earn/redeem (Basic and up)",
+      "Klaviyo integration (Starter and up)"
+     ],
+     "misses": [
+      "Webhooks not listed",
+      "ReCharge integration not listed",
+      "Checkout redemption not listed"
+     ],
+     "app_store_rating": "5.0 (1,940 reviews)"
+    },
+    {
+     "name": "Smile: Loyalty Program Rewards",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 199,
+      "unit": "month",
+      "note": "Free to 200 orders; Essential $15 (500); Standard $79 (1,000); Growth $199 (2,500 orders + $20 per extra 100)."
+     },
+     "source": "https://apps.shopify.com/smile-io",
+     "checked": "2026-09-23",
+     "covers": [
+      "Points, rewards and referrals on free plan",
+      "POS integration on free plan",
+      "VIP tiers and point expiration (Growth)",
+      "Checkout redemption on Shopify Plus (Growth)"
+     ],
+     "misses": [
+      "VIP tiers only on the $199 Growth plan",
+      "Webhooks not listed",
+      "Integrations capped at 1-2 below Growth"
+     ],
+     "app_store_rating": "4.9 (4,600 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "loyaltylion",
+   "incumbent_price": {
+    "low": 199,
+    "high": null,
+    "unit": "month",
+    "note": "Free to 400 orders/month; Classic $199; above 500 orders/month Advanced and Plus are custom quotes.",
+    "source": "https://apps.shopify.com/loyaltylion",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Points balances and tier status must migrate, and built-in Klaviyo flows and the custom loyalty page must be rebuilt.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "BON Loyalty Program & Rewards",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 129,
+      "unit": "month",
+      "note": "Free to 150 orders; Starter $15 (300 orders); Basic $29 (500 orders); Growth $129 (listing says unlimited orders)."
+     },
+     "source": "https://apps.shopify.com/bon-loyalty-rewards",
+     "checked": "2026-09-23",
+     "covers": [
+      "Points and rewards",
+      "Referral program with anti-cheat",
+      "VIP tiers (Growth plan)",
+      "Shopify POS earn/redeem (Basic and up)",
+      "Klaviyo integration (Starter and up)"
+     ],
+     "misses": [
+      "Revenue attribution reporting not listed",
+      "Free loyalty page design service not listed",
+      "Built-in Klaviyo flows not listed (integration only)"
+     ],
+     "app_store_rating": "5.0 (1,940 reviews)"
+    },
+    {
+     "name": "Smile: Loyalty Program Rewards",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 199,
+      "unit": "month",
+      "note": "Free to 200 orders; Essential $15 (500); Standard $79 (1,000); Growth $199 (2,500 orders + $20 per extra 100)."
+     },
+     "source": "https://apps.shopify.com/smile-io",
+     "checked": "2026-09-23",
+     "covers": [
+      "Points, rewards and referrals on free plan",
+      "POS integration on free plan",
+      "VIP tiers and point expiration (Growth)",
+      "Checkout redemption on Shopify Plus (Growth)"
+     ],
+     "misses": [
+      "VIP tiers need the $199 Growth plan",
+      "Revenue attribution not listed",
+      "Priority onboarding not listed"
+     ],
+     "app_store_rating": "4.9 (4,600 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "rise",
+   "incumbent_price": {
+    "low": 19.99,
+    "high": 199.99,
+    "unit": "month",
+    "note": "By monthly orders: Starter $19.99 (100 orders), Small-Business $59.99 (400), Pro $199.99 (2,000); overage $0.10-$0.20 per order.",
+    "source": "https://apps.shopify.com/rise-ai",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Outstanding gift card and store credit balances are live liabilities that must be moved or honored, and the customer wallet and cashback rules must be rebuilt.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify gift cards + native store credit",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": null,
+      "unit": "month",
+      "note": "No app fee. Stores created after May 12, 2025 pay third-party transaction fees on store-credit-paid amounts unless on Plus with Shopify Payments. Gift card plan requirements not found on fetched pages."
+     },
+     "source": "https://help.shopify.com/en/manual/customers/store-credit",
+     "checked": "2026-09-23",
+     "covers": [
+      "Sell gift card products and create gift cards in admin",
+      "Issue store credit per customer with optional per-issuance expiry",
+      "Store credit redeemable online, on POS and in the Shop app",
+      "Physical POS gift cards via Shopify Hardware Store"
+     ],
+     "misses": [
+      "No bulk store credit issuing tool mentioned; issuing is per customer",
+      "Store credit applies as full amount only and not to recurring subscription bills",
+      "No cashback, loyalty or customer wallet features",
+      "No AI retention agent"
+     ],
+     "app_store_rating": ""
+    },
+    {
+     "name": "Govalo Gift Card Suite",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 399,
+      "unit": "month",
+      "note": "Essential free + 2.9% fee; Premium $79 + 2.25%; Enterprise $399 + 1.5%. Percentage fee on gift card sales drives cost."
+     },
+     "source": "https://apps.shopify.com/govalo",
+     "checked": "2026-09-23",
+     "covers": [
+      "Custom digital gift card designs",
+      "Store credit",
+      "Bulk sending",
+      "Klaviyo/Omnisend integrations and balance lookup"
+     ],
+     "misses": [
+      "No loyalty or cashback program listed",
+      "Percentage fee can exceed Rise's flat plan at volume",
+      "Only 25 reviews, 24% one-star"
+     ],
+     "app_store_rating": "4.1 (25 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "privy",
+   "incumbent_price": {
+    "low": 24,
+    "high": 1740,
+    "unit": "month",
+    "note": "Pop-ups by pageviews ($24 at 10,000 views); Email by mailable contacts ($30 at 1,500 up to $1,740 at 250,000); SMS credits extra; custom above 250,000 contacts; strategists +$150.",
+    "source": "https://www.privy.com/pricing",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "Popups and forms rebuild in an afternoon and contacts already sit in Shopify customer records.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify Forms",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free."
+     },
+     "source": "https://apps.shopify.com/shopify-forms",
+     "checked": "2026-09-23",
+     "covers": [
+      "Pop-up and inline signup forms",
+      "Discount incentives and customer tagging",
+      "Email and SMS consent collection",
+      "Targeting and performance analytics"
+     ],
+     "misses": [
+      "Reviews ask for quizzes and games, so no spin-to-win style displays",
+      "No pageview-based display types like Privy's full popup library",
+      "Sending needs a separate app (Shopify Email)"
+     ],
+     "app_store_rating": "4.4 (729 reviews)"
+    },
+    {
+     "name": "Omnisend",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 59,
+      "unit": "month",
+      "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
+     },
+     "source": "https://apps.shopify.com/omnisend",
+     "checked": "2026-09-23",
+     "covers": [
+      "Email campaigns and prebuilt automations (abandoned cart, welcome)",
+      "SMS messaging (Pro plan)",
+      "Popups and signup forms",
+      "Segmentation and A/B testing"
+     ],
+     "misses": [
+      "No dedicated strategist add-on listed",
+      "Popup template range not detailed on listing",
+      "SMS only on Pro plan"
+     ],
+     "app_store_rating": "4.7 (3,182 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "recharge",
+   "incumbent_price": {
+    "low": 25,
+    "high": 499,
+    "unit": "month",
+    "note": "App Store lists $25 Starter for first 50 subscribers; vendor page lists Starter $99 + 1.49% + $0.19 and Plus $499 + 1.34% + $0.19; Custom is contact sales. Transaction volume drives real cost.",
+    "source": "https://getrecharge.com/pricing/",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "high",
+   "switch_note": "Active subscriptions depend on stored payment tokens that must migrate without re-asking customers for cards, plus portal and dunning changes subscribers notice.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify Subscriptions",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free."
+     },
+     "source": "https://apps.shopify.com/shopify-subscriptions",
+     "checked": "2026-09-23",
+     "covers": [
+      "Auto-billed weekly/monthly/yearly subscriptions with discounts",
+      "Customer skip, pause and cancel",
+      "Works with Checkout, Customer Accounts and POS",
+      "Subscription reporting"
+     ],
+     "misses": [
+      "Reviews: no standardized billing dates across customers",
+      "Reviews: customers cannot change products inside a subscription",
+      "No bundles, build-a-box or loyalty features",
+      "3.7 rating (19% one-star); too thin for complex subscription programs"
+     ],
+     "app_store_rating": "3.7 (816 reviews)"
+    },
+    {
+     "name": "Appstle Subscriptions",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 100,
+      "unit": "month",
+      "note": "Free to $500/mo subscription revenue; Starter $10 (to $5,000); Business $30 (to $15,000); Business Premium $100 (to $100,000). 0% transaction fee listed."
+     },
+     "source": "https://apps.shopify.com/subscriptions-by-appstle",
+     "checked": "2026-09-23",
+     "covers": [
+      "Pay-as-you-go and prepaid subscriptions",
+      "Migration support",
+      "Customer portal and churn control",
+      "Build-a-box and bundles (Business)",
+      "Product swap (Business Premium)"
+     ],
+     "misses": [
+      "Above $100,000/mo revenue pricing is on request",
+      "Recharge SDK not matched; APIs by request only",
+      "Hands-on implementation team not listed"
+     ],
+     "app_store_rating": "5.0 (8,781 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "rebuy",
+   "incumbent_price": {
+    "low": 25,
+    "high": 534,
+    "unit": "month",
+    "note": "By orders per month and packages chosen: from $25 for one package; Platform One listed at $534; higher volumes contact sales; Premium Support +$499.",
+    "source": "https://www.rebuyengine.com/pricing",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Cheaper apps cover bundles and product recommendations, but not Rebuy's cart drawer and personalization rules; brands using those need more than one replacement.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify Search & Discovery",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free."
+     },
+     "source": "https://apps.shopify.com/search-and-discovery",
+     "checked": "2026-09-23",
+     "covers": [
+      "AI product recommendations with related/complementary products",
+      "Search with synonyms and typo tolerance",
+      "Filters",
+      "Recommendation performance analytics"
+     ],
+     "misses": [
+      "No cart drawer or in-cart upsells",
+      "No post-purchase or checkout offers",
+      "No A/B testing flows",
+      "2.7 rating; reviews report bad search results"
+     ],
+     "app_store_rating": "2.7 (503 reviews)"
+    },
+    {
+     "name": "Frequently Bought Together (Code Black Belt)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 39.99,
+      "unit": "month",
+      "note": "Free to 3 bundles; $14.99 (50 orders), $19.99 (500 orders), $39.99 (500+ orders)."
+     },
+     "source": "https://apps.shopify.com/frequently-bought-together",
+     "checked": "2026-09-23",
+     "covers": [
+      "AI and manual bundle recommendations on product pages",
+      "Bundle discounts (percent, fixed, free item, free shipping)",
+      "Review app integrations",
+      "Performance analytics"
+     ],
+     "misses": [
+      "No cart drawer",
+      "No checkout or post-purchase upsells",
+      "No search/collections or A/B testing"
+     ],
+     "app_store_rating": "4.9 (1,202 reviews)"
+    },
+    {
+     "name": "Upcart (Cart Drawer Cart Upsell)",
+     "kind": "low-cost",
+     "price": {
+      "low": 29.99,
+      "high": 54.99,
+      "unit": "month",
+      "note": "$29.99 (0-200 orders), $34.99 (201-500), $54.99 (501-1,000). Higher tiers not shown."
+     },
+     "source": "https://apps.shopify.com/upcart-cart-builder",
+     "checked": "2026-09-23",
+     "covers": [
+      "Custom cart drawer and sticky cart",
+      "AI in-cart upsells and cross-sells",
+      "Free shipping progress bar rewards",
+      "One-click add-ons"
+     ],
+     "misses": [
+      "No post-purchase or checkout offers listed",
+      "No search/collections merchandising",
+      "No A/B testing listed"
+     ],
+     "app_store_rating": "4.7 (942 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "judgeme",
+   "incumbent_price": {
+    "low": 0,
+    "high": 15,
+    "unit": "month",
+    "note": "Two flat plans: Forever Free ($0) and Awesome ($15/mo). Price does not scale with orders on the listing.",
+    "source": "https://apps.shopify.com/judgeme",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "Dropping from Awesome to Forever Free keeps the same app and review data, so nothing is migrated; you only lose the Awesome-only widgets and integrations.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Judge.me Forever Free plan",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Same app, free plan"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited product and store reviews",
+      "Unlimited photo and video reviews",
+      "Review widget, star rating badge, carousels",
+      "Google reviews sync and rich snippets",
+      "Reviews importer, Shop App/Etsy/Amazon sync"
+     ],
+     "misses": [
+      "AI replies, summaries and translations (Awesome only)",
+      "130+ integrations incl. Klaviyo and Gorgias (Awesome only)",
+      "Q&A and Reviews Page widgets (Awesome's 16 widgets)",
+      "Google Shopping and Meta/TikTok Shop sync (Awesome only)"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Star rating, carousel and testimonial widgets",
+      "Photo reviews and media gallery",
+      "Automated email review requests, QR codes, pop-ups",
+      "Review moderation and rich snippets",
+      "Bulk review import"
+     ],
+     "misses": [
+      "Import sources not named on the listing (Judge.me not confirmed)",
+      "No Q&A widget listed",
+      "No Google Shopping or Meta/TikTok Shop sync listed",
+      "No AI summaries/translations listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "yotpo",
+   "incumbent_price": {
+    "low": 0,
+    "high": 119,
+    "unit": "month",
+    "note": "Free up to 50 orders/mo; Starter $15 and Pro $119 are starting prices that change with order volume. Top of range above $119 not published on the listing; yotpo.com/pricing shows demo requests, no figures.",
+    "source": "https://apps.shopify.com/yotpo-social-reviews",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Judge.me names Yotpo as an import source, so history carries over, but widgets, Google Shopping feed and review-request flows must be rebuilt and seller-rating setup redone.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome; not order-based"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Imports reviews from Yotpo (named on listing)",
+      "Unlimited photo/video reviews",
+      "Google Shopping and rich snippets",
+      "Q&A widget and AI summaries (Awesome)",
+      "Klaviyo and Gorgias integrations (Awesome)"
+     ],
+     "misses": [
+      "Google Seller Rating not listed (Yotpo Pro lists it)",
+      "Smart sorting not listed (Yotpo Pro lists it)",
+      "Custom review questions not listed (Yotpo Pro lists them)"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Photo reviews and star/carousel/testimonial widgets",
+      "Automated email review requests",
+      "Rich snippets",
+      "Bulk review import"
+     ],
+     "misses": [
+      "Yotpo import not named on listing",
+      "No Google Shopping Ads feed or Seller Rating listed",
+      "No AI review summaries listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "okendo",
+   "incumbent_price": {
+    "low": 0,
+    "high": 299,
+    "unit": "month",
+    "note": "By monthly orders: Free (50), Essential $19 (200), Growth $119 (1,500), Power $299 (3,500). okendo.io/pricing shows Enterprise custom pricing above that (contact sales).",
+    "source": "https://apps.shopify.com/okendo-reviews",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Review history must be imported but neither Judge.me nor Air Reviews names Okendo as a source, and any Okendo loyalty, quiz or survey use would need separate replacement.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome; not order-based"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited reviews with photos/videos",
+      "Q&A widget and AI summaries (Awesome)",
+      "TikTok Shop and Meta sync (Awesome)",
+      "Klaviyo integration (Awesome)",
+      "Reviews importer"
+     ],
+     "misses": [
+      "Okendo import not named on listing ('other platforms' only)",
+      "No loyalty program, surveys or quizzes listed",
+      "Walmart syndication not listed (Okendo lists Walmart)"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Photo reviews and display widgets",
+      "Automated email review requests and incentives",
+      "Moderation and rich snippets",
+      "Klaviyo and Shopify Flow integration"
+     ],
+     "misses": [
+      "Okendo import not named on listing",
+      "No Q&A widget listed",
+      "No loyalty, surveys or quizzes",
+      "No AI summaries listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "stamped",
+   "incumbent_price": {
+    "low": 23,
+    "high": 299,
+    "unit": "month",
+    "note": "By monthly orders: Reviews $23 (200), $99 (1,000), $199 (5,000); Loyalty bundle $299 (5,000). stamped.io pricing page returned 403, not checked.",
+    "source": "https://apps.shopify.com/product-reviews-addon",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Stamped is not named as an import source by the alternatives, and brands on the Loyalty plan lose their points program and need a separate loyalty app.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome; not order-based"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited reviews with photos/videos",
+      "Q&A widget (Awesome)",
+      "SMS review requests",
+      "Coupons and referrals (Awesome)",
+      "Reviews importer"
+     ],
+     "misses": [
+      "Stamped import not named on listing ('other platforms' only)",
+      "No points-based loyalty program listed (Stamped Loyalty plan)"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Photo reviews and display widgets",
+      "Email requests, pop-ups, QR codes",
+      "Moderation and rich snippets",
+      "Bulk review import"
+     ],
+     "misses": [
+      "Stamped import not named on listing",
+      "No Q&A listed",
+      "No loyalty program",
+      "No SMS review requests listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "loox",
+   "incumbent_price": {
+    "low": 0,
+    "high": 299.99,
+    "unit": "month",
+    "note": "Free up to 500 orders; Convert $49.99 incl. 300 orders plus $50 per extra 300 orders; Unlimited $299.99.",
+    "source": "https://apps.shopify.com/loox",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "Judge.me names Loox as an import source, so the main work is re-placing widgets and review-request emails in the theme.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome; not order-based"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Imports reviews from Loox (named on listing)",
+      "Unlimited photo and video reviews on the free plan",
+      "AI replies, summaries, translations (Awesome)",
+      "Coupons and referrals (Awesome)",
+      "Carousels and rich snippets"
+     ],
+     "misses": [
+      "AI Smart Sorting and Review Highlights not listed",
+      "Review Stories not listed"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Air Reviews (AG Product Reviews App & UGC)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Listing shows Free pricing"
+     },
+     "source": "https://apps.shopify.com/air-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Photo reviews, media gallery and grid layouts",
+      "Email requests with promotional incentives",
+      "Rich snippets",
+      "Bulk review import"
+     ],
+     "misses": [
+      "Loox import not named on listing",
+      "No video reviews listed",
+      "No referrals listed",
+      "No AI summaries or translations listed"
+     ],
+     "app_store_rating": "5.0 (3,155 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "bazaarvoice",
+   "incumbent_price": {
+    "low": null,
+    "high": null,
+    "unit": "month",
+    "note": "Contact sales. Listing is free to install; 'External charges may be billed by Bazaarvoice Inc. separately' and the account must be set up with Bazaarvoice directly.",
+    "source": "https://apps.shopify.com/bazaarvoice-reviews-photos-social",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "high",
+   "switch_note": "Enterprise contract terms, reviews shared across the Bazaarvoice network and any retailer syndication would be lost or need re-sourcing, and no alternative listing names Bazaarvoice as an import source.",
+   "strategy": "negotiate",
+   "alternatives": [
+    {
+     "name": "Judge.me (Awesome plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Free plan or $15/mo flat Awesome"
+     },
+     "source": "https://apps.shopify.com/judgeme",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited reviews with photos/videos",
+      "Q&A widget and AI summaries (Awesome)",
+      "Google Shopping, Meta and TikTok Shop sync (Awesome)",
+      "Shop App, Etsy, Amazon sync"
+     ],
+     "misses": [
+      "Bazaarvoice import not named on listing",
+      "No Bazaarvoice global network distribution of reviews",
+      "No dedicated enterprise tier or account team listed"
+     ],
+     "app_store_rating": "5.0 (47,330 reviews)"
+    },
+    {
+     "name": "Okendo (Power plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 119,
+      "high": 299,
+      "unit": "month",
+      "note": "Growth $119 (1,500 orders) or Power $299 (3,500 orders); Enterprise custom above that"
+     },
+     "source": "https://apps.shopify.com/okendo-reviews",
+     "checked": "2026-09-23",
+     "covers": [
+      "Syndication to Shop, TikTok, Google, Klaviyo, Walmart and 50+ apps",
+      "Q&A widget and AI review summaries (Growth+)",
+      "Email and SMS integrations, advanced reporting (Power)",
+      "Managed onboarding (Power)"
+     ],
+     "misses": [
+      "Bazaarvoice import not named on listing",
+      "No Bazaarvoice network distribution",
+      "Stores above 3,500 orders/mo need Enterprise (custom price)"
+     ],
+     "app_store_rating": "4.8 (1,427 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "gorgias",
+   "incumbent_price": {
+    "low": 10,
+    "high": 900,
+    "unit": "month",
+    "note": "By tickets: Starter $10 (50), Basic $60 (300), Pro $360 (2,000), Advanced $900 (5,000); overage $0.40/ticket on Starter, $36-40 per 100 tickets above. Not priced per agent.",
+    "source": "https://apps.shopify.com/helpdesk",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "high",
+   "switch_note": "Ticket history, macros, rules and integrations must be migrated or rebuilt and every agent retrained on a new inbox.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify Inbox",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free"
+     },
+     "source": "https://apps.shopify.com/inbox",
+     "checked": "2026-09-23",
+     "covers": [
+      "Live chat on the online store",
+      "AI sales agent that reads catalog, inventory and policies",
+      "Product recommendations and FAQ automation",
+      "Assisted-order analytics",
+      "20+ languages"
+     ],
+     "misses": [
+      "No email ticketing, macros or SLAs listed",
+      "No social, SMS or voice channels listed",
+      "Too thin for a 20+ person support team: no ticket queues or detailed agent reporting listed",
+      "Reviews mention weak human handoff"
+     ],
+     "app_store_rating": "4.5 (5,787 reviews)"
+    },
+    {
+     "name": "Commslayer: AI Helpdesk & Chat",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 299,
+      "unit": "month",
+      "note": "By conversations: Free (300), $39 (800), $99 (2,000), $299 (6,000); unlimited seats"
+     },
+     "source": "https://apps.shopify.com/commslayer",
+     "checked": "2026-09-23",
+     "covers": [
+      "Email, live chat, WhatsApp, Instagram, Facebook, TikTok",
+      "Macros, rules, auto-labels, escalation",
+      "Shopify order edit, refund, cancel from the helpdesk",
+      "Help center on custom domain",
+      "Listing names migration from Gorgias"
+     ],
+     "misses": [
+      "No voice or SMS channel listed (Gorgias offers both)",
+      "Far fewer integrations listed than Gorgias's 100+",
+      "No AI Shopping Assistant equivalent listed",
+      "Largest plan caps at 6,000 conversations/mo"
+     ],
+     "app_store_rating": "4.9 (230 reviews)",
+     "recommended": true
+    }
+   ]
+  },
+  {
+   "app": "instafeed",
+   "incumbent_price": {
+    "low": 0,
+    "high": 20,
+    "unit": "month",
+    "note": "By features/feeds: Starter free, Pro $8 (tagging, up to 3 feeds), Plus $20 (unlimited feeds, UGC).",
+    "source": "https://apps.shopify.com/instafeed",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "A feed widget is one section or block, so moving plans or removing it takes minutes with no data to migrate.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Instafeed Starter plan",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Same app, free plan"
+     },
+     "source": "https://apps.shopify.com/instafeed",
+     "checked": "2026-09-23",
+     "covers": [
+      "Grid or slider feed layout",
+      "Instagram Reels",
+      "Hourly auto-sync"
+     ],
+     "misses": [
+      "No product/collection tagging or shop buttons (Pro)",
+      "No Stories (Pro)",
+      "Single feed only; multiple feeds need Pro/Plus",
+      "No UGC or custom uploads (Plus)"
+     ],
+     "app_store_rating": "4.9 (2,156 reviews)"
+    },
+    {
+     "name": "Theme editor image/collage sections (Online Store 2.0)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Built into OS 2.0 themes; no cost mentioned"
+     },
+     "source": "https://help.shopify.com/en/manual/online-store/themes/theme-structure/sections-and-blocks",
+     "checked": "2026-09-23",
+     "covers": [
+      "Image and collage blocks added without code",
+      "Place anywhere on templates",
+      "No app script on the storefront"
+     ],
+     "misses": [
+      "No Instagram auto-sync; posts uploaded by hand",
+      "No shoppable tagging from posts",
+      "No Reels/Stories import"
+     ],
+     "app_store_rating": ""
+    }
+   ]
+  },
+  {
+   "app": "swym",
+   "incumbent_price": {
+    "low": 29.99,
+    "high": 99.99,
+    "unit": "month",
+    "note": "By monthly wishlist actions: Starter $29.99 (3,000), Pro $59.99 (10,000), Premium $99.99 (25,000); Enterprise custom (100,000+) per getswym.com.",
+    "source": "https://apps.shopify.com/swym-relay",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Existing shopper wishlists and Klaviyo/Attentive alert flows would need migrating or rebuilding, and the wishlist buttons re-placed in the theme.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Wishlist by Square",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free"
+     },
+     "source": "https://apps.shopify.com/wishlist-by-square",
+     "checked": "2026-09-23",
+     "covers": [
+      "Guest wishlists without customer accounts",
+      "Favorites and Save for Later lists",
+      "Add to cart from saved items",
+      "Saved-product and wishlist-value analytics",
+      "15 languages"
+     ],
+     "misses": [
+      "No price-drop or back-in-stock alerts listed",
+      "No email/ESP integration listed",
+      "No wishlist sharing listed",
+      "Launched June 2025; short track record"
+     ],
+     "app_store_rating": "5.0 (119 reviews)"
+    },
+    {
+     "name": "Wishlist Hero",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 29,
+      "unit": "month",
+      "note": "By wishlist additions: Free (500), Silver $4 (1,000), Gold Plus $17 (5,000), Platinum $29 (10,000)"
+     },
+     "source": "https://apps.shopify.com/wishlist-hero",
+     "checked": "2026-09-23",
+     "covers": [
+      "Guest wishlists",
+      "Email and social sharing",
+      "Low-stock and price-drop email alerts",
+      "Klaviyo, Mailchimp, GA4, Meta pixel integration (Silver+)",
+      "REST and JavaScript APIs (Gold Plus+)"
+     ],
+     "misses": [
+      "No Meta ads retargeting audiences or customer segments listed (Swym Pro)",
+      "No Attentive or Tapcart integration listed",
+      "Top plan caps at 10,000 additions/mo"
+     ],
+     "app_store_rating": "4.7 (412 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "pagefly",
+   "incumbent_price": {
+    "low": 0,
+    "high": 299,
+    "unit": "month",
+    "note": "By published pages/sections and AI credits: Free (1 slot), Builder $24 (5+, add $5 per 5 slots), Accelerate $99 (unlimited), Enterprise $299.",
+    "source": "https://apps.shopify.com/pagefly",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "high",
+   "switch_note": "Every page and section built in PageFly has to be rebuilt in the theme editor or another builder.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Online Store 2.0 theme editor (sections and blocks)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Built into OS 2.0 themes; no cost mentioned"
+     },
+     "source": "https://help.shopify.com/en/manual/online-store/themes/theme-structure/sections-and-blocks",
+     "checked": "2026-09-23",
+     "covers": [
+      "Add and rearrange sections on home, product, collection, page and blog templates",
+      "Text, image, button and collage blocks without code",
+      "Metafield dynamic sources",
+      "App blocks from installed apps",
+      "Duplicate, hide, copy/paste sections"
+     ],
+     "misses": [
+      "Limited to the sections your theme ships; no drag-anywhere layout",
+      "No A/B testing or heatmaps",
+      "25 sections per template cap",
+      "No PageFly-style template library"
+     ],
+     "app_store_rating": ""
+    },
+    {
+     "name": "GemPages (Build plan)",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 29,
+      "unit": "month",
+      "note": "Free (1 published page) or Build $29 (unlimited pages)"
+     },
+     "source": "https://apps.shopify.com/gempages",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited published pages on Build",
+      "400+ CRO templates and sections",
+      "Image/URL-to-layout AI",
+      "Countdown timers, stock counters, bundles"
+     ],
+     "misses": [
+      "Funnels and post-purchase upsells need the $59 Optimize plan",
+      "Heatmaps not listed",
+      "Cart drawer not listed",
+      "Free plan limited to 1 page"
+     ],
+     "app_store_rating": "4.9 (4,245 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "accessibe",
+   "incumbent_price": {
+    "low": 59,
+    "high": 479,
+    "unit": "month",
+    "note": "Shopify listing: Micro $59/mo (up to 5K visits), Growth $179/mo (30K visits), Scale $479/mo (100K visits); annual $490/$1,490/$3,990. Price driven by monthly site visits. Listing rating 3.5 (17 reviews). FTC: Jan 3, 2025 complaint and proposed order, final order approved Apr 22, 2025; accessiBe pays $1 million over claims that accessWidget could make any website WCAG-compliant and over reviews formatted to look independent. Order bars claiming automated products make any site WCAG-compliant or keep it compliant without evidence. Overlay Fact Sheet (1,031 signatories incl. practitioners, disability-rights lawyers, disabled users) says no overlay can make a site fully compliant or remove legal risk and calls for fixing issues at the source. FTC sources: https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-order-requires-online-marketer-pay-1-million-deceptive-claims-its-ai-product-could-make-websites and https://www.ftc.gov/news-events/news/press-releases/2025/04/ftc-approves-final-order-requiring-accessibe-pay-1-million ; advocates: https://overlayfactsheet.com/en/",
+    "source": "https://apps.shopify.com/accesswidget",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Removing the overlay is easy; fixing the theme's real accessibility issues takes developer time or a paid audit.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "WAVE (WebAIM) free evaluation tool + in-house fixes",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Online tool free to use; paid API/stand-alone engine/AIM reports exist."
+     },
+     "source": "https://wave.webaim.org/",
+     "checked": "2026-09-23",
+     "covers": [
+      "Flags many WCAG errors on a page",
+      "Helps a human reviewer evaluate page content",
+      "Gives a to-do list for fixing issues in theme code at the source"
+     ],
+     "misses": [
+      "No runtime widget or toolbar for shoppers",
+      "No litigation support pledge (accessiBe Growth/Scale list $15K/$20K)",
+      "Does not do the fixes itself",
+      "Automated checks cannot catch every issue; human review still needed"
+     ],
+     "app_store_rating": ""
+    },
+    {
+     "name": "One-time accessibility audit (e.g. WebAIM Accessibility Audit) + remediation",
+     "kind": "service",
+     "price": {
+      "low": null,
+      "high": null,
+      "unit": "one-time",
+      "note": "Not found: WebAIM shows no public price, quote on request. Certification cost is folded into the evaluation fee."
+     },
+     "source": "https://webaim.org/services/evaluation",
+     "checked": "2026-09-23",
+     "covers": [
+      "Expert review of 8-15 representative pages",
+      "Report on conformance, barriers found, their impact on users, and recommended fixes",
+      "Optional WAVE AIM report: WAVE data for up to 20,000 pages plus manual testing of 4 pages",
+      "Fixes at the source, which is what the Overlay Fact Sheet recommends"
+     ],
+     "misses": [
+      "No ongoing daily automated scan like accessiBe's AI scan",
+      "No shopper-facing accessibility toolbar",
+      "No bundled litigation support pledge",
+      "Fixes must be built by you or a developer"
+     ],
+     "app_store_rating": ""
+    }
+   ]
+  },
+  {
+   "app": "elevar",
+   "incumbent_price": {
+    "low": 225,
+    "high": 1250,
+    "unit": "month",
+    "note": "Core $225 (2,000 orders, 2 destinations, $0.50/extra order), Advanced $650 (10,000 orders, 4 destinations, $0.15/extra), Premium $1,250 (30,000 orders, 10 destinations, $0.10/extra). Driven by order volume and destination count; overages on top. Rating 4.7 (170 reviews).",
+    "source": "https://apps.shopify.com/gtm-datalayer-by-elevar",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Swapping tracking means re-validating every ad and analytics destination, and a gap in conversion data hits ad bidding while you rebuild.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Google & YouTube app (GA4 + Google Ads)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free to install; ad spend billed to Google Ads."
+     },
+     "source": "https://apps.shopify.com/google",
+     "checked": "2026-09-23",
+     "covers": [
+      "Connects store journey to Google Analytics",
+      "Syncs products, deals, shipping to Merchant Center",
+      "Runs Performance Max campaigns across Search and YouTube"
+     ],
+     "misses": [
+      "No server-side tracking as marketed by Elevar",
+      "No identity resolution",
+      "No tracking monitoring/alerts",
+      "Covers Google only, not Meta/Klaviyo destinations"
+     ],
+     "app_store_rating": "4.5 (5,472 reviews)"
+    },
+    {
+     "name": "Facebook & Instagram app (Meta pixel)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free to install; ad spend billed to Facebook ad account."
+     },
+     "source": "https://apps.shopify.com/facebook",
+     "checked": "2026-09-23",
+     "covers": [
+      "Sets up a Meta conversion pixel",
+      "Syncs products and manages orders",
+      "Manages Facebook and Instagram presence from Shopify"
+     ],
+     "misses": [
+      "Listing does not say it provides server-side / Conversions API tracking (not verified)",
+      "No identity resolution or data-layer tooling",
+      "No cross-destination monitoring"
+     ],
+     "app_store_rating": "3.8 (5,680 reviews)"
+    },
+    {
+     "name": "Shopify customer events (custom pixels)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Built into admin; help page lists no fee."
+     },
+     "source": "https://help.shopify.com/en/manual/promoting-marketing/pixels/custom-pixels",
+     "checked": "2026-09-23",
+     "covers": [
+      "Collect customer events on more pages including checkout and post-purchase",
+      "Load any third-party tag in a sandbox"
+     ],
+     "misses": [
+      "Runs client-side in a Lax sandbox, not server-side",
+      "Unsupported, needs JavaScript skill",
+      "Consent compliance is on you",
+      "Not all pixel functions work in the sandbox"
+     ],
+     "app_store_rating": ""
+    }
+   ]
+  },
+  {
+   "app": "triplewhale",
+   "incumbent_price": {
+    "low": 0,
+    "high": 749,
+    "unit": "month",
+    "note": "Shopify listing: Free $0, Foundation $219/mo ($2,190/yr), Automate $749/mo ($7,490/yr). Driven by feature tier and AI automation. Vendor pricing page returned 403, so any GMV-based pricing there was not checked. Rating 4.1 (90 reviews).",
+    "source": "https://apps.shopify.com/triplewhale-1",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Teams build daily reporting habits and dashboards around it, and the pixel's attribution history does not carry over to another tool.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Triple Whale Free plan",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Same app, free tier."
+     },
+     "source": "https://apps.shopify.com/triplewhale-1",
+     "checked": "2026-09-23",
+     "covers": [
+      "Ad, Amazon, email and SMS integrations",
+      "First-click and last-click attribution",
+      "Triple pixel tracking",
+      "12-month lookback, 10 users",
+      "Shop performance tracking"
+     ],
+     "misses": [
+      "Multi-touch attribution",
+      "Cohort analysis and custom dashboards",
+      "Creative/product analytics and Sonar",
+      "Moby AI operator and automations"
+     ],
+     "app_store_rating": "4.1 (90 reviews)"
+    },
+    {
+     "name": "Google & YouTube app (GA4)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free to install."
+     },
+     "source": "https://apps.shopify.com/google",
+     "checked": "2026-09-23",
+     "covers": [
+      "Google Analytics insights on the store journey",
+      "Google Ads / Performance Max from Shopify",
+      "Merchant Center product sync"
+     ],
+     "misses": [
+      "No single view across Meta, TikTok, email, SMS spend",
+      "No Triple pixel attribution",
+      "No subscription/cohort dashboards",
+      "No AI agent"
+     ],
+     "app_store_rating": "4.5 (5,472 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "redo",
+   "incumbent_price": {
+    "low": 0,
+    "high": 99,
+    "unit": "month",
+    "note": "Returns plan Free (portal, AI exchange agent, analytics). Paid add-ons: Checkout Optimizer $10/mo + $0.50/order + $0.06/upsell; Email & SMS $10/mo + $2 per 1,000 emails, SMS from $0.016; Fulfillment $99/mo flat. High excludes usage fees. Listing mentions 'return coverage'; redo.com/pricing says Redo covers return label cost. Whether shoppers pay for coverage at checkout: not found on fetched pages. International returns priced per market/volume on a demo (redo.com/returns). Rating 4.9 (780 reviews).",
+    "source": "https://apps.shopify.com/redo",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Moving returns means changing the customer-facing portal and policy rules and handling returns already in flight.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Shopify self-serve returns",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Built into admin; help page states no fee. Return label costs not found on fetched pages."
+     },
+     "source": "https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/self-serve-returns",
+     "checked": "2026-09-23",
+     "covers": [
+      "Customers request returns or cancel unshipped orders from order status page",
+      "Return rules for eligible items, window, free vs customer-paid shipping",
+      "Merchant approve/decline with shipping instructions and return labels",
+      "Add exchange items on approval",
+      "Custom request form fields such as reason and condition"
+     ],
+     "misses": [
+      "No AI exchange agent",
+      "No return coverage / Redo-paid labels",
+      "No variant-level returns analytics or monthly AI report",
+      "Store credit handling not confirmed on fetched page"
+     ],
+     "app_store_rating": ""
+    }
+   ]
+  },
+  {
+   "app": "loopreturns",
+   "incumbent_price": {
+    "low": 0,
+    "high": 340,
+    "unit": "month",
+    "note": "Checkout+ free (software + return shipping), Essential from $155/mo, Advanced from $340/mo; paid tiers are 'starting at', so real high not published. Driven by feature tier. How Checkout+ is funded (shopper fee at checkout?) not stated on fetched pages. Rating 4.6 (443 reviews).",
+    "source": "https://www.loopreturns.com/pricing/",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Return policies, workflows and the shopper portal must be rebuilt, and open returns need to finish in Loop first.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify self-serve returns",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Built into admin; help page states no fee. Return label costs not found."
+     },
+     "source": "https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/self-serve-returns",
+     "checked": "2026-09-23",
+     "covers": [
+      "Self-serve return and cancellation requests from order status page",
+      "Rules for eligibility, window, free vs paid return shipping",
+      "Return labels and shipping instructions",
+      "Exchange items added on approval"
+     ],
+     "misses": [
+      "No Shop Now or instant exchange",
+      "No bonus credit to steer toward exchanges",
+      "No carrier rate shopping",
+      "No return fraud prevention or advanced workflows"
+     ],
+     "app_store_rating": ""
+    },
+    {
+     "name": "Redo Returns (free plan)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Returns plan free; Redo says it covers return label cost."
+     },
+     "source": "https://apps.shopify.com/redo",
+     "checked": "2026-09-23",
+     "covers": [
+      "Returns and claims portal",
+      "AI exchange agent",
+      "Variant-level returns analytics",
+      "Customizable return flow"
+     ],
+     "misses": [
+      "Loop's Shop Now flow",
+      "Loop bonus credit",
+      "Loop carrier rate shopping",
+      "Funding model for free labels not verified"
+     ],
+     "app_store_rating": "4.9 (780 reviews)"
+    },
+    {
+     "name": "Loop Checkout+ (free tier)",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free software + return shipping; US & Canada domestic labels per listing."
+     },
+     "source": "https://apps.shopify.com/loop-returns",
+     "checked": "2026-09-23",
+     "covers": [
+      "Loop returns software",
+      "US and Canada domestic return labels",
+      "Return bars"
+     ],
+     "misses": [
+      "Automated return policies and workflows (Essential)",
+      "Shop Now, instant exchange, bonus credit (Advanced)",
+      "Fraud prevention (Advanced)"
+     ],
+     "app_store_rating": "4.6 (443 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "intelligems",
+   "incumbent_price": {
+    "low": 69,
+    "high": 2894,
+    "unit": "month",
+    "note": "Shopify listing starting prices: Smart Content $69, Smart Merchandise $112.10, Smart Shipping $112.10, Unlimited $349; all scale with sitewide order volume. Vendor page shows Unlimited list $2,894/mo ($1,279 with 44% discount on 3-month minimum) for up to 200,000 orders/mo; exact volume behind that figure unclear. 3-month minimum on vendor page. Rating 4.8 (195 reviews).",
+    "source": "https://apps.shopify.com/intelligems",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Running tests stop and their history stays behind, and price or shipping tests have no free native equivalent.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Intelligems Smart Content plan",
+     "kind": "low-cost",
+     "price": {
+      "low": 69,
+      "high": 69,
+      "unit": "month",
+      "note": "Starting price; scales with order volume. $660/yr."
+     },
+     "source": "https://apps.shopify.com/intelligems",
+     "checked": "2026-09-23",
+     "covers": [
+      "Landing page and content testing",
+      "AI editing",
+      "Profit metrics"
+     ],
+     "misses": [
+      "Discount, upsell and bundle testing",
+      "Shipping rate testing",
+      "Unlimited tests and dedicated success manager"
+     ],
+     "app_store_rating": "4.8 (195 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "consentmo",
+   "incumbent_price": {
+    "low": 0,
+    "high": 64,
+    "unit": "month",
+    "note": "Free, Standard $10 (Google Consent Mode v2, Meta/TikTok pixel integrations, AI cookie scanner), Plus $37 (accessibility widget, region-specific banners, EU Withdrawal page), Enterprise $64 (IAB TCF v2.3, headless, Plus checkout banner). Driven by features. Rating 5.0 (2,013 reviews).",
+    "source": "https://apps.shopify.com/gdpr-backpack",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "A consent banner swap is a settings change, but you must check every third-party pixel still waits for consent.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Shopify Customer Privacy (built-in cookie banner)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Admin setting, no app; help pages list no separate charge."
+     },
+     "source": "https://help.shopify.com/en/manual/privacy-and-security/privacy/customer-privacy-settings/privacy-settings",
+     "checked": "2026-09-23",
+     "covers": [
+      "Auto-configured banner for UK and EEA visitors when those markets are active; can be enabled elsewhere",
+      "Per-region banner and data-sharing settings",
+      "Data sharing opt-out page with Your Privacy Choices icon",
+      "Honors Global Privacy Control header",
+      "Governs Shopify cookies and Shopify Pixels"
+     ],
+     "misses": [
+      "Manually installed or app-added third-party cookies/pixels may need a third-party banner or custom logic",
+      "No cookie scanner",
+      "No IAB TCF",
+      "Google Consent Mode v2 signaling from the native banner not confirmed on fetched pages (Shopify notes it needs proper configuration for EEA)"
+     ],
+     "app_store_rating": ""
+    },
+    {
+     "name": "Consentmo Free plan",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Same app, free tier."
+     },
+     "source": "https://apps.shopify.com/gdpr-backpack",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited banner impressions",
+      "Global geolocation",
+      "Basic script blocking",
+      "Customer data requests (DSAR)"
+     ],
+     "misses": [
+      "Google Consent Mode v2 (Standard+)",
+      "Meta/TikTok pixel consent integrations",
+      "AI cookie scanner",
+      "IAB TCF (Enterprise)"
+     ],
+     "app_store_rating": "5.0 (2,013 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "onetrust",
+   "incumbent_price": {
+    "low": null,
+    "high": null,
+    "unit": "month",
+    "note": "Contact sales. No public price on product or pricing page; consent pricing metered by average daily visitors.",
+    "source": "https://www.onetrust.com/pricing/",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Enterprise contracts and legal sign-off on consent records slow the exit even though the Shopify-side swap is simple.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify Customer Privacy (built-in cookie banner)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Admin setting, no app; help pages list no separate charge."
+     },
+     "source": "https://help.shopify.com/en/manual/privacy-and-security/privacy/customer-privacy-settings/privacy-settings",
+     "checked": "2026-09-23",
+     "covers": [
+      "UK/EEA banner auto-configured for active markets",
+      "Per-region settings",
+      "Data sharing opt-out page",
+      "Honors Global Privacy Control"
+     ],
+     "misses": [
+      "Third-party pixels added outside Shopify may not honor consent without custom logic",
+      "No cookie scanning",
+      "No IAB TCF",
+      "No enterprise consent governance across non-Shopify properties"
+     ],
+     "app_store_rating": ""
+    },
+    {
+     "name": "Pandectes GDPR Compliance (Plus or Enterprise)",
+     "kind": "low-cost",
+     "price": {
+      "low": 9,
+      "high": 49,
+      "unit": "month",
+      "note": "Plus $9 (Google Consent Mode v2), Enterprise $49 (IAB TCF v2.3, headless, inline script blocking)."
+     },
+     "source": "https://apps.shopify.com/gdpr-cookie-consent",
+     "checked": "2026-09-23",
+     "covers": [
+      "Google Consent Mode v2 and Meta/UET consent mode (Plus)",
+      "AI cookie scanner",
+      "Auto-blocker for popular services (Premium)",
+      "IAB TCF v2.3 banner (Enterprise)",
+      "Customer data requests"
+     ],
+     "misses": [
+      "Shopify-only; no consent for other domains or apps",
+      "No enterprise privacy program modules beyond consent",
+      "No dedicated implementation engagement"
+     ],
+     "app_store_rating": "5.0 (3,085 reviews)"
+    },
+    {
+     "name": "Consentmo GDPR Compliance (Standard or Enterprise)",
+     "kind": "low-cost",
+     "price": {
+      "low": 10,
+      "high": 64,
+      "unit": "month",
+      "note": "Standard $10 (Consent Mode v2), Enterprise $64 (IAB TCF v2.3)."
+     },
+     "source": "https://apps.shopify.com/gdpr-backpack",
+     "checked": "2026-09-23",
+     "covers": [
+      "Google Consent Mode v2",
+      "Meta/TikTok pixel integrations",
+      "AI cookie scanner",
+      "IAB TCF v2.3 (Enterprise)"
+     ],
+     "misses": [
+      "Shopify-only",
+      "No enterprise governance modules",
+      "No cross-property consent records"
+     ],
+     "app_store_rating": "5.0 (2,013 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "pandectes",
+   "incumbent_price": {
+    "low": 0,
+    "high": 49,
+    "unit": "month",
+    "note": "Basic free, Plus $9 (Consent Mode v2, AI scanner, custom pixel support), Premium $29 (accessibility, auto-blocker, checkout block), Enterprise $49 (IAB TCF v2.3, bot blocking, headless). Driven by features. Rating 5.0 (3,085 reviews).",
+    "source": "https://apps.shopify.com/gdpr-cookie-consent",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "Moving between plans or to the native banner is a settings change with no data migration beyond consent logs.",
+   "strategy": "downgrade",
+   "alternatives": [
+    {
+     "name": "Shopify Customer Privacy (built-in cookie banner)",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Admin setting, no app; help pages list no separate charge."
+     },
+     "source": "https://help.shopify.com/en/manual/privacy-and-security/privacy/customer-privacy-settings/privacy-settings",
+     "checked": "2026-09-23",
+     "covers": [
+      "UK/EEA banner auto-configured for active markets",
+      "Per-region settings",
+      "Data sharing opt-out page and Your Privacy Choices icon",
+      "Honors Global Privacy Control",
+      "Branding colors and position"
+     ],
+     "misses": [
+      "Third-party cookies/pixels outside Shopify Pixels may need custom logic",
+      "No cookie scanning or cookie policy generation",
+      "No IAB TCF",
+      "Native Google Consent Mode v2 support not confirmed on fetched pages"
+     ],
+     "app_store_rating": ""
+    },
+    {
+     "name": "Pandectes Basic (free) plan",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Same app, free tier."
+     },
+     "source": "https://apps.shopify.com/gdpr-cookie-consent",
+     "checked": "2026-09-23",
+     "covers": [
+      "Unlimited impressions",
+      "Customizable banner",
+      "Geolocation",
+      "Customer data requests and consent report",
+      "Auto cookie scanning"
+     ],
+     "misses": [
+      "Google Consent Mode v2 (Plus)",
+      "Auto-blocker (Premium)",
+      "IAB TCF (Enterprise)"
+     ],
+     "app_store_rating": "5.0 (3,085 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "hotjar",
+   "incumbent_price": {
+    "low": 0,
+    "high": null,
+    "unit": "month",
+    "note": "Hotjar now redirects to Contentsquare. Paid Hotjar prices not found (pricing page rendered no figures). Contentsquare's Hotjar page describes Hotjar's free limit as 35 sessions/day and 20 survey responses/month.",
+    "source": "https://contentsquare.com/hotjar/",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "low",
+   "switch_note": "Heatmap tools install as one script and hold little you need to migrate beyond old recordings.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Microsoft Clarity",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "'Free forever', 'No limits on traffic'."
+     },
+     "source": "https://clarity.microsoft.com/",
+     "checked": "2026-09-23",
+     "covers": [
+      "Heatmaps (clicks, scroll, drop-off)",
+      "Session recordings",
+      "Rage tap and frustration detection",
+      "AI summaries and AI chat over your data"
+     ],
+     "misses": [
+      "On-site surveys and feedback widgets",
+      "Hotjar-style interview/feedback tooling",
+      "Paid-vendor support"
+     ],
+     "app_store_rating": ""
+    }
+   ]
+  },
+  {
+   "app": "nofraud",
+   "incumbent_price": {
+    "low": 0,
+    "high": 750,
+    "unit": "month",
+    "note": "NoFraud has rebranded as Wyllo. Listing: Screening Only free (100 orders/mo after 14-day trial); guarantee plans $250/$350/$450 minimum at 1% / 1.25% / 1.5% of revenue for merchants under $50K/mo revenue (guarantee tiers labeled $500/$1,000/$2,000). High is derived: 1.5% x $50K. Custom pricing above $50K/mo. Rating 4.8 (163 reviews).",
+    "source": "https://apps.shopify.com/nofraud-chargeback-prevention-and-protection",
+    "checked": "2026-09-23"
+   },
+   "switch_cost": "medium",
+   "switch_note": "Shopify Protect only covers Shop Pay orders on US stores; everything else still needs screening, so it replaces part of NoFraud, not all.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Shopify Protect",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Free built-in chargeback protection; US stores only."
+     },
+     "source": "https://www.shopify.com/protect",
+     "checked": "2026-09-23",
+     "covers": [
+      "Covers order cost and chargeback fee on protected fraud-based chargebacks",
+      "Handles the dispute process",
+      "No added fee"
+     ],
+     "misses": [
+      "Only Shop Pay orders via Shopify Payments",
+      "US stores only",
+      "Requires fulfillment within 7 days with supported-carrier tracking",
+      "No guarantee on card orders outside Shop Pay"
+     ],
+     "app_store_rating": ""
+    },
+    {
+     "name": "Shopify fraud analysis",
+     "kind": "shopify-native",
+     "price": {
+      "low": 0,
+      "high": 0,
+      "unit": "month",
+      "note": "Built in; help page lists no fee. Indicators on Basic+; recommendations on Grow+ or with Shopify Payments."
+     },
+     "source": "https://help.shopify.com/en/manual/fulfillment/managing-orders/protecting-orders/fraud-analysis",
+     "checked": "2026-09-23",
+     "covers": [
+      "Fraud indicators from address, payment and device checks",
+      "Low/medium/high risk recommendation",
+      "Review before fulfillment"
+     ],
+     "misses": [
+      "No chargeback guarantee (Shopify does not cover charge reversals)",
+      "No expert manual review",
+      "No branded customer verification"
+     ],
+     "app_store_rating": ""
+    }
+   ]
+  }
+ ]
+}
