@@ -202,6 +202,8 @@ def extract(html: str, page_url: str, catalog: Catalog, result: ScanResult) -> l
 
 
 def _record_handle(handle: str, detail: str, source: str, label: str, catalog: Catalog, result: ScanResult) -> None:
+    if handle[:1].isdigit():
+        return  # versioned asset folders like "2026-09-22-08-46-47-utc-" are not app handles
     app = catalog.match_key(handle)
     if app:
         result.add(app.id, Evidence(source, detail, label))

@@ -24,6 +24,7 @@ class App:
     storefront: bool = True  # False for back-office apps that leave no storefront footprint
     free: bool = False       # True for apps with no paid tier
     optional: bool = False   # True when the app often runs without any storefront code (helpdesk, email, fraud)
+    exact: bool = False      # keys only match the whole handle or name, for generic words like 'inbox'
 
 
 @dataclass(frozen=True)
@@ -54,6 +55,7 @@ class Catalog:
                 storefront=a.get("storefront", True),
                 free=a.get("free", False),
                 optional=a.get("optional", False),
+                exact=a.get("exact", False),
             )
 
     @classmethod
@@ -84,6 +86,7 @@ class Catalog:
         best: tuple[int, App] | None = None
         for app in self.apps.values():
             for key in app.keys:
-                if key and key in n and (best is None or len(key) > best[0]):
+                hit = (key == n) if app.exact else (key in n)
+                if key and hit and (best is None or len(key) > best[0]):
                     best = (len(key), app)
         return best[1] if best else None

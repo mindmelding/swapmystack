@@ -1,5 +1,5 @@
 {
- "version": "2026.09.22",
+ "version": "2026.09.23",
  "categories": {
   "reviews": {"label": "Product reviews", "exclusive": true, "free_option": "Judge.me has a free plan that covers core reviews."},
   "email": {"label": "Email marketing", "exclusive": true, "free_option": "Shopify Email includes a free monthly send allowance."},
@@ -34,7 +34,12 @@
   "performance": {"label": "Performance and speed", "exclusive": true, "free_option": null},
   "surveys": {"label": "Post-purchase surveys", "exclusive": true, "free_option": null},
   "operations": {"label": "Back-office operations", "exclusive": false, "free_option": null},
-  "ad_channels": {"label": "Ad pixels and sales channels", "exclusive": false, "free_option": null}
+  "ad_channels": {"label": "Ad pixels and sales channels", "exclusive": false, "free_option": null},
+  "bundles": {"label": "Bundles and product options", "exclusive": false, "free_option": null},
+  "wholesale": {"label": "Wholesale", "exclusive": true, "free_option": null},
+  "push": {"label": "Push notifications", "exclusive": true, "free_option": null},
+  "instagram": {"label": "Instagram feeds", "exclusive": true, "free_option": null},
+  "store_protection": {"label": "Bot and country blocking", "exclusive": true, "free_option": null}
  },
  "apps": [
   {"id": "judgeme", "name": "Judge.me", "category": "reviews", "urls": ["judge.me", "judgeme"], "keys": ["judgeme"]},
@@ -162,6 +167,17 @@
   {"id": "tiktok", "name": "TikTok", "category": "ad_channels", "urls": ["analytics.tiktok.com"], "keys": ["tiktokpixel"], "free": true},
   {"id": "snapchat", "name": "Snapchat Ads", "category": "ad_channels", "urls": ["intg.snapchat.com", "sc-static.net"], "keys": ["snapchatads"], "free": true},
   {"id": "pinterest", "name": "Pinterest", "category": "ad_channels", "urls": ["s.pinimg.com/ct", "ct.pinterest.com"], "keys": ["pinteresttag"], "free": true},
-  {"id": "gtm", "name": "Google Tag Manager", "category": "ad_channels", "urls": ["googletagmanager.com"], "keys": ["googletagmanager"], "free": true}
+  {"id": "gtm", "name": "Google Tag Manager", "category": "ad_channels", "urls": ["googletagmanager.com"], "keys": ["googletagmanager"], "free": true},
+  {"id": "shopify_inbox", "name": "Shopify Inbox", "category": "chat", "urls": [], "keys": ["inbox"], "free": true, "exact": true},
+  {"id": "shopify_forms", "name": "Shopify Forms", "category": "popups", "urls": [], "keys": ["forms"], "free": true, "exact": true},
+  {"id": "instafeed", "name": "Instafeed", "category": "instagram", "urls": ["instafeed"], "keys": ["instafeed"]},
+  {"id": "wholesalegorilla", "name": "Wholesale Gorilla", "category": "wholesale", "urls": ["wholesalegorilla"], "keys": ["wholesalegorilla"]},
+  {"id": "bestpush", "name": "BestPush", "category": "push", "urls": ["bestpush"], "keys": ["bestpush"]},
+  {"id": "bundler", "name": "Bundler", "category": "bundles", "urls": ["bundler.app"], "keys": ["bundler"]},
+  {"id": "globo_options", "name": "Globo Product Options", "category": "bundles", "urls": ["globosoftware"], "keys": ["globoproductoptions"]},
+  {"id": "easyban", "name": "Easy Ban", "category": "store_protection", "urls": [], "keys": ["easyban"]},
+  {"id": "consentmo", "name": "Consentmo GDPR", "category": "consent", "urls": ["consentmo"], "keys": ["consentmo"]},
+  {"id": "gdprbackpack", "name": "GDPR/CCPA Backpack", "category": "consent", "urls": [], "keys": ["gdprbackpack"]},
+  {"id": "wrapped", "name": "Wrapped (gift wrap)", "category": "bundles", "urls": [], "keys": ["wrapped"], "exact": true}
  ]
 }

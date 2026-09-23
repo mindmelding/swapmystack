@@ -54,6 +54,8 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(CATALOG.match_key("klaviyo-email-marketing").id, "klaviyo")
         self.assertEqual(CATALOG.match_key("swym-relay").id, "swym")
         self.assertIsNone(CATALOG.match_key("order-limits-magic"))
+        self.assertEqual(CATALOG.match_key("inbox").id, "shopify_inbox")
+        self.assertIsNone(CATALOG.match_key("typeforms-embed"))  # generic words only match exactly
 
     def test_no_url_pattern_matches_platform_hosts(self):
         for host in ("https://cdn.shopify.com/s/files/1/theme.js", "https://shop.app/pay", "https://www.google.com/x"):
