@@ -1,0 +1,53 @@
+Bill #,Date,Charge category,Description,Amount,Currency
+3001,2026-05-01,Subscription,Shopify plan (Grow),105.00,USD
+3001,2026-05-01,App charges,Klaviyo: Email Marketing & SMS - 5k profiles,100.00,USD
+3001,2026-05-01,App charges,Judge.me Product Reviews - Awesome plan,15.00,USD
+3001,2026-05-01,App charges,Loox ‑ Product Reviews App - Scale,29.99,USD
+3001,2026-05-01,App charges,Privy ‑ Pop Ups & Email,30.00,USD
+3001,2026-05-01,App charges,Hotjar,39.00,USD
+3001,2026-05-01,App charges,Rebuy Personalization Engine,99.00,USD
+3001,2026-05-01,App charges,Tidio ‑ Live Chat & AI Chatbots,29.00,USD
+3001,2026-05-01,App charges,Gorgias - Helpdesk (Basic),60.00,USD
+3001,2026-05-01,App usage charges,Gorgias - Helpdesk (ticket overage),20.00,USD
+3001,2026-05-01,App charges,ShipStation,29.99,USD
+3001,2026-05-01,App charges,Order Limits Magic,9.99,USD
+3001,2026-05-01,Transaction fees,Transaction fees,48.12,USD
+3001,2026-05-01,Shipping labels,Shipping labels,212.40,USD
+3002,2026-06-01,Subscription,Shopify plan (Grow),105.00,USD
+3002,2026-06-01,App charges,Klaviyo: Email Marketing & SMS - 5k profiles,100.00,USD
+3002,2026-06-01,App charges,Judge.me Product Reviews - Awesome plan,15.00,USD
+3002,2026-06-01,App charges,Loox ‑ Product Reviews App - Scale,29.99,USD
+3002,2026-06-01,App charges,Privy ‑ Pop Ups & Email,30.00,USD
+3002,2026-06-01,App charges,Hotjar,39.00,USD
+3002,2026-06-01,App charges,Rebuy Personalization Engine,149.00,USD
+3002,2026-06-01,App charges,Tidio ‑ Live Chat & AI Chatbots,29.00,USD
+3002,2026-06-01,App charges,Gorgias - Helpdesk (Basic),60.00,USD
+3002,2026-06-01,App usage charges,Gorgias - Helpdesk (ticket overage),22.00,USD
+3002,2026-06-01,App charges,ShipStation,29.99,USD
+3002,2026-06-01,App charges,Order Limits Magic,9.99,USD
+3003,2026-07-01,Subscription,Shopify plan (Grow),105.00,USD
+3003,2026-07-01,App charges,Klaviyo: Email Marketing & SMS - 10k profiles,150.00,USD
+3003,2026-07-01,App charges,Judge.me Product Reviews - Awesome plan,15.00,USD
+3003,2026-07-01,App charges,Loox ‑ Product Reviews App - Scale,29.99,USD
+3003,2026-07-01,App charges,Privy ‑ Pop Ups & Email,30.00,USD
+3003,2026-07-01,App charges,Hotjar,39.00,USD
+3003,2026-07-01,App charges,Rebuy Personalization Engine,249.00,USD
+3003,2026-07-01,App charges,Tidio ‑ Live Chat & AI Chatbots,29.00,USD
+3003,2026-07-01,App charges,Gorgias - Helpdesk (Basic),60.00,USD
+3003,2026-07-01,App usage charges,Gorgias - Helpdesk (ticket overage),21.00,USD
+3003,2026-07-01,App charges,ShipStation,29.99,USD
+3003,2026-07-01,App charges,Order Limits Magic,9.99,USD
+3003,2026-07-01,App charges,PageFly Landing Page Builder,24.00,USD
+3004,2026-08-01,Subscription,Shopify plan (Grow),105.00,USD
+3004,2026-08-01,App charges,Klaviyo: Email Marketing & SMS - 10k profiles,150.00,USD
+3004,2026-08-01,App charges,Judge.me Product Reviews - Awesome plan,15.00,USD
+3004,2026-08-01,App charges,Loox ‑ Product Reviews App - Scale,29.99,USD
+3004,2026-08-01,App charges,Privy ‑ Pop Ups & Email,30.00,USD
+3004,2026-08-01,App charges,Hotjar,39.00,USD
+3004,2026-08-01,App charges,Rebuy Personalization Engine,249.00,USD
+3004,2026-08-01,App charges,Tidio ‑ Live Chat & AI Chatbots,29.00,USD
+3004,2026-08-01,App charges,Gorgias - Helpdesk (Basic),60.00,USD
+3004,2026-08-01,App usage charges,Gorgias - Helpdesk (ticket overage),71.50,USD
+3004,2026-08-01,App charges,ShipStation,29.99,USD
+3004,2026-08-01,App charges,Order Limits Magic,9.99,USD
+3004,2026-08-01,Sales tax,Sales tax,31.10,USD

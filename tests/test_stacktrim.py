@@ -1,0 +1,270 @@
+import io
+import json
+import sqlite3
+import tempfile
+import unittest
+import zipfile
+from contextlib import redirect_stdout, redirect_stderr
+from pathlib import Path
+
+from stacktrim import history
+from stacktrim.analyze import analyze
+from stacktrim.bills import parse_amount, parse_bills, parse_date
+from stacktrim.cli import main
+from stacktrim.fingerprints import Catalog
+from stacktrim.report import render_html, render_markdown, render_text
+from stacktrim.scan import Page, normalize_store, scan_storefront
+from stacktrim.theme import scan_theme
+
+FIX = Path(__file__).parent / "fixtures"
+CATALOG = Catalog.load()
+
+
+def fake_fetcher(url: str) -> Page:
+    pages = {
+        "https://linen-and-pine.example/": "storefront_home.html",
+        "https://linen-and-pine.example/products/linen-duvet": "storefront_product.html",
+    }
+    name = pages.get(url)
+    if not name:
+        return Page(url, 404, "", error="HTTP 404")
+    return Page(url, 200, (FIX / name).read_text())
+
+
+def full_audit():
+    scan = scan_storefront("linen-and-pine.example", CATALOG, fetcher=fake_fetcher)
+    theme = scan_theme(FIX / "theme", CATALOG)
+    bills = parse_bills(FIX / "bills_shopify.csv", CATALOG)
+    return analyze(CATALOG, scan, theme, bills)
+
+
+class CatalogTests(unittest.TestCase):
+    def test_catalog_is_consistent(self):
+        self.assertGreater(len(CATALOG.apps), 100)
+        for app in CATALOG.apps.values():
+            self.assertIn(app.category, CATALOG.categories)
+            self.assertTrue(app.urls or app.keys, app.id)
+
+    def test_longest_url_pattern_wins(self):
+        self.assertEqual(CATALOG.match_url("https://cdn-loyalty.yotpo.com/loader/x.js").id, "yotpo_loyalty")
+        self.assertEqual(CATALOG.match_url("https://cdn-widgetsrepository.yotpo.com/v1/loader").id, "yotpo")
+
+    def test_key_matching_on_bill_names_and_handles(self):
+        self.assertEqual(CATALOG.match_key("Judge.me Product Reviews - Awesome plan").id, "judgeme")
+        self.assertEqual(CATALOG.match_key("klaviyo-email-marketing").id, "klaviyo")
+        self.assertEqual(CATALOG.match_key("swym-relay").id, "swym")
+        self.assertIsNone(CATALOG.match_key("order-limits-magic"))
+
+    def test_no_url_pattern_matches_platform_hosts(self):
+        for host in ("https://cdn.shopify.com/s/files/1/theme.js", "https://shop.app/pay", "https://www.google.com/x"):
+            self.assertIsNone(CATALOG.match_url(host), host)
+
+
+class ScanTests(unittest.TestCase):
+    def setUp(self):
+        self.scan = scan_storefront("linen-and-pine.example", CATALOG, fetcher=fake_fetcher)
+
+    def test_normalize_store(self):
+        self.assertEqual(normalize_store("Example.com/some/path"), "https://example.com")
+        self.assertEqual(normalize_store("http://x.myshopify.com"), "https://x.myshopify.com")
+
+    def test_reads_home_and_one_product_page(self):
+        urls = [p["url"] for p in self.scan.pages]
+        self.assertIn("https://linen-and-pine.example/products/linen-duvet", urls)
+        self.assertTrue(self.scan.is_shopify)
+
+    def test_detects_every_signal_type(self):
+        d = self.scan.detections
+        self.assertEqual({e.source for e in d["judgeme"]} >= {"scripttag"}, True)
+        self.assertIn("app-block", {e.source for e in d["loox"]})
+        self.assertIn("app-embed", {e.source for e in d["rebuy"]})
+        self.assertIn("app-embed", {e.source for e in d["swym"]})
+        for app_id in ("privy", "klaviyo", "tidio"):
+            self.assertIn(app_id, d)
+
+    def test_navigation_links_are_not_evidence(self):
+        self.assertNotIn("trustpilot", self.scan.detections)
+
+    def test_unknown_handles_and_hosts_are_kept(self):
+        self.assertIn("order-limits-magic", self.scan.unknown_handles)
+        self.assertIn("cdn.unknownvendor.io", self.scan.third_party_hosts)
+
+    def test_unreachable_store(self):
+        r = scan_storefront("nowhere.example", CATALOG, fetcher=lambda u: Page(u, 0, "", error="timeout"))
+        self.assertEqual(r.detections, {})
+        self.assertEqual(r.pages[0]["error"], "timeout")
+
+
+class ThemeTests(unittest.TestCase):
+    def test_theme_folder(self):
+        t = scan_theme(FIX / "theme", CATALOG)
+        self.assertIn("judgeme", t.detections)
+        self.assertIn("tidio", t.detections)
+        self.assertIn("loox", t.detections)  # app block in templates/product.json
+        orphans = {o["name"]: o["app_id"] for o in t.orphan_snippets}
+        self.assertEqual(orphans.get("snippets/pagefly-app-header.liquid"), "pagefly")
+        self.assertEqual(orphans.get("snippets/wishlisthero-header.liquid"), "wishlisthero")
+        self.assertEqual(orphans.get("snippets/old-popup.liquid"), "sumo")  # attributed by URL inside
+        self.assertNotIn("snippets/social-meta.liquid", orphans)
+        self.assertNotIn("pagefly", t.detections)  # orphaned code is not live evidence
+        disabled = [e for e in t.app_embeds if e["disabled"]]
+        self.assertEqual([e["app_id"] for e in disabled], ["wisepops"])
+
+    def test_theme_zip_with_wrapper_folder(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            z = Path(tmp) / "theme.zip"
+            with zipfile.ZipFile(z, "w") as zf:
+                for f in (FIX / "theme").rglob("*"):
+                    if f.is_file():
+                        zf.write(f, "dawn-export/" + f.relative_to(FIX / "theme").as_posix())
+            t = scan_theme(z, CATALOG)
+            self.assertIn("judgeme", t.detections)
+            self.assertEqual(len(t.orphan_snippets), 3)
+
+    def test_rejects_non_theme(self):
+        with self.assertRaises(ValueError):
+            scan_theme(FIX / "bills_manual.csv", CATALOG)
+
+
+class BillsTests(unittest.TestCase):
+    def test_amounts(self):
+        self.assertEqual(parse_amount("$1,234.50"), 1234.5)
+        self.assertEqual(parse_amount("€150,00"), 150.0)
+        self.assertEqual(parse_amount("1.234,56"), 1234.56)
+        self.assertEqual(parse_amount("(20.00)"), -20.0)
+        self.assertIsNone(parse_amount("n/a"))
+
+    def test_dates(self):
+        self.assertEqual(str(parse_date("2026-08-01 00:00:00 -0700")), "2026-08-01")
+        self.assertEqual(str(parse_date("Aug 1, 2026")), "2026-08-01")
+
+    def test_shopify_export(self):
+        b = parse_bills(FIX / "bills_shopify.csv", CATALOG)
+        self.assertEqual(b.format, "shopify-export")
+        self.assertEqual(str(b.as_of), "2026-08-01")
+        self.assertNotIn("shopifyplan", b.apps)                  # plan fee excluded
+        self.assertFalse(any("transaction" in k for k in b.apps))
+        self.assertEqual(b.apps["klaviyo"].monthly, 150.0)
+        self.assertEqual(b.apps["rebuy"].recurring_series()[0][1], 99.0)
+        gorgias = b.apps["gorgias"]
+        self.assertAlmostEqual(gorgias.monthly, 60 + (22 + 21 + 71.5) / 3, places=2)
+        self.assertTrue(b.active(b.apps["hotjar"]))
+        self.assertFalse(b.active(b.apps["pagefly"]))            # last billed in July, dropped in August
+        self.assertIn("orderlimitsmagic", b.apps)
+
+    def test_manual_sheet(self):
+        b = parse_bills(FIX / "bills_manual.csv", CATALOG)
+        self.assertEqual(b.format, "manual")
+        self.assertEqual(b.apps["loox"].monthly, 29.99)
+        self.assertIn("somecustomapp", b.apps)
+
+    def test_semicolon_european(self):
+        b = parse_bills(FIX / "bills_semicolon.csv", CATALOG)
+        self.assertEqual(list(b.apps), ["klaviyo"])
+        self.assertEqual(b.apps["klaviyo"].monthly, 150.0)
+
+    def test_unreadable_columns(self):
+        with tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False) as f:
+            f.write("foo,bar\n1,2\n")
+        with self.assertRaises(ValueError):
+            parse_bills(f.name, CATALOG)
+
+
+class AnalyzeTests(unittest.TestCase):
+    def setUp(self):
+        self.audit = full_audit()
+        self.by_kind = {}
+        for f in self.audit.findings:
+            self.by_kind.setdefault(f.kind, []).append(f)
+
+    def test_paid_but_not_running(self):
+        titles = [f.title for f in self.by_kind["paid_no_trace"]]
+        self.assertTrue(any("Hotjar" in t for t in titles))
+        self.assertFalse(any("ShipStation" in t for t in titles))       # back office, expected invisible
+        self.assertFalse(any("Order Limits" in t for t in titles))      # tied to its unrecognized app block
+        hotjar = next(f for f in self.by_kind["paid_no_trace"] if "Hotjar" in f.title)
+        self.assertEqual(hotjar.confidence, "high")
+        self.assertEqual(hotjar.monthly_savings, 39.0)
+
+    def test_overlap_keeps_most_expensive(self):
+        reviews = next(f for f in self.by_kind["overlap"] if "Judge.me" in f.apps)
+        self.assertEqual(set(reviews.apps), {"Judge.me", "Loox"})
+        self.assertEqual(reviews.monthly_savings, 15.0)
+
+    def test_leftovers(self):
+        self.assertIn("theme_leftovers", self.by_kind)
+        self.assertIn("disabled_embeds", self.by_kind)
+        leftover = {a for f in self.by_kind.get("leftover_code", []) for a in f.apps}
+        self.assertIn("Swym Wishlist Plus", leftover)
+
+    def test_history_findings(self):
+        self.assertTrue(any("Rebuy" in f.title for f in self.by_kind["price_creep"]))
+        self.assertTrue(any("Gorgias" in f.title for f in self.by_kind["usage_spike"]))
+
+    def test_free_option_is_low_confidence_and_separate(self):
+        free = self.by_kind["free_option"]
+        self.assertTrue(all(f.confidence == "low" for f in free))
+        self.assertFalse(any("Hotjar" in f.apps for f in free))  # already flagged as unused
+
+    def test_totals(self):
+        a = self.audit
+        self.assertEqual(a.savings("high", "medium"), 39.0 + 15.0 + 29.0)  # Hotjar unused, Judge.me and Tidio overlaps
+        self.assertAlmostEqual(a.total_monthly_spend, 680.14, places=2)  # August run rate, usage averaged
+        self.assertEqual(a.findings[0].confidence, "high")
+
+    def test_scan_only_mode_has_no_money(self):
+        scan = scan_storefront("linen-and-pine.example", CATALOG, fetcher=fake_fetcher)
+        a = analyze(CATALOG, scan)
+        self.assertEqual(a.savings("high", "medium", "low"), 0)
+        self.assertTrue(any(f.kind == "overlap" for f in a.findings))  # Judge.me + Loox still visible
+
+
+class OutputTests(unittest.TestCase):
+    def test_renderers(self):
+        a = full_audit()
+        html = render_html(a)
+        self.assertIn("linen-and-pine.example", html)
+        self.assertNotIn("<script", html)                # report is inert
+        self.assertNotRegex(html, r"https?://(?!linen)")  # no external requests
+        self.assertIn("Hotjar", render_markdown(a))
+        self.assertIn("Likely savings", render_text(a, color=False))
+        json.dumps(a.to_dict())
+
+    def test_html_escapes_untrusted_names(self):
+        with tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False) as f:
+            f.write('app,monthly_cost\n"<img src=x onerror=alert(1)>",10\n')
+        a = analyze(CATALOG, bills=parse_bills(f.name, CATALOG))
+        self.assertNotIn("<img src=x", render_html(a))
+
+    def test_history_diff(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            db = Path(tmp) / "h.sqlite"
+            a = full_audit().to_dict()
+            with history.connect(db) as conn:
+                self.assertIsNone(history.save(conn, a))
+                b = json.loads(json.dumps(a))
+                b["inventory"] = [i for i in b["inventory"] if i["name"] != "Hotjar"]
+                b["generated_at"] = "2099-01-01T00:00:00Z"
+                diff = history.save(conn, b)
+                self.assertEqual(diff["removed"], ["Hotjar"])
+                self.assertEqual(len(history.runs(conn, a["store"])), 2)
+
+    def test_cli_audit_offline(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "r.html"
+            buf = io.StringIO()
+            with redirect_stdout(buf), redirect_stderr(io.StringIO()):
+                code = main(["audit", "--theme", str(FIX / "theme"), "--bills", str(FIX / "bills_shopify.csv"),
+                             "--out", str(out), "--json", str(Path(tmp) / "r.json"), "--no-history"])
+            self.assertEqual(code, 0)
+            self.assertTrue(out.exists())
+            data = json.loads((Path(tmp) / "r.json").read_text())
+            self.assertGreater(data["summary"]["savings_monthly_confirmed"], 0)
+
+    def test_cli_needs_input(self):
+        with redirect_stderr(io.StringIO()):
+            self.assertEqual(main(["audit"]), 2)
+
+
+if __name__ == "__main__":
+    unittest.main()
