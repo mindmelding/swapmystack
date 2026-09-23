@@ -382,6 +382,8 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
         live = it.billed_active if have_bills else it.loads
         if not path or not live or it.name in flagged or (it.app and it.app.free):
             continue
+        if not have_bills and path.strategy in ("downgrade", "negotiate"):
+            continue  # plan and contract advice is a guess until a bill shows what they pay
         covered.add(it.name)
         findings.append(_cheaper_path(it, path, have_bills))
 

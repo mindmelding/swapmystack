@@ -101,6 +101,12 @@ class ScanTests(unittest.TestCase):
         self.assertIn("order-limits-magic", self.scan.unknown_handles)
         self.assertIn("cdn.unknownvendor.io", self.scan.third_party_hosts)
 
+    def test_store_own_assets_never_match_a_vendor(self):
+        html = '<script>Shopify.shop="x"</script><link rel="preload" href="https://www.bradleymountain.com/cdn/shop/t/1/assets/a.js">'
+        r = scan_storefront("bradleymountain.com", CATALOG,
+                            fetcher=lambda u: Page(u, 200, html) if u.endswith(".com/") else Page(u, 404, ""))
+        self.assertEqual(r.detections, {})
+
     def test_unreachable_store(self):
         r = scan_storefront("nowhere.example", CATALOG, fetcher=lambda u: Page(u, 0, "", error="timeout"))
         self.assertEqual(r.detections, {})
@@ -284,6 +290,9 @@ class CheaperPathTests(unittest.TestCase):
 
     def test_apps_already_flagged_unused_get_no_path(self):
         self.assertFalse(any(f.kind == "cheaper_path" and "Hotjar" in f.apps for f in self.audit.findings))
+
+    def test_scan_only_skips_plan_and_contract_guesses(self):
+        self.assertFalse(any(f.kind == "cheaper_path" and "Klaviyo" in f.apps for f in self.scan_only.findings))
 
     def test_scan_only_shows_list_price(self):
         f = next(f for f in self.scan_only.findings if f.kind == "cheaper_path" and "Privy" in f.apps)

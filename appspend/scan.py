@@ -186,6 +186,8 @@ def extract(html: str, page_url: str, catalog: Catalog, result: ScanResult) -> l
         pass
 
     for kind, u in parser.assets:
+        if _is_first_party(u, store_host):
+            continue  # the store's own theme files: a name like "bradleymountain" must not match a vendor
         app = catalog.match_url(u)
         if app:
             result.add(app.id, Evidence("script" if kind == "script" else kind, _short(u), label))
@@ -194,6 +196,8 @@ def extract(html: str, page_url: str, catalog: Catalog, result: ScanResult) -> l
 
     for body in parser.inline:
         for u in RE_INLINE_URL.findall(body.replace("\\/", "/")):
+            if _is_first_party(u, store_host):
+                continue
             app = catalog.match_url(u)
             if app:
                 result.add(app.id, Evidence("inline", _short(u), label))
@@ -211,6 +215,12 @@ def _record_handle(handle: str, detail: str, source: str, label: str, catalog: C
         pages = result.unknown_handles.setdefault(handle, [])
         if label not in pages:
             pages.append(label)
+
+
+def _is_first_party(url: str, store_host: str) -> bool:
+    host = _host(url)
+    bare = store_host.removeprefix("www.")
+    return bool(host) and (host == bare or host.endswith("." + bare))
 
 
 def _count_host(url: str, store_host: str, result: ScanResult) -> None:

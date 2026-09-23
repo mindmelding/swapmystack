@@ -193,7 +193,7 @@
   {"id": "powerfulforms", "name": "Powerful Form Builder", "category": "forms", "urls": [], "keys": ["powerfulformbuilder"]},
   {"id": "applovin", "name": "AppLovin", "category": "ad_channels", "urls": ["applovin"], "keys": ["applovin"], "free": true},
   {"id": "countdown30", "name": "Countdown Timer", "category": "urgency", "urls": [], "keys": ["countdowntimer"]},
-  {"id": "mntn", "name": "MNTN", "category": "ad_channels", "urls": ["mountain.com", "mntn"], "keys": ["mntn"], "free": true},
+  {"id": "mntn", "name": "MNTN", "category": "ad_channels", "urls": [], "keys": ["mntn"], "free": true},
   {"id": "aftersell", "name": "AfterSell", "category": "upsell", "urls": ["aftersell"], "keys": ["aftersell"]},
   {"id": "geopro", "name": "Geolocation redirect app", "category": "geolocation", "urls": [], "keys": ["easylocation", "geoprogeolocation"]},
   {"id": "eg_autoadd", "name": "EG Auto Add to Cart", "category": "upsell", "urls": [], "keys": ["egautoaddtocart"]},
