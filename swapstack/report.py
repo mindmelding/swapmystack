@@ -42,7 +42,7 @@ def render_text(audit: Audit, color: bool | None = None) -> str:
     d = (lambda s: f"\033[2m{s}\033[0m") if color else (lambda s: s)
     r = (lambda s: f"\033[31m{s}\033[0m") if color else (lambda s: s)
 
-    out = [b(f"appspend · {_host(audit)}"), d(f"read: {_inputs_line(audit)}"), ""]
+    out = [b(f"Swap My Stack · {_host(audit)}"), d(f"read: {_inputs_line(audit)}"), ""]
     if audit.have_bills:
         conf = audit.savings("high", "medium")
         out.append(f"App spend      {_m(audit.total_monthly_spend)}/mo")
@@ -76,7 +76,7 @@ def render_text(audit: Audit, color: bool | None = None) -> str:
 # ---------------------------------------------------------------- markdown
 
 def render_markdown(audit: Audit) -> str:
-    lines = [f"# App Spend Audit: {_host(audit)}", "", f"_Read: {_inputs_line(audit)}. Generated {audit.generated_at}._", ""]
+    lines = [f"# Swap My Stack: {_host(audit)}", "", f"_Read: {_inputs_line(audit)}. Generated {audit.generated_at}._", ""]
     if audit.have_bills:
         conf = audit.savings("high", "medium")
         lines += [f"**Likely savings: {_m(conf)}/mo ({_m(conf * 12)}/yr)** out of {_m(audit.total_monthly_spend)}/mo in app spend.", ""]
@@ -231,7 +231,7 @@ def render_html(audit: Audit) -> str:
     if audit.unknown_handles or audit.unmatched_hosts:
         bits = []
         if audit.unknown_handles:
-            bits.append(f"<p>App handles on the page that appspend can't name yet: {_e(', '.join(audit.unknown_handles))}.</p>")
+            bits.append(f"<p>App handles on the page that swapstack can't name yet: {_e(', '.join(audit.unknown_handles))}.</p>")
         if audit.unmatched_hosts:
             bits.append(f"<p>Other third-party script hosts: {_e(', '.join(list(audit.unmatched_hosts)[:15]))}.</p>")
         unknown = f'<section><h2>Seen but not yet named</h2><div class="notes">{"".join(bits)}</div></section>'
@@ -251,10 +251,10 @@ def render_html(audit: Audit) -> str:
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>App Spend Audit · {_e(host)}</title>
+<title>Swap My Stack · {_e(host)}</title>
 <style>{CSS}</style></head>
 <body><main class="page">
-<div class="eyebrow">App Spend Audit</div>
+<div class="eyebrow">Swap My Stack</div>
 <h1>{_e(host)}</h1>
 <p class="meta">{_e(audit.generated_at[:10])} · read {_e(_inputs_line(audit))} · catalog {_e(audit.catalog_version)}</p>
 <div class="lede">{lede}</div>
@@ -262,6 +262,6 @@ def render_html(audit: Audit) -> str:
 <section><h2>Every app we found</h2>{inventory}</section>
 {unknown}
 <section><h2>How this was read</h2><div class="notes">{"".join(f"<p>{_e(n)}</p>" for n in notes)}</div>
-<span class="caption">Generated locally by App Spend Audit. This file makes no network requests.</span></section>
+<span class="caption">Generated locally by Swap My Stack. This file makes no network requests.</span></section>
 </main></body></html>
 """

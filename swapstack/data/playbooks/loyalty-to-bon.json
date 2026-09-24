@@ -4,7 +4,7 @@
  "category": "loyalty",
  "to": "BON Loyalty",
  "to_catalog_id": "",
- "summary": "Rebuild the program's rules in BON, export customer points from the old app, let appspend turn them into BON's points file, have BON's team load it, spot-check balances, then switch the storefront and cancel the old app.",
+ "summary": "Rebuild the program's rules in BON, export customer points from the old app, let swapstack turn them into BON's points file, have BON's team load it, spot-check balances, then switch the storefront and cancel the old app.",
  "checked": "2026-09-24",
  "variants": {
   "yotpo_loyalty": {
@@ -65,7 +65,7 @@
   {
    "id": "export", "kind": "merchant_action",
    "title": "Export customers and points from {from_name}",
-   "instructions": "{v[export]} Also export customers from Shopify admin (Customers > Export, all customers, CSV) so appspend can fill in Shopify customer IDs.",
+   "instructions": "{v[export]} Also export customers from Shopify admin (Customers > Export, all customers, CSV) so swapstack can fill in Shopify customer IDs.",
    "inputs": [
     {"name": "export_file", "label": "Path to the {from_name} customer export", "type": "file"},
     {"name": "shopify_customers_file", "label": "Path to the Shopify customers export", "type": "file", "optional": true}
@@ -74,7 +74,7 @@
   {
    "id": "build", "kind": "auto", "action": "loyalty.build_bon_csv",
    "title": "Build BON's points file",
-   "instructions": "appspend turns the export into BON's 3-column file (Shopify customer ID, email, points), leaves out zero balances, and picks 5 customers for a spot check after the import.",
+   "instructions": "swapstack turns the export into BON's 3-column file (Shopify customer ID, email, points), leaves out zero balances, and picks 5 customers for a spot check after the import.",
    "inputs": [
     {"name": "export_file", "label": "Path to the {from_name} customer export", "type": "file"},
     {"name": "shopify_customers_file", "label": "Path to the Shopify customers export", "type": "file", "optional": true}

@@ -124,7 +124,7 @@ class Audit:
 
     def to_dict(self) -> dict:
         return {
-            "tool": f"appspend {__version__}",
+            "tool": f"swapstack {__version__}",
             "store": self.store,
             "generated_at": self.generated_at,
             "catalog_version": self.catalog_version,
@@ -169,7 +169,7 @@ def _cheaper_path(it: Item, path, have_bills: bool, store: str = "") -> Finding:
         action = f"List the {it.name} features your team uses and check each against {best.name} before the next renewal."
         guided = _playbook_for(it.app.id if it.app else "")
         if guided:
-            action += f" appspend has a guided migration for this: `appspend migrate start {store or '<store>'} --playbook {guided} --from {it.app.id}`."
+            action += f" swapstack has a guided migration for this: `swapstack migrate start {store or '<store>'} --playbook {guided} --from {it.app.id}`."
         if have_bills and it.monthly and best.price.low is not None:
             saving = max(0.0, round(it.monthly - best.price.low, 2))
     elif path.strategy == "remove":
@@ -286,7 +286,7 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
                 detail=(f"You pay {_money(it.monthly)}/mo, and none of its code appeared in "
                         f"{' or '.join(where)}. Either it was never set up, it was switched off, "
                         f"or it only loads on a page we did not check."
-                        + ("" if it.app else " appspend doesn't recognize this app yet, so treat this as a lead to check.")),
+                        + ("" if it.app else " swapstack doesn't recognize this app yet, so treat this as a lead to check.")),
                 action=f"Ask who uses {it.name}. If nobody does, uninstall it in Settings > Apps.",
                 confidence=conf, monthly_savings=it.monthly, apps=[it.name],
             ))

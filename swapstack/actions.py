@@ -1,4 +1,4 @@
-"""The steps appspend runs itself during a migration.
+"""The steps swapstack runs itself during a migration.
 
 Each action takes a context (the migration, a work folder, env access, an HTTP fetcher) and the step's
 inputs, and returns {"ok", "summary", "data", "files"}. Actions read exports and call APIs with keys from
@@ -26,7 +26,7 @@ from typing import Callable
 from . import __version__
 
 HttpFetcher = Callable[[str, dict], tuple[int, str]]
-USER_AGENT = f"appspend/{__version__} (migration assistant)"
+USER_AGENT = f"swapstack/{__version__} (migration assistant)"
 
 
 def http_get(url: str, headers: dict) -> tuple[int, str]:

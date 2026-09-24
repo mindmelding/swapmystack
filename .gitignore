@@ -3,5 +3,5 @@ __pycache__/
 build/
 dist/
 .venv/
-appspend-*.html
+swapstack-*.html
 .DS_Store

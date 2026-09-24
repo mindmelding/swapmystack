@@ -1,6 +1,6 @@
 # Migration paths into the cheaper tools (checked 2026-09-24)
 
-Question: for each switch App Spend Audit recommends, can a "Yes, migrate" button kick it off?
+Question: for each switch Swap My Stack recommends, can a "Yes, migrate" button kick it off?
 Each path was checked against vendor help docs, API docs and GitHub. No open-source migration script exists for any pair.
 
 ## Tier 1: we can run it (public APIs, merchant grants access)

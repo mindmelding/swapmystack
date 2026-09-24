@@ -7,14 +7,14 @@ import zipfile
 from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
 
-from appspend import history
-from appspend.analyze import analyze
-from appspend.bills import parse_amount, parse_bills, parse_date
-from appspend.cli import main
-from appspend.fingerprints import Catalog
-from appspend.report import render_html, render_markdown, render_text
-from appspend.scan import Page, normalize_store, scan_storefront
-from appspend.theme import scan_theme
+from swapstack import history
+from swapstack.analyze import analyze
+from swapstack.bills import parse_amount, parse_bills, parse_date
+from swapstack.cli import main
+from swapstack.fingerprints import Catalog
+from swapstack.report import render_html, render_markdown, render_text
+from swapstack.scan import Page, normalize_store, scan_storefront
+from swapstack.theme import scan_theme
 
 FIX = Path(__file__).parent / "fixtures"
 CATALOG = Catalog.load()
@@ -234,7 +234,7 @@ class AnalyzeTests(unittest.TestCase):
         self.assertEqual(a.findings[0].confidence, "high")
 
     def test_inline_mentions_alone_do_not_make_an_overlap(self):
-        from appspend.scan import Evidence
+        from swapstack.scan import Evidence
         scan = scan_storefront("linen-and-pine.example", CATALOG, fetcher=fake_fetcher)
         scan.detections["attentive"] = [Evidence("inline", "creatives.attn.tv", "/")]
         scan.detections["postscript"] = [Evidence("scripttag", "sdk.postscript.io/sdk.js", "/")]
@@ -257,7 +257,7 @@ class AnalyzeTests(unittest.TestCase):
 
 class ShippedDataTests(unittest.TestCase):
     def test_shipped_picks_for_sms_and_helpdesks(self):
-        from appspend import alternatives
+        from swapstack import alternatives
         paths = alternatives.load()
         self.assertTrue(paths["attentive"].best.name.startswith("Postscript"))
         self.assertEqual(paths["attentive"].strategy, "replace")
@@ -267,7 +267,7 @@ class ShippedDataTests(unittest.TestCase):
         self.assertEqual(paths["mailchimp"].best.name, "Judge.me Email")
 
     def test_shipped_alternatives_are_valid_and_sourced(self):
-        from appspend import alternatives
+        from swapstack import alternatives
         paths = alternatives.load()
         self.assertGreaterEqual(len(paths), 30)
         for app_id, p in paths.items():
@@ -280,7 +280,7 @@ class ShippedDataTests(unittest.TestCase):
 
 class CheaperPathTests(unittest.TestCase):
     def setUp(self):
-        from appspend import alternatives
+        from swapstack import alternatives
         self.paths = alternatives.load(FIX / "alternatives.json")
         scan = scan_storefront("linen-and-pine.example", CATALOG, fetcher=fake_fetcher)
         self.bills = parse_bills(FIX / "bills_shopify.csv", CATALOG)
@@ -313,7 +313,7 @@ class CheaperPathTests(unittest.TestCase):
         self.assertEqual(f.monthly_savings, 0)
 
     def test_bad_entry_rejected(self):
-        from appspend import alternatives
+        from swapstack import alternatives
         with self.assertRaises(ValueError):
             alternatives._load_entries({"entries": [{"app": "x", "switch_cost": "trivial", "strategy": "replace"}]})
 
@@ -366,7 +366,7 @@ class OutputTests(unittest.TestCase):
             self.assertGreater(data["summary"]["savings_monthly_confirmed"], 0)
 
     def test_batch_ranks_overlaps_first(self):
-        from appspend.batch import read_domains, run_batch, write_csv
+        from swapstack.batch import read_domains, run_batch, write_csv
         with tempfile.TemporaryDirectory() as tmp:
             src = Path(tmp) / "d.csv"
             src.write_text("domain,name,city\nlinen-and-pine.example,Linen & Pine,Oceanside\nnowhere.example,Gone,Vista\nlinen-and-pine.example,dupe,x\n")

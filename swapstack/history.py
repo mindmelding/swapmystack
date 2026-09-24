@@ -6,7 +6,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-DEFAULT_DB = Path.home() / ".appspend" / "history.sqlite"
+DEFAULT_DB = Path.home() / ".swapstack" / "history.sqlite"
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS runs (

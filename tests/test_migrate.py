@@ -4,13 +4,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from appspend import actions as act
-from appspend import playbooks as P
-from appspend.fingerprints import Catalog
-from appspend.mcp import Server, serve
-from appspend.migrate import MigrationError, Runner
+from swapstack import actions as act
+from swapstack import playbooks as P
+from swapstack.fingerprints import Catalog
+from swapstack.mcp import Server, serve
+from swapstack.migrate import MigrationError, Runner
 
-from .test_appspend import fake_fetcher
+from .test_swapstack import fake_fetcher
 
 FIX = Path(__file__).parent / "fixtures" / "migrate"
 CATALOG = Catalog.load()

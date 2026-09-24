@@ -9,7 +9,7 @@
  "variants": {
   "gorgias": {
    "name": "Gorgias",
-   "keys": "In Gorgias, click the gear icon (bottom left) > Account > REST API and click Create API key. You'll use it twice: once in your terminal for appspend (GORGIAS_DOMAIN is the part before .gorgias.com, GORGIAS_EMAIL is your login, GORGIAS_API_KEY is the key) and once in Commslayer's importer.",
+   "keys": "In Gorgias, click the gear icon (bottom left) > Account > REST API and click Create API key. You'll use it twice: once in your terminal for swapstack (GORGIAS_DOMAIN is the part before .gorgias.com, GORGIAS_EMAIL is your login, GORGIAS_API_KEY is the key) and once in Commslayer's importer.",
    "importer": "In Commslayer, go to Settings > Account settings > Gorgias importer and paste the key.",
    "moves": "ticket history, contacts, tags, agents and response templates",
    "guide": "https://docs.commslayer.com/en/articles/1724752255-from-gorgias-to-commslayer",
@@ -21,7 +21,7 @@
   },
   "zendesk": {
    "name": "Zendesk",
-   "keys": "In Zendesk, go to Admin Center > Apps and integrations > APIs > API tokens, make sure Token Access is on, click Add API token and copy it. In your terminal set ZENDESK_SUBDOMAIN, ZENDESK_EMAIL and ZENDESK_API_TOKEN for appspend.",
+   "keys": "In Zendesk, go to Admin Center > Apps and integrations > APIs > API tokens, make sure Token Access is on, click Add API token and copy it. In your terminal set ZENDESK_SUBDOMAIN, ZENDESK_EMAIL and ZENDESK_API_TOKEN for swapstack.",
    "importer": "In Commslayer, go to Settings > Account settings > Zendesk importer, enter your Zendesk subdomain, email and API token, and click Start Import.",
    "moves": "ticket history, contacts and tags",
    "guide": "https://docs.commslayer.com/en/articles/1771928461-from-zendesk-to-commslayer",
@@ -34,13 +34,13 @@
  },
  "loses": {
   "all": [
-   "Automations and rules don't migrate. appspend lists every active one so they can be rebuilt.",
+   "Automations and rules don't migrate. Swap My Stack lists every active one so they can be rebuilt.",
    "Imported conversations land in a read-only inbox. New tickets need a real inbox set up in Commslayer.",
    "Automations only apply to new tickets from go-live, never to imported history.",
    "Commslayer runs on Shopify only and lists no SMS channel. Voice AI is marked coming soon."
   ],
   "zendesk": [
-   "Macros are not in Commslayer's list of Zendesk data it imports. appspend lists them for rebuilding.",
+   "Macros are not in Commslayer's list of Zendesk data it imports. Swap My Stack lists them for rebuilding.",
    "Zendesk IVR phone trees and skills-based routing have no match in Commslayer."
   ]
  },
@@ -62,7 +62,7 @@
   {
    "from": "rules, triggers, automations",
    "to": "Commslayer automations",
-   "note": "rebuilt from appspend's rebuild sheet"
+   "note": "rebuilt from swapstack's rebuild sheet"
   }
  ],
  "messages": {
@@ -115,7 +115,7 @@
    "kind": "auto",
    "action": "helpdesk.inventory",
    "title": "List the rules and saved replies to rebuild",
-   "instructions": "appspend reads {from_name}'s rules and saved replies through its API and writes a rebuild sheet to the work folder.",
+   "instructions": "swapstack reads {from_name}'s rules and saved replies through its API and writes a rebuild sheet to the work folder.",
    "env": [
     "$variant"
    ]

@@ -1,4 +1,4 @@
-"""Command line: appspend audit | scan | batch | history | catalog | migrate | mcp."""
+"""Command line: swapstack audit | scan | batch | history | catalog | migrate | mcp."""
 
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ def cmd_audit(args: argparse.Namespace) -> int:
 
     print(render_text(audit))
 
-    out_html = Path(args.out) if args.out else Path(f"appspend-{_slug(audit.store)}-{date.today()}.html")
+    out_html = Path(args.out) if args.out else Path(f"swapstack-{_slug(audit.store)}-{date.today()}.html")
     out_html.write_text(render_html(audit))
     print(f"\nReport: {out_html.resolve()}")
     if args.json:
@@ -162,8 +162,8 @@ def _print_step(d: dict) -> None:
         print(f"  Last result ({'ok' if res['ok'] else 'failed'}): {res['summary']}")
     verb = "run" if d.get("runnable") else "done"
     tail = ' --approved-by "NAME"' if d["kind"] == "approve" else ""
-    print(f"\n  Next: appspend migrate {verb} {d['migration']} {d['step']}{tail}"
-          + (f"   (or: appspend migrate skip {d['migration']} {d['step']} --reason ...)" if d["optional"] else ""))
+    print(f"\n  Next: swapstack migrate {verb} {d['migration']} {d['step']}{tail}"
+          + (f"   (or: swapstack migrate skip {d['migration']} {d['step']} --reason ...)" if d["optional"] else ""))
 
 
 def cmd_migrate(args: argparse.Namespace) -> int:
@@ -216,7 +216,7 @@ def cmd_migrate(args: argparse.Namespace) -> int:
             print("\nFinished.")
         return 0
     except MigrationError as e:
-        print(f"appspend: {e}", file=sys.stderr)
+        print(f"swapstack: {e}", file=sys.stderr)
         return 2
 
 
@@ -231,8 +231,8 @@ def _status(msg: str) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(prog="appspend", description="Find wasted Shopify app spend.")
-    p.add_argument("--version", action="version", version=f"appspend {__version__}")
+    p = argparse.ArgumentParser(prog="swapstack", description="Find wasted Shopify app spend.")
+    p.add_argument("--version", action="version", version=f"swapstack {__version__}")
     p.add_argument("--catalog", help="use a custom fingerprint catalog JSON")
     sub = p.add_subparsers(dest="cmd", required=True)
 
@@ -267,7 +267,7 @@ def build_parser() -> argparse.ArgumentParser:
     h.add_argument("--db")
     h.set_defaults(func=cmd_history)
 
-    c = sub.add_parser("catalog", help="list the apps appspend can recognize")
+    c = sub.add_parser("catalog", help="list the apps swapstack can recognize")
     c.add_argument("query", nargs="?")
     c.set_defaults(func=cmd_catalog)
     mg = sub.add_parser("migrate", help="walk through a guided migration to a cheaper tool")
@@ -293,7 +293,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         return args.func(args)
     except (ValueError, FileNotFoundError) as e:
-        print(f"appspend: {e}", file=sys.stderr)
+        print(f"swapstack: {e}", file=sys.stderr)
         return 2
     except KeyboardInterrupt:
         return 130

@@ -125,5 +125,5 @@ def _load_entries(data: dict) -> dict[str, Path_]:
 def load(path: str | Path | None = None) -> dict[str, Path_]:
     if path:
         return _load_entries(json.loads(Path(path).read_text()))
-    f = resources.files("appspend").joinpath("data/alternatives.json")
+    f = resources.files("swapstack").joinpath("data/alternatives.json")
     return _load_entries(json.loads(f.read_text())) if f.is_file() else {}

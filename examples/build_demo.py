@@ -6,10 +6,10 @@ import sys
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from appspend.report import render_html, render_json, render_markdown  # noqa: E402
-from tests.test_appspend import full_audit  # noqa: E402
+from swapstack.report import render_html, render_json, render_markdown  # noqa: E402
+from tests.test_swapstack import full_audit  # noqa: E402
 
-from appspend import alternatives  # noqa: E402
+from swapstack import alternatives  # noqa: E402
 
 audit = full_audit(paths=alternatives.load())
 out = Path(__file__).parent

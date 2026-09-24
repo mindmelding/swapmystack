@@ -14,7 +14,7 @@
  },
  "loses": {
   "all": [
-   "Subscribers paying with PayPal, Apple Pay, Google Pay or SEPA can't be moved; they have to re-enter a card. appspend counts them from the payment methods export.",
+   "Subscribers paying with PayPal, Apple Pay, Google Pay or SEPA can't be moved; they have to re-enter a card. Swap My Stack counts them from the payment methods export.",
    "Payment tokens held in Shopify Payments need an export from Shopify Support, which Shopify says may cost extra.",
    "Recharge flows (winback and similar emails) stop, and customers already in a flow keep getting its emails unless removed.",
    "The customer portal changes to Appstle's, so saved links to the Recharge portal break."
@@ -68,7 +68,7 @@
   {
    "id": "export", "kind": "merchant_action",
    "title": "Export from Recharge",
-   "instructions": "In Recharge, go to Exports (Export Builder) and download: Subscriptions - All, Charges - Queued, Payment Methods - All, Customer - Payment Tokens, and Orders - Prepaid queued and processed if you sell prepaid plans. Give appspend the paths to the first and third files.",
+   "instructions": "In Recharge, go to Exports (Export Builder) and download: Subscriptions - All, Charges - Queued, Payment Methods - All, Customer - Payment Tokens, and Orders - Prepaid queued and processed if you sell prepaid plans. Give swapstack the paths to the first and third files.",
    "inputs": [
     {"name": "subscriptions_file", "label": "Path to 'Subscriptions - All'", "type": "file"},
     {"name": "payment_methods_file", "label": "Path to 'Payment Methods - All'", "type": "file", "optional": true}
@@ -77,7 +77,7 @@
   {
    "id": "inspect", "kind": "auto", "action": "recharge.inspect_exports",
    "title": "Count subscriptions and payment methods that can't move",
-   "instructions": "appspend counts active subscriptions and the subscribers whose payment method (PayPal, Apple Pay, Google Pay, SEPA) can't be moved.",
+   "instructions": "swapstack counts active subscriptions and the subscribers whose payment method (PayPal, Apple Pay, Google Pay, SEPA) can't be moved.",
    "inputs": [
     {"name": "subscriptions_file", "label": "Path to 'Subscriptions - All'", "type": "file"},
     {"name": "payment_methods_file", "label": "Path to 'Payment Methods - All'", "type": "file", "optional": true}
@@ -132,7 +132,7 @@
   {
    "id": "live_check", "kind": "auto", "action": "storefront.check", "params": {"expect": "appstle", "mode": "final"},
    "title": "Check the storefront",
-   "instructions": "appspend confirms Appstle's widget loads and Recharge's code is gone."
+   "instructions": "swapstack confirms Appstle's widget loads and Recharge's code is gone."
   },
   {
    "id": "customers", "kind": "message", "message": "customers", "optional": true,

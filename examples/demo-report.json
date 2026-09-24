@@ -1,7 +1,7 @@
 {
-  "tool": "appspend 0.1.0",
+  "tool": "swapstack 0.1.0",
   "store": "https://linen-and-pine.example",
-  "generated_at": "2026-09-24T12:17:20Z",
+  "generated_at": "2026-09-24T20:01:05Z",
   "catalog_version": "2026.09.24",
   "summary": {
     "apps_found": 12,
@@ -261,7 +261,7 @@
       "misses": [],
       "sources": [
         "apps.shopify.com (checked 2026-09-23)",
-        "apps.shopify.com (checked 2026-09-23)"
+        "judge.me (checked 2026-09-23)"
       ]
     }
   ],

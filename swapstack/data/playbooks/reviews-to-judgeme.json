@@ -88,26 +88,26 @@
   },
   {
    "id": "keys", "kind": "merchant_action",
-   "title": "Give appspend read access to Judge.me",
+   "title": "Give Swap My Stack read access to Judge.me",
    "instructions": "In Judge.me, go to Settings > Integrations > View API tokens. In your terminal, set JUDGEME_API_TOKEN to the private token and JUDGEME_SHOP_DOMAIN to your myshopify.com domain. Don't paste the token into chat: it can't be regenerated without contacting Judge.me.",
    "env": ["JUDGEME_API_TOKEN", "JUDGEME_SHOP_DOMAIN"]
   },
   {
    "id": "baseline", "kind": "auto", "action": "reviews.count_judgeme", "params": {"mode": "baseline"},
    "title": "Count Judge.me reviews before the import",
-   "instructions": "appspend records how many reviews Judge.me already has, so the check after the import counts only new ones.",
+   "instructions": "swapstack records how many reviews Judge.me already has, so the check after the import counts only new ones.",
    "env": ["JUDGEME_API_TOKEN", "JUDGEME_SHOP_DOMAIN"]
   },
   {
    "id": "export", "kind": "merchant_action",
    "title": "Export every review from {from_name}",
-   "instructions": "{v[export]} Save the file and give appspend its path.",
+   "instructions": "{v[export]} Save the file and give Swap My Stack its path.",
    "inputs": [{"name": "export_file", "label": "Path to the {from_name} reviews CSV", "type": "file"}]
   },
   {
    "id": "inspect", "kind": "auto", "action": "reviews.inspect_export",
    "title": "Check what will carry over",
-   "instructions": "appspend reads the export and counts reviews that will import, reviews Judge.me rejects (no text), videos that won't come across and extra photos. Files over 5,000 reviews are split into parts.",
+   "instructions": "swapstack reads the export and counts reviews that will import, reviews Judge.me rejects (no text), videos that won't come across and extra photos. Files over 5,000 reviews are split into parts.",
    "inputs": [{"name": "export_file", "label": "Path to the {from_name} reviews CSV", "type": "file"}]
   },
   {
@@ -118,13 +118,13 @@
   {
    "id": "import", "kind": "merchant_action",
    "title": "Import into Judge.me",
-   "instructions": "In Judge.me, go to Settings > Import reviews > Import from apps. Find {from_name}, click Import and upload the file (or each part file once, if appspend split it). {v[verify_box]} Tick 'I confirm my reviews are genuine' and click Import. Judge.me emails the result, usually within 5 minutes per file. Never upload the same file twice.",
+   "instructions": "In Judge.me, go to Settings > Import reviews > Import from apps. Find {from_name}, click Import and upload the file (or each part file once, if Swap My Stack split it). {v[verify_box]} Tick 'I confirm my reviews are genuine' and click Import. Judge.me emails the result, usually within 5 minutes per file. Never upload the same file twice.",
    "waits": "Judge.me, usually a few minutes per file"
   },
   {
    "id": "verify", "kind": "verify", "action": "reviews.count_judgeme", "params": {"mode": "verify"},
    "title": "Confirm the reviews arrived",
-   "instructions": "appspend compares Judge.me's review count with the number the export check expected. It passes at 95% or better.",
+   "instructions": "swapstack compares Judge.me's review count with the number the export check expected. It passes at 95% or better.",
    "env": ["JUDGEME_API_TOKEN", "JUDGEME_SHOP_DOMAIN"]
   },
   {
@@ -135,7 +135,7 @@
   {
    "id": "live_check", "kind": "auto", "action": "storefront.check", "params": {"expect": "judgeme"},
    "title": "Check Judge.me is live on the storefront",
-   "instructions": "appspend reads the storefront and confirms Judge.me's widget is loading."
+   "instructions": "swapstack reads the storefront and confirms Judge.me's widget is loading."
   },
   {
    "id": "approve_cancel", "kind": "approve", "irreversible": true,
@@ -150,7 +150,7 @@
   {
    "id": "final_check", "kind": "auto", "action": "storefront.check", "params": {"expect": "judgeme", "mode": "final"},
    "title": "Check {from_name} is gone from the storefront",
-   "instructions": "appspend confirms Judge.me still loads and no {from_name} code is left behind."
+   "instructions": "swapstack confirms Judge.me still loads and no {from_name} code is left behind."
   }
  ]
 }

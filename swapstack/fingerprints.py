@@ -62,7 +62,7 @@ class Catalog:
     def load(cls, path: str | Path | None = None) -> "Catalog":
         if path:
             return cls(json.loads(Path(path).read_text()))
-        text = resources.files("appspend").joinpath("data/apps.json").read_text()
+        text = resources.files("swapstack").joinpath("data/apps.json").read_text()
         return cls(json.loads(text))
 
     def category(self, app: App | None) -> Category | None:

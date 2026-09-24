@@ -1,6 +1,6 @@
 """Run a migration playbook step by step, with state saved locally so it can pause for days.
 
-State lives in ~/.appspend/migrations/<id>.json next to a work folder for exports and drafts.
+State lives in ~/.swapstack/migrations/<id>.json next to a work folder for exports and drafts.
 The rules that keep it safe are enforced here, not left to whoever drives it:
 - an approve step completes only with explicit approval from the merchant
 - nothing after a gate (approve or verify) completes until the gate is done
@@ -20,7 +20,7 @@ from . import actions as act
 from .playbooks import Playbook, Step, fill, load_all
 from .scan import normalize_store
 
-DEFAULT_DIR = Path(os.environ.get("APPSPEND_HOME", Path.home() / ".appspend")) / "migrations"
+DEFAULT_DIR = Path(os.environ.get("SWAPSTACK_HOME", Path.home() / ".swapstack")) / "migrations"
 DONE = {"done", "skipped"}
 
 
@@ -69,7 +69,7 @@ class Runner:
     def load(self, mid: str) -> Migration:
         p = self._path(mid)
         if not p.is_file():
-            raise MigrationError(f"no migration {mid}. See `appspend migrate list`.")
+            raise MigrationError(f"no migration {mid}. See `swapstack migrate list`.")
         return Migration(**json.loads(p.read_text()))
 
     def all(self) -> list[Migration]:

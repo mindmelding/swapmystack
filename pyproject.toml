@@ -3,18 +3,18 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "appspend"
+name = "swapstack"
 version = "0.1.0"
-description = "Find wasted Shopify app spend from public storefront code, theme files and bills."
+description = "Swap My Stack: find wasted Shopify app spend, see cheaper replacements, and switch with guided migrations."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
 
 [project.scripts]
-appspend = "appspend.cli:main"
+swapstack = "swapstack.cli:main"
 
 [tool.setuptools]
-packages = ["appspend"]
+packages = ["swapstack"]
 
 [tool.setuptools.package-data]
-appspend = ["data/*.json", "data/playbooks/*.json"]
+swapstack = ["data/*.json", "data/playbooks/*.json"]

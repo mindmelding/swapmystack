@@ -12,4 +12,4 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m unittest discover -s tests -t . -v
-      - run: pip install . && appspend catalog reviews
+      - run: pip install . && swapstack catalog reviews

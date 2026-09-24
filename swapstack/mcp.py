@@ -1,7 +1,7 @@
 """A stdio MCP server so any AI harness can run audits and walk a merchant through a migration.
 
 Stdlib only: newline-delimited JSON-RPC 2.0 on stdin/stdout, implementing initialize, tools/list and
-tools/call. Register it with a harness as the command `appspend mcp` (or `python -m appspend mcp`).
+tools/call. Register it with a harness as the command `swapstack mcp` (or `python -m swapstack mcp`).
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ from .playbooks import for_app
 
 PROTOCOL = "2025-06-18"
 
-INSTRUCTIONS = """appspend finds wasted Shopify app spend and walks a merchant through switching to cheaper tools.
+INSTRUCTIONS = """Swap My Stack finds wasted Shopify app spend and walks a merchant through switching to cheaper tools.
 
 Conventions for driving a migration:
 1. Start with the audit. Show savings and, for each switch, what the merchant would lose, before proposing a migration.
@@ -44,7 +44,7 @@ def _tools() -> list[dict]:
     return [
         {"name": "audit", "description": "Audit a Shopify store's apps from its public storefront, optionally with a bills CSV. Returns apps found, findings, cheaper paths and which switches have a guided migration.",
          "inputSchema": _schema(store=_field("store domain, e.g. example.com"), bills=_field("path to a Shopify bills export CSV", True))},
-        {"name": "list_playbooks", "description": "List the guided migrations appspend can run and which apps each moves a store off.",
+        {"name": "list_playbooks", "description": "List the guided migrations swapstack can run and which apps each moves a store off.",
          "inputSchema": _schema()},
         {"name": "list_migrations", "description": "List migrations in progress on this machine.", "inputSchema": _schema()},
         {"name": "start_migration", "description": "Start (or resume) a migration for a store. from_app is the catalog id of the tool being left, e.g. yotpo, gorgias, recharge, smile.",
@@ -126,7 +126,7 @@ class Server:
             if method == "initialize":
                 result: Any = {"protocolVersion": params.get("protocolVersion", PROTOCOL),
                                "capabilities": {"tools": {}},
-                               "serverInfo": {"name": "appspend", "version": __version__},
+                               "serverInfo": {"name": "swapstack", "version": __version__},
                                "instructions": INSTRUCTIONS}
             elif method == "ping":
                 result = {}

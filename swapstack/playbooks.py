@@ -18,7 +18,7 @@ KINDS = {
     "message",          # a draft to a vendor; the merchant reviews and sends it from their own account
     "merchant_action",  # the merchant clicks something in an admin we can't reach
     "agent",            # the AI assistant does it with tools the harness has (e.g. a vendor MCP), merchant reviews
-    "auto",             # appspend runs it (an action in actions.py)
+    "auto",             # swapstack runs it (an action in actions.py)
     "vendor",           # waiting on the vendor's team (e.g. they load a file)
     "verify",           # a check that must pass before anything irreversible; auto if it has an action
 }
@@ -154,7 +154,7 @@ def load_all(path: str | Path | None = None) -> dict[str, Playbook]:
         files = sorted(Path(path).glob("*.json"))
         texts = [f.read_text() for f in files]
     else:
-        root = resources.files("appspend").joinpath("data/playbooks")
+        root = resources.files("swapstack").joinpath("data/playbooks")
         texts = [f.read_text() for f in sorted(root.iterdir(), key=lambda f: f.name) if f.name.endswith(".json")]
     out: dict[str, Playbook] = {}
     for t in texts:
