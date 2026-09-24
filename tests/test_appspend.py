@@ -256,6 +256,16 @@ class AnalyzeTests(unittest.TestCase):
 
 
 class ShippedDataTests(unittest.TestCase):
+    def test_shipped_picks_for_sms_and_helpdesks(self):
+        from appspend import alternatives
+        paths = alternatives.load()
+        self.assertTrue(paths["attentive"].best.name.startswith("Postscript"))
+        self.assertEqual(paths["attentive"].strategy, "replace")
+        self.assertNotIn("postscript", paths)  # already the good-value SMS tool: no change to suggest
+        for app in ("zendesk", "kustomer", "gorgias"):
+            self.assertTrue(paths[app].best.name.startswith("Commslayer"))
+        self.assertEqual(paths["mailchimp"].best.name, "Judge.me Email")
+
     def test_shipped_alternatives_are_valid_and_sourced(self):
         from appspend import alternatives
         paths = alternatives.load()

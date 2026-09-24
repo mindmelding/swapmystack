@@ -1,5 +1,5 @@
 {
- "version": "2026-09-23",
+ "version": "2026-09-24",
  "entries": [
   {
    "app": "klaviyo",
@@ -15,6 +15,31 @@
    "switch_note": "Flows, segments and templates must be rebuilt and event history does not carry over, so most savings come from suppressing unengaged profiles to drop a tier.",
    "strategy": "downgrade",
    "alternatives": [
+    {
+     "name": "Judge.me Email",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Forever Free: 15,000 emails a month. Awesome $15/mo adds a custom sending domain and removes branding. Both then $0.15 per 1,000 emails. Priced by emails sent, not list size."
+     },
+     "source": "https://judge.me/app/email",
+     "checked": "2026-09-24",
+     "covers": [
+      "Six ready-made flows: welcome, post-purchase, abandoned checkout, winback, product recommendation, back in stock",
+      "Campaigns and newsletters to Shopify customer segments",
+      "Sign-up popups with discount codes",
+      "Revenue attribution per campaign and flow"
+     ],
+     "misses": [
+      "No SMS",
+      "Six fixed flows, no custom flow builder",
+      "Uses Shopify segments, not Klaviyo-style event segmentation",
+      "New: launched July 14, 2026, 15 App Store reviews so far"
+     ],
+     "app_store_rating": "4.9 (15 reviews)"
+    },
     {
      "name": "Shopify Messaging (Shopify Email)",
      "kind": "shopify-native",
@@ -81,6 +106,32 @@
    "strategy": "replace",
    "alternatives": [
     {
+     "name": "Judge.me Email",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 15,
+      "unit": "month",
+      "note": "Forever Free: 15,000 emails a month. Awesome $15/mo adds a custom sending domain and removes branding. Both then $0.15 per 1,000 emails. Priced by emails sent, not list size."
+     },
+     "source": "https://judge.me/app/email",
+     "checked": "2026-09-24",
+     "covers": [
+      "Six ready-made flows: welcome, post-purchase, abandoned checkout, winback, product recommendation, back in stock",
+      "Campaigns and newsletters to Shopify customer segments",
+      "Sign-up popups with discount codes",
+      "Revenue attribution per campaign and flow"
+     ],
+     "misses": [
+      "No SMS",
+      "Six fixed flows, no custom flow builder",
+      "Uses Shopify segments, not Klaviyo-style event segmentation",
+      "New: launched July 14, 2026, 15 App Store reviews so far"
+     ],
+     "app_store_rating": "4.9 (15 reviews)",
+     "recommended": true
+    },
+    {
      "name": "Shopify Messaging (Shopify Email)",
      "kind": "shopify-native",
      "price": {
@@ -142,8 +193,8 @@
     "checked": "2026-09-23"
    },
    "switch_cost": "high",
-   "switch_note": "Long-term agreements lock spend, and moving SMS subscribers means carrying opt-in consent records and number changes without losing the list.",
-   "strategy": "negotiate",
+   "switch_note": "Postscript is the standard like-for-like move. Long-term agreements lock spend until renewal, and SMS subscribers must move with their opt-in consent records.",
+   "strategy": "replace",
    "alternatives": [
     {
      "name": "Postscript SMS Marketing",
@@ -167,7 +218,8 @@
       "No AI Journeys-style pay-per-click AI product listed",
       "White-glove managed service not listed below Professional"
      ],
-     "app_store_rating": "4.7 (1,208 reviews)"
+     "app_store_rating": "4.7 (1,208 reviews)",
+     "recommended": true
     },
     {
      "name": "Klaviyo SMS",
@@ -214,70 +266,6 @@
       "No RCS or push channel listed",
       "No managed/white-glove service listed",
       "SMS is Pro-plan only"
-     ],
-     "app_store_rating": "4.7 (3,182 reviews)"
-    }
-   ]
-  },
-  {
-   "app": "postscript",
-   "incumbent_price": {
-    "low": 49,
-    "high": 500,
-    "unit": "month",
-    "note": "Plan fee from $49 minimum spend (Starter) to $500 (Professional), plus per-message fees ($0.007-0.009/SMS, $0.024-0.045/MMS) and carrier fees. Message volume drives total cost.",
-    "source": "https://apps.shopify.com/postscript-sms-marketing",
-    "checked": "2026-09-23"
-   },
-   "switch_cost": "medium",
-   "switch_note": "Subscriber lists with consent records, keywords and toll-free number must move, and SMS flows must be rebuilt.",
-   "strategy": "downgrade",
-   "alternatives": [
-    {
-     "name": "Klaviyo SMS",
-     "kind": "low-cost",
-     "price": {
-      "low": 15,
-      "high": null,
-      "unit": "month",
-      "note": "SMS plan $15/month for up to 1,250 SMS/MMS credits; scales by credits. Higher tiers not captured."
-     },
-     "source": "https://apps.shopify.com/klaviyo-email-marketing",
-     "checked": "2026-09-23",
-     "covers": [
-      "SMS/MMS campaigns",
-      "Two-way conversations",
-      "Transactional SMS",
-      "Segmentation shared with Klaviyo email"
-     ],
-     "misses": [
-      "No dedicated onboarding specialist or CSM on the $15 plan",
-      "Per-message cost beyond 1,250 credits not captured",
-      "Branded short links not listed"
-     ],
-     "app_store_rating": "4.7 (3,317 reviews)"
-    },
-    {
-     "name": "Omnisend",
-     "kind": "low-cost",
-     "price": {
-      "low": 0,
-      "high": 59,
-      "unit": "month",
-      "note": "Free to 250 contacts/500 emails; Standard from $16 (500 contacts, 6,000 emails); Pro from $59 (2,500 contacts, unlimited email). SMS from $0.007/message on Pro. Scales by contacts."
-     },
-     "source": "https://apps.shopify.com/omnisend",
-     "checked": "2026-09-23",
-     "covers": [
-      "Email campaigns and prebuilt automations (abandoned cart, welcome)",
-      "SMS messaging (Pro plan)",
-      "Popups and signup forms",
-      "Segmentation and A/B testing"
-     ],
-     "misses": [
-      "No dedicated CSM listed",
-      "No custom opt-in keyword tooling listed",
-      "SMS requires the $59+ Pro plan"
      ],
      "app_store_rating": "4.7 (3,182 reviews)"
     }
@@ -2067,6 +2055,113 @@
       "No branded customer verification"
      ],
      "app_store_rating": ""
+    }
+   ]
+  },
+  {
+   "app": "zendesk",
+   "incumbent_price": {
+    "low": 55,
+    "high": 115,
+    "unit": "agent/month",
+    "note": "Suite Team $55 and Suite Professional $115 per agent a month, billed yearly; Enterprise by quote. AI agent charged per automated resolution; Copilot +$50 per agent. A 10-agent team on Professional is about $1,150/mo before AI fees.",
+    "source": "https://www.zendesk.com/pricing/",
+    "checked": "2026-09-24"
+   },
+   "switch_cost": "high",
+   "switch_note": "Commslayer imports Zendesk tickets and contacts for free, but macros, triggers and phone setup must be rebuilt and the team retrained. Brands on Zendesk for IVR, skills routing or non-Shopify channels should stay.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Commslayer: AI Helpdesk & Chat",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 299,
+      "unit": "month",
+      "note": "By conversations: Free (300), $39 (800), $99 (2,000), $299 (6,000); unlimited seats"
+     },
+     "source": "https://apps.shopify.com/commslayer",
+     "checked": "2026-09-24",
+     "covers": [
+      "Email, chat, WhatsApp, Instagram, Facebook and TikTok DMs in one inbox",
+      "Phone calls in the same inbox",
+      "AI agent and AI drafts included in the plan price",
+      "Unlimited seats on every plan",
+      "Free importers for Zendesk and Kustomer ticket history and contacts"
+     ],
+     "misses": [
+      "Shopify only: no help for non-Shopify storefronts or wholesale portals",
+      "No SMS channel listed; Voice AI marked coming soon",
+      "No IVR phone trees or skills-based routing like Zendesk Professional",
+      "Less mature reporting and fewer integrations than the enterprise tools"
+     ],
+     "app_store_rating": "4.9 (230 reviews)",
+     "recommended": true
+    },
+    {
+     "name": "Shopify Inbox",
+     "kind": "free",
+     "price": {
+      "low": 0,
+      "high": null,
+      "unit": "month",
+      "note": "Free"
+     },
+     "source": "https://apps.shopify.com/inbox",
+     "checked": "2026-09-23",
+     "covers": [
+      "Live chat on the storefront",
+      "Order context in the chat"
+     ],
+     "misses": [
+      "Chat only: no email ticketing, phone or social DMs",
+      "No AI agent, macros or reporting of a helpdesk"
+     ],
+     "app_store_rating": "4.5 (5,787 reviews)"
+    }
+   ]
+  },
+  {
+   "app": "kustomer",
+   "incumbent_price": {
+    "low": null,
+    "high": null,
+    "unit": "month",
+    "note": "Contact sales. No public per-seat or per-conversation price; voice, SMS and WhatsApp billed pay as you go.",
+    "source": "https://www.kustomer.com/pricing/",
+    "checked": "2026-09-24"
+   },
+   "switch_cost": "high",
+   "switch_note": "Commslayer imports Kustomer ticket history and contacts for free. Kustomer's customer-timeline CRM views and custom objects have no match and would be lost.",
+   "strategy": "replace",
+   "alternatives": [
+    {
+     "name": "Commslayer: AI Helpdesk & Chat",
+     "kind": "low-cost",
+     "price": {
+      "low": 0,
+      "high": 299,
+      "unit": "month",
+      "note": "By conversations: Free (300), $39 (800), $99 (2,000), $299 (6,000); unlimited seats"
+     },
+     "source": "https://apps.shopify.com/commslayer",
+     "checked": "2026-09-24",
+     "covers": [
+      "Email, chat, WhatsApp, Instagram, Facebook and TikTok DMs in one inbox",
+      "Phone calls in the same inbox",
+      "AI agent and AI drafts included in the plan price",
+      "Unlimited seats on every plan",
+      "Free importers for Kustomer ticket history and contacts"
+     ],
+     "misses": [
+      "Shopify only: no help for non-Shopify storefronts or wholesale portals",
+      "No SMS channel listed; Voice AI marked coming soon",
+      "No IVR phone trees or skills-based routing like Zendesk Professional",
+      "Less mature reporting and fewer integrations than the enterprise tools"
+     ],
+     "app_store_rating": "4.9 (230 reviews)",
+     "recommended": true
     }
    ]
   }

@@ -34,7 +34,7 @@ class Price:
             return (self.note.split(". ")[0].rstrip(".") if self.note else "price not published")
         if self.low == 0 and not self.high:
             return "free"
-        per = "/mo" if self.unit == "month" else f" {self.unit}"
+        per = "/mo" if self.unit == "month" else ("/agent/mo" if self.unit == "agent/month" else f" {self.unit}")
         if self.low is not None and self.high is None and self.low > 0:
             return f"from ${self.low:,.0f}{per}"
         if self.high and self.high != self.low:
