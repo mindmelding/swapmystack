@@ -1,5 +1,5 @@
 {
- "version": "2026.09.23b",
+ "version": "2026.09.24",
  "categories": {
   "reviews": {"label": "Product reviews", "exclusive": true, "free_option": "Judge.me has a free plan that covers core reviews."},
   "email": {"label": "Email marketing", "exclusive": true, "free_option": "Shopify Email includes a free monthly send allowance."},
@@ -78,7 +78,8 @@
   {"id": "poptin", "name": "Poptin", "category": "popups", "urls": ["poptin.com"], "keys": ["poptin"]},
   {"id": "smile", "name": "Smile.io", "category": "loyalty", "urls": ["smile.io", "sweettooth.io"], "keys": ["smileio", "smileloyalty", "sweettooth"]},
   {"id": "loyaltylion", "name": "LoyaltyLion", "category": "loyalty", "urls": ["loyaltylion"], "keys": ["loyaltylion"]},
-  {"id": "growave", "name": "Growave", "category": "loyalty", "urls": ["growave.io"], "keys": ["growave"]},
+  {"id": "growave", "name": "Growave (module unclear)", "category": "suites", "urls": ["growave.io"], "keys": ["growave"]},
+  {"id": "growave_instagram", "name": "Growave (Instagram feed only)", "category": "instagram", "urls": ["growave.io/instagram-build"], "keys": []},
   {"id": "rivo", "name": "Rivo", "category": "loyalty", "urls": ["rivo.io"], "keys": ["rivo"]},
   {"id": "rise", "name": "Rise.ai", "category": "gift_cards", "urls": ["rise-ai.com"], "keys": ["riseai"]},
   {"id": "refersion", "name": "Refersion", "category": "referrals", "urls": ["refersion.com"], "keys": ["refersion"], "optional": true},

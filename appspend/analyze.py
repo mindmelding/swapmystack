@@ -297,7 +297,7 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
             saving, conf, money = 0.0, "low", ""
         findings.append(Finding(
             kind="overlap",
-            title=f"{len(group)} {cat.label.lower()} apps doing one job",
+            title=f"{len(group)} apps for one job: {cat.label}",
             detail=f"{', '.join(names[:-1])} and {names[-1]} are {'both' if len(names) == 2 else 'all'} running.{money} Stores rarely need more than one.",
             action=f"Pick one. Savings assume you keep the most expensive; keeping a cheaper one saves more.",
             confidence=conf, monthly_savings=saving, apps=names, category=cid,

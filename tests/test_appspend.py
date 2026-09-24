@@ -63,6 +63,9 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(CATALOG.match_key("gdpr-backpack").id, "consentmo")
         # Yotpo's unified loader serves reviews, loyalty and subscriptions: not proof of reviews
         self.assertEqual(CATALOG.match_url("https://cdn-widgetsrepository.yotpo.com/v1/loader/x").id, "yotpo_platform")
+        # Growave is a suite; its Instagram build alone is not proof of loyalty
+        self.assertEqual(CATALOG.match_url("https://static.growave.io/instagram-build/main.js").id, "growave_instagram")
+        self.assertEqual(CATALOG.categories[CATALOG.match_url("https://app.growave.io").category].exclusive, False)
         self.assertEqual(CATALOG.match_url("https://staticw2.yotpo.com/abc/widget.js").id, "yotpo")
         # server-side tagging and attribution dashboards are different jobs
         self.assertFalse(CATALOG.categories[CATALOG.apps["elevar"].category].exclusive)

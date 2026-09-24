@@ -1,8 +1,8 @@
 {
   "tool": "appspend 0.1.0",
   "store": "https://linen-and-pine.example",
-  "generated_at": "2026-09-23T13:46:29Z",
-  "catalog_version": "2026.09.23b",
+  "generated_at": "2026-09-24T12:17:20Z",
+  "catalog_version": "2026.09.24",
   "summary": {
     "apps_found": 12,
     "monthly_app_spend": 680.14,
@@ -32,7 +32,7 @@
     {
       "kind": "overlap",
       "category": "chat",
-      "title": "2 chat and helpdesk apps doing one job",
+      "title": "2 apps for one job: Chat and helpdesk",
       "detail": "Gorgias and Tidio are both running. Together they cost $127/mo. Stores rarely need more than one.",
       "action": "Pick one. Savings assume you keep the most expensive; keeping a cheaper one saves more.",
       "confidence": "medium",
@@ -51,7 +51,7 @@
     {
       "kind": "overlap",
       "category": "reviews",
-      "title": "2 product reviews apps doing one job",
+      "title": "2 apps for one job: Product reviews",
       "detail": "Loox and Judge.me are both running. Together they cost $44.99/mo. Stores rarely need more than one.",
       "action": "Pick one. Savings assume you keep the most expensive; keeping a cheaper one saves more.",
       "confidence": "medium",

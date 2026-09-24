@@ -1,6 +1,6 @@
 # App Spend Audit: linen-and-pine.example
 
-_Read: 2 storefront pages, theme (9 files), bills (11 apps, through 2026-08-01). Generated 2026-09-23T13:46:29Z._
+_Read: 2 storefront pages, theme (9 files), bills (11 apps, through 2026-08-01). Generated 2026-09-24T12:17:20Z._
 
 **Likely savings: $83/mo ($996/yr)** out of $680/mo in app spend.
 
@@ -10,11 +10,11 @@ _Read: 2 storefront pages, theme (9 files), bills (11 apps, through 2026-08-01).
    You pay $39/mo, and none of its code appeared in 3 storefront pages or the theme files. Either it was never set up, it was switched off, or it only loads on a page we did not check.  
    → Ask who uses Hotjar. If nobody does, uninstall it in Settings > Apps.
 
-2. **2 chat and helpdesk apps doing one job** · $29/mo _(Likely)_  
+2. **2 apps for one job: Chat and helpdesk** · $29/mo _(Likely)_  
    Gorgias and Tidio are both running. Together they cost $127/mo. Stores rarely need more than one.  
    → Pick one. Savings assume you keep the most expensive; keeping a cheaper one saves more.
 
-3. **2 product reviews apps doing one job** · $15/mo _(Likely)_  
+3. **2 apps for one job: Product reviews** · $15/mo _(Likely)_  
    Loox and Judge.me are both running. Together they cost $44.99/mo. Stores rarely need more than one.  
    → Pick one. Savings assume you keep the most expensive; keeping a cheaper one saves more.
 
