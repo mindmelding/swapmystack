@@ -4,7 +4,7 @@ Find the Shopify apps a store pays for and doesn't use.
 
 App Spend Audit reads three things you already have: the public storefront, the theme file, and the bills export. It lines them up and tells you which apps are billed but not running, which ones do the same job twice, and what old apps left behind in the code. Each finding comes with a dollar figure, a confidence level, and the evidence behind it.
 
-It runs on your machine and needs nothing beyond Python 3.10. No accounts, no API keys, no store login.
+It runs on your machine and needs nothing beyond Python 3.10. The audit needs no accounts, API keys or store login.
 
 ```
 $ appspend audit linen-and-pine.example --theme theme.zip --bills bills.csv
@@ -44,6 +44,8 @@ Or run it from a checkout with `python3 -m appspend`.
 | `appspend batch LIST` | Scan many storefronts politely and rank them by likely findings. Writes a CSV. |
 | `appspend history STORE` | Past audits of a store, so you can see what changed. |
 | `appspend catalog [QUERY]` | The apps appspend can recognize. |
+| `appspend migrate ...` | Walk through a guided switch to a cheaper tool. See below. |
+| `appspend mcp` | Run as an MCP server so an AI assistant can audit and migrate. |
 
 `batch` takes a text file with one domain per line, or a CSV with a `domain` column. Other columns (city, category, source) are carried into the results. It reads 2 pages per store and waits 1 second between stores; `--pages` and `--delay` change that. With no bills, it can't see dollars, so it ranks by overlaps first and app count second. Those are the stores worth asking for a bills export.
 
@@ -62,6 +64,34 @@ Any input works on its own. A storefront scan alone lists apps and overlaps. Add
   Judge.me,15
   Hotjar,39
   ```
+
+## Switching to a cheaper tool
+
+When the audit finds a cheaper path that appspend has a playbook for, the finding says so. A playbook walks one switch from start to finish: agree the plan and what's lost, export, check the export, import, confirm the numbers, swap the storefront, and only then cancel the old app.
+
+```
+$ appspend migrate playbooks
+$ appspend migrate start shoppigment.com --playbook reviews-to-judgeme --from yotpo
+$ appspend migrate done  shoppigment-com--yotpo-to-judgeme plan --approved-by "Sam (owner)"
+$ appspend migrate done  shoppigment-com--yotpo-to-judgeme export --input export_file=~/Downloads/yotpo.csv
+$ appspend migrate run   shoppigment-com--yotpo-to-judgeme inspect
+```
+
+Each command prints the steps so far and exactly what to do next. Progress is saved in `~/.appspend/migrations/`, so a switch can pause while a vendor works and pick up days later.
+
+Four playbooks ship today: reviews to Judge.me, Gorgias or Zendesk to Commslayer, Recharge to Appstle, and Yotpo Loyalty, LoyaltyLion or Smile.io to BON. [`docs/playbooks.md`](docs/playbooks.md) covers the step types, the safety rules and how to write a new one.
+
+API keys (Judge.me, Gorgias, Zendesk) go in environment variables in your own shell. appspend reports whether each is set and never stores the value.
+
+### With an AI assistant
+
+`appspend mcp` speaks the Model Context Protocol over stdio, so Claude Code, Claude Desktop, Cursor or any MCP client can run the audit and the playbooks. For Claude Code:
+
+```
+claude mcp add appspend -- appspend mcp
+```
+
+The server tells the assistant the ground rules: show losses before proposing a switch, get an explicit yes on every approval, never ask for keys in chat, and cancel the old tool last.
 
 ## How it decides
 

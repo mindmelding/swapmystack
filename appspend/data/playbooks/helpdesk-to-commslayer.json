@@ -1,0 +1,204 @@
+{
+ "id": "helpdesk-to-commslayer",
+ "title": "Move the support helpdesk to Commslayer",
+ "category": "chat",
+ "to": "Commslayer",
+ "to_catalog_id": "",
+ "summary": "List the rules and saved replies that won't migrate, run Commslayer's free importer, set up inboxes and rebuild automations while it runs, go live, run both side by side for a week, then cancel the old helpdesk.",
+ "checked": "2026-09-24",
+ "variants": {
+  "gorgias": {
+   "name": "Gorgias",
+   "keys": "In Gorgias, click the gear icon (bottom left) > Account > REST API and click Create API key. You'll use it twice: once in your terminal for appspend (GORGIAS_DOMAIN is the part before .gorgias.com, GORGIAS_EMAIL is your login, GORGIAS_API_KEY is the key) and once in Commslayer's importer.",
+   "importer": "In Commslayer, go to Settings > Account settings > Gorgias importer and paste the key.",
+   "moves": "ticket history, contacts, tags, agents and response templates",
+   "guide": "https://docs.commslayer.com/en/articles/1724752255-from-gorgias-to-commslayer",
+   "env": [
+    "GORGIAS_DOMAIN",
+    "GORGIAS_EMAIL",
+    "GORGIAS_API_KEY"
+   ]
+  },
+  "zendesk": {
+   "name": "Zendesk",
+   "keys": "In Zendesk, go to Admin Center > Apps and integrations > APIs > API tokens, make sure Token Access is on, click Add API token and copy it. In your terminal set ZENDESK_SUBDOMAIN, ZENDESK_EMAIL and ZENDESK_API_TOKEN for appspend.",
+   "importer": "In Commslayer, go to Settings > Account settings > Zendesk importer, enter your Zendesk subdomain, email and API token, and click Start Import.",
+   "moves": "ticket history, contacts and tags",
+   "guide": "https://docs.commslayer.com/en/articles/1771928461-from-zendesk-to-commslayer",
+   "env": [
+    "ZENDESK_SUBDOMAIN",
+    "ZENDESK_EMAIL",
+    "ZENDESK_API_TOKEN"
+   ]
+  }
+ },
+ "loses": {
+  "all": [
+   "Automations and rules don't migrate. appspend lists every active one so they can be rebuilt.",
+   "Imported conversations land in a read-only inbox. New tickets need a real inbox set up in Commslayer.",
+   "Automations only apply to new tickets from go-live, never to imported history.",
+   "Commslayer runs on Shopify only and lists no SMS channel. Voice AI is marked coming soon."
+  ],
+  "zendesk": [
+   "Macros are not in Commslayer's list of Zendesk data it imports. appspend lists them for rebuilding.",
+   "Zendesk IVR phone trees and skills-based routing have no match in Commslayer."
+  ]
+ },
+ "mapping": [
+  {
+   "from": "tickets",
+   "to": "conversations in a read-only import inbox"
+  },
+  {
+   "from": "tags",
+   "to": "labels",
+   "note": "merge duplicates and delete dead ones after import"
+  },
+  {
+   "from": "macros / response templates",
+   "to": "canned responses",
+   "note": "Gorgias templates import; check variables and formatting"
+  },
+  {
+   "from": "rules, triggers, automations",
+   "to": "Commslayer automations",
+   "note": "rebuilt from appspend's rebuild sheet"
+  }
+ ],
+ "messages": {
+  "ask_old": {
+   "to": "{from_name} (your account manager or billing contact)",
+   "subject": "Our {from_name} renewal",
+   "body": "Hi,\n\nWe're reviewing our support tools before renewal and have a lower-cost option lined up. Before we decide, is there a better rate or plan you can offer {store}? Please send it in writing by the end of the week.\n\nThanks"
+  },
+  "hello": {
+   "to": "karri@commslayer.com",
+   "subject": "Migrating {store} from {from_name}",
+   "body": "Hi Karri,\n\nWe're moving {store} from {from_name} to Commslayer and plan to run your importer this week. We have {r[inventory][active_total]} active rules and saved replies to rebuild. Anything we should set up before we start, and can you help us check the import once it's done?\n\nThanks"
+  }
+ },
+ "rollback": "Until you cancel {from_name}, you can switch email forwarding and the chat widget back at any time. Imported history stays in Commslayer either way.",
+ "sources": [
+  "https://docs.commslayer.com/en/articles/1724752255-from-gorgias-to-commslayer",
+  "https://docs.commslayer.com/en/articles/1771928461-from-zendesk-to-commslayer",
+  "https://docs.commslayer.com/en/articles/1745923285-migration-to_do-checklist",
+  "https://www.commslayer.com/migration",
+  "https://developers.gorgias.com/reference/list-rules",
+  "https://developers.gorgias.com/reference/list-macros"
+ ],
+ "steps": [
+  {
+   "id": "plan",
+   "kind": "approve",
+   "title": "Agree the plan: {from_name} to Commslayer",
+   "instructions": "Show the merchant what moves and what doesn't. Commslayer charges by conversations a month (free to 300, then $39, $99 and $299 tiers) with unlimited seats. The old helpdesk keeps working until go-live."
+  },
+  {
+   "id": "ask_old",
+   "kind": "message",
+   "message": "ask_old",
+   "optional": true,
+   "title": "Ask {from_name} for a better price first",
+   "instructions": "Optional, and only if the merchant wants it. A lower offer from {from_name} is sometimes worth more than switching. Review the draft and send it from your own account."
+  },
+  {
+   "id": "keys",
+   "kind": "merchant_action",
+   "title": "Create a {from_name} API key",
+   "instructions": "{v[keys]} Don't paste the key into chat.",
+   "env": [
+    "$variant"
+   ]
+  },
+  {
+   "id": "inventory",
+   "kind": "auto",
+   "action": "helpdesk.inventory",
+   "title": "List the rules and saved replies to rebuild",
+   "instructions": "appspend reads {from_name}'s rules and saved replies through its API and writes a rebuild sheet to the work folder.",
+   "env": [
+    "$variant"
+   ]
+  },
+  {
+   "id": "signup",
+   "kind": "merchant_action",
+   "title": "Install Commslayer",
+   "instructions": "Install Commslayer from https://apps.shopify.com/commslayer and pick the plan that covers your monthly conversations. The free plan is fine for the migration itself."
+  },
+  {
+   "id": "hello",
+   "kind": "message",
+   "message": "hello",
+   "optional": true,
+   "title": "Tell Commslayer the migration is starting",
+   "instructions": "Optional. Commslayer offers free help with migrations. Review the draft and send it from your own account."
+  },
+  {
+   "id": "import",
+   "kind": "merchant_action",
+   "title": "Start Commslayer's importer",
+   "instructions": "{v[importer]} It brings over {v[moves]}. {from_name} is untouched and keeps working.",
+   "waits": "Commslayer, usually 1 hour to 1 day"
+  },
+  {
+   "id": "inboxes",
+   "kind": "merchant_action",
+   "title": "Set up inboxes while the import runs",
+   "instructions": "In Commslayer, add your support email (choose Standard), the chat widget, Facebook and Instagram, and WhatsApp if you use it. Don't turn on email forwarding or the chat widget yet. Invite your agents under Settings > Agents."
+  },
+  {
+   "id": "mcp",
+   "kind": "merchant_action",
+   "optional": true,
+   "title": "Connect your AI assistant to Commslayer",
+   "instructions": "Optional but faster. In Commslayer, go to Settings > AI assistants and connect Claude or ChatGPT through MCP. The next step can then be done by the assistant."
+  },
+  {
+   "id": "rebuild",
+   "kind": "agent",
+   "title": "Rebuild automations and saved replies",
+   "instructions": "Work through the rebuild sheet at {workdir}/rebuild-sheet.md. With the Commslayer MCP connected, the assistant creates each automation in Settings > Automations and each saved reply as a canned response, as drafts. The merchant reviews every one before it's switched on. Set up contact reasons too."
+  },
+  {
+   "id": "verify",
+   "kind": "verify",
+   "title": "Check the imported history",
+   "instructions": "Open Commslayer's import inbox and spot-check five conversations from different months against {from_name}: messages, customer and tags should match. Check the contacts count looks right. Then review the imported labels and merge duplicates."
+  },
+  {
+   "id": "approve_live",
+   "kind": "approve",
+   "irreversible": true,
+   "title": "Approve go-live in Commslayer",
+   "instructions": "Going live points support email and chat at Commslayer. Pick a quiet time. Agents work in Commslayer from this moment; anything that still lands in {from_name} gets answered there until you cancel."
+  },
+  {
+   "id": "go_live",
+   "kind": "merchant_action",
+   "title": "Go live",
+   "instructions": "Turn on email forwarding to Commslayer, switch the storefront chat widget from {from_name} to Commslayer (turn off {from_name}'s embed in the theme editor), connect social channels, and send a test through every channel."
+  },
+  {
+   "id": "parallel",
+   "kind": "merchant_action",
+   "title": "Run both for a week",
+   "instructions": "Keep {from_name} open for about a week to catch replies to old threads. Once a few days pass with nothing new arriving there, move on.",
+   "waits": "about a week of overlap"
+  },
+  {
+   "id": "approve_cancel",
+   "kind": "approve",
+   "irreversible": true,
+   "title": "Approve cancelling {from_name}",
+   "instructions": "Check the renewal date and any annual contract. Export anything you want to keep outside Commslayer (reports, satisfaction scores) before cancelling."
+  },
+  {
+   "id": "cancel",
+   "kind": "merchant_action",
+   "cancels_old": true,
+   "title": "Cancel {from_name}",
+   "instructions": "Uninstall the {from_name} Shopify app, cancel the subscription in {from_name}'s billing settings, and confirm the charge stops on your next bill."
+  }
+ ]
+}

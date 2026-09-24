@@ -1,4 +1,4 @@
-"""Command line: appspend audit | scan | batch | history | catalog."""
+"""Command line: appspend audit | scan | batch | history | catalog | migrate | mcp."""
 
 from __future__ import annotations
 
@@ -135,6 +135,97 @@ def cmd_catalog(args: argparse.Namespace) -> int:
     return 0
 
 
+MARK = {"done": "x", "skipped": "-", "waiting": "~", "failed": "!", "pending": " "}
+
+
+def _print_step(d: dict) -> None:
+    print(f"\n[{d['kind']}] {d['title']}  ({d['step']})")
+    print(f"  {d['instructions']}")
+    if d.get("loses"):
+        print("  What doesn't carry over:")
+        for x in d["loses"]:
+            print(f"   - {x}")
+    for name, state in (d.get("env") or {}).items():
+        print(f"  env {name}: {state}")
+    for i in d.get("inputs") or []:
+        print(f"  input {i['name']}{' (optional)' if i.get('optional') else ''}: {'have it' if i['have'] else 'needed'}  (--input {i['name']}=PATH)")
+    if d.get("message"):
+        m = d["message"]
+        print(f"  Draft to {m['to']}\n  Subject: {m['subject']}\n")
+        print("    " + m["body"].replace("\n", "\n    "))
+    if d.get("waits"):
+        print(f"  Waits on: {d['waits']}")
+    if d.get("rollback"):
+        print(f"  Rollback: {d['rollback']}")
+    res = d.get("result")
+    if res:
+        print(f"  Last result ({'ok' if res['ok'] else 'failed'}): {res['summary']}")
+    verb = "run" if d.get("runnable") else "done"
+    tail = ' --approved-by "NAME"' if d["kind"] == "approve" else ""
+    print(f"\n  Next: appspend migrate {verb} {d['migration']} {d['step']}{tail}"
+          + (f"   (or: appspend migrate skip {d['migration']} {d['step']} --reason ...)" if d["optional"] else ""))
+
+
+def cmd_migrate(args: argparse.Namespace) -> int:
+    import json
+    from .migrate import MigrationError, Runner
+
+    r = Runner()
+    try:
+        if args.op == "playbooks":
+            for pb in r.playbooks.values():
+                apps = ", ".join(f"{k} ({v.get('name', k)})" for k, v in pb.variants.items())
+                print(f"{pb.id:<26} {pb.title}\n{'':<26} from: {apps}")
+            return 0
+        if args.op == "list":
+            for m in r.all():
+                cur = r.current(m)
+                print(f"{m.id:<48} next: {cur.id if cur else 'finished'}")
+            return 0
+        if args.op == "start":
+            m = r.start(args.target, args.playbook, args.from_app)
+        else:
+            m = r.load(args.target)
+        for kv in args.input or []:
+            name, _, value = kv.partition("=")
+            r.set_input(m, name.strip(), value.strip())
+        if args.op == "run":
+            res = r.run(m, args.step)
+            print(f"{'ok' if res['ok'] else 'FAILED'}: {res['summary']}")
+            for f in res["files"]:
+                print(f"  wrote {f}")
+        elif args.op == "done":
+            r.complete(m, args.step, args.note or "", args.approved_by or "")
+        elif args.op == "wait":
+            r.wait(m, args.step, args.note or "")
+        elif args.op == "skip":
+            r.skip(m, args.step, args.reason or "skipped")
+        elif args.op == "draft":
+            print(f"Draft written: {r.draft(m, args.step)}")
+            return 0
+        st = r.status(m)
+        if args.json:
+            print(json.dumps(st, indent=1, default=str))
+            return 0
+        print(f"{st['migration']}  ({st['playbook']})")
+        for s in st["steps"]:
+            print(f"  [{MARK.get(s['status'], '?')}] {s['title']}{' (optional)' if s['optional'] else ''}")
+        if st["next"]:
+            _print_step(st["next"])
+        else:
+            print("\nFinished.")
+        return 0
+    except MigrationError as e:
+        print(f"appspend: {e}", file=sys.stderr)
+        return 2
+
+
+def cmd_mcp(args: argparse.Namespace) -> int:
+    from .mcp import serve
+    serve()
+    return 0
+
+
 def _status(msg: str) -> None:
     print(msg, file=sys.stderr)
 
@@ -179,6 +270,21 @@ def build_parser() -> argparse.ArgumentParser:
     c = sub.add_parser("catalog", help="list the apps appspend can recognize")
     c.add_argument("query", nargs="?")
     c.set_defaults(func=cmd_catalog)
+    mg = sub.add_parser("migrate", help="walk through a guided migration to a cheaper tool")
+    mg.add_argument("op", choices=["playbooks", "list", "start", "status", "run", "done", "wait", "skip", "draft"])
+    mg.add_argument("target", nargs="?", help="store domain (start) or migration id")
+    mg.add_argument("step", nargs="?", help="step id (run, done, wait, skip, draft)")
+    mg.add_argument("--playbook", help="playbook id (start)")
+    mg.add_argument("--from", dest="from_app", help="catalog id of the app being left (start), e.g. yotpo")
+    mg.add_argument("--input", action="append", help="name=value, e.g. export_file=~/Downloads/reviews.csv")
+    mg.add_argument("--note")
+    mg.add_argument("--approved-by", help="who said yes (approve steps)")
+    mg.add_argument("--reason")
+    mg.add_argument("--json", action="store_true", help="print status as JSON")
+    mg.set_defaults(func=cmd_migrate)
+
+    mc = sub.add_parser("mcp", help="run the MCP server on stdio for AI assistants")
+    mc.set_defaults(func=cmd_mcp)
     return p
 
 

@@ -1,0 +1,7 @@
+Review Title,Review Content,Review Score,Date,Product ID,Product Handle,Reviewer Display Name,Reviewer Email,Published Image URLs,Published Video URLs,Metaobject Handle
+Love it,Soft and warm,5,2026-01-02,8123,linen-duvet,Ana,ana@example.com,,,review-1
+Great,"Fits well, washes well",4,2026-02-03,8123,linen-duvet,Ben,ben@example.com,"https://img.example/1.jpg,https://img.example/2.jpg,https://img.example/3.jpg,https://img.example/4.jpg,https://img.example/5.jpg,https://img.example/6.jpg,https://img.example/7.jpg",,review-2
+Video,Watch this,5,2026-03-04,8124,linen-sheet,Cy,cy@example.com,,https://video.example/1.mp4,
+Shop,Fast shipping,5,2026-03-05,yotpo_site_reviews,,Di,di@example.com,,,review-4
+,,4,2026-03-06,8123,linen-duvet,Ed,ed@example.com,,,review-5
+Odd,Rating missing,,2026-03-07,8123,linen-duvet,Flo,flo@example.com,,,review-6

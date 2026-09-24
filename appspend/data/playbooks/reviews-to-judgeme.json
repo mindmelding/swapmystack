@@ -1,0 +1,156 @@
+{
+ "id": "reviews-to-judgeme",
+ "title": "Move product reviews to Judge.me",
+ "category": "reviews",
+ "to": "Judge.me",
+ "to_catalog_id": "judgeme",
+ "summary": "Export reviews from the old app, check what will carry over, import with Judge.me's built-in importer, confirm the count, swap the widgets, then uninstall the old app.",
+ "checked": "2026-09-24",
+ "variants": {
+  "yotpo": {
+   "name": "Yotpo Reviews",
+   "export": "In Yotpo, go to Reviews > Moderation. Click Export to CSV and choose All reviews.",
+   "verify_box": "Tick the box that verifies reviews synced to Shopify by your previous provider. Reviews that match a Shopify order get the verified badge and go into the Google Shopping feed.",
+   "guide": "https://judge.me/help/en/articles/10826029-migrating-reviews-from-yotpo-to-judge-me"
+  },
+  "okendo": {
+   "name": "Okendo",
+   "export": "In Okendo, open Settings (bottom left) > Import/Export. In the Data table, click the Export icon for reviews, choose All time and click Request Export. Okendo emails you the file.",
+   "verify_box": "There's no verification option for Okendo imports.",
+   "guide": "https://judge.me/help/en/articles/11697859-migrating-reviews-from-okendo-to-judge-me"
+  },
+  "stamped": {
+   "name": "Stamped",
+   "export": "In Stamped, go to Reviews > All Reviews. Add a Date range filter that covers every review (the export option only appears once a filter is set), then click Download. If the file is large, Stamped emails it.",
+   "verify_box": "Tick the box that verifies reviews synced to Shopify by your previous provider. This only works when the export has values in the metaobjectHandle column.",
+   "guide": "https://judge.me/help/en/articles/10837266-migrating-reviews-from-stamped-to-judge-me"
+  },
+  "loox": {
+   "name": "Loox",
+   "export": "In Loox, go to Reviews > Manage Reviews and click Export to .csv.",
+   "verify_box": "Tick the box that verifies reviews. Judge.me then takes reviewer names from your Shopify customer records, so any customer with no name shows as 'Customer'. Leave it unticked to keep the names from Loox.",
+   "guide": "https://judge.me/help/en/articles/10826547-migrating-reviews-from-loox-to-judge-me"
+  }
+ },
+ "loses": {
+  "all": [
+   "Review videos don't import. You can re-upload them to individual reviews afterwards.",
+   "Reviews with a star rating but no text are rejected.",
+   "Only 5 photos per review come across.",
+   "Questions and answers need Judge.me's separate Q&A import.",
+   "Importing the same file twice creates duplicates."
+  ],
+  "okendo": [
+   "Okendo reviews import unverified: no verified badge, and they stay out of the Google Shopping ratings feed."
+  ],
+  "yotpo": [
+   "Reviews without a metaobject handle in the export, or whose email doesn't match a Shopify order, import unverified."
+  ],
+  "stamped": [
+   "Reviews without a metaobject handle in the export import unverified."
+  ],
+  "loox": [
+   "With verification on, reviewer names come from Shopify customer records."
+  ]
+ },
+ "mapping": [
+  {"from": "rating, title, body, reviewer name and email, date", "to": "same fields in Judge.me", "note": "Judge.me's importer reads the source app's own export format"},
+  {"from": "photo URLs", "to": "review pictures", "note": "up to 5 per review"},
+  {"from": "Yotpo product ID yotpo_site_reviews", "to": "store reviews", "note": "shown on the All Reviews page, not product pages"},
+  {"from": "metaobject handle", "to": "verified badge", "note": "Yotpo, Stamped and Loox only"}
+ ],
+ "messages": {
+  "hello": {
+   "to": "Judge.me support (live chat in the Judge.me admin, or the help center)",
+   "subject": "Moving our reviews from {from_name} to Judge.me",
+   "body": "Hi Judge.me team,\n\nWe're moving {store} from {from_name} to Judge.me and plan to use your importer this week. We have about {r[inspect][total]} reviews. Is there anything we should know before we import, or anything you'd set up differently for a store our size?\n\nThanks"
+  }
+ },
+ "rollback": "Until you uninstall {from_name}, nothing is lost: its reviews and widgets stay in place. If the import goes wrong, delete the import batch from Judge.me's Reviews Import Log and try again.",
+ "sources": [
+  "https://judge.me/help/en/articles/10826029-migrating-reviews-from-yotpo-to-judge-me",
+  "https://judge.me/help/en/articles/11697859-migrating-reviews-from-okendo-to-judge-me",
+  "https://judge.me/help/en/articles/10837266-migrating-reviews-from-stamped-to-judge-me",
+  "https://judge.me/help/en/articles/10826547-migrating-reviews-from-loox-to-judge-me",
+  "https://judge.me/help/en/articles/8409180-using-judge-me-api",
+  "https://judge.me/api/docs.yaml"
+ ],
+ "steps": [
+  {
+   "id": "plan", "kind": "approve",
+   "title": "Agree the plan: {from_name} to Judge.me",
+   "instructions": "Show the merchant what moves and what doesn't (the loses list). Judge.me's Forever Free plan covers most stores; Awesome is $15 a month. Nothing changes on the live store until the widget swap, and {from_name} stays installed until the last step."
+  },
+  {
+   "id": "install", "kind": "merchant_action",
+   "title": "Install Judge.me",
+   "instructions": "Install Judge.me from https://apps.shopify.com/judgeme. Don't add its widgets to the theme yet, and don't uninstall {from_name}."
+  },
+  {
+   "id": "keys", "kind": "merchant_action",
+   "title": "Give appspend read access to Judge.me",
+   "instructions": "In Judge.me, go to Settings > Integrations > View API tokens. In your terminal, set JUDGEME_API_TOKEN to the private token and JUDGEME_SHOP_DOMAIN to your myshopify.com domain. Don't paste the token into chat: it can't be regenerated without contacting Judge.me.",
+   "env": ["JUDGEME_API_TOKEN", "JUDGEME_SHOP_DOMAIN"]
+  },
+  {
+   "id": "baseline", "kind": "auto", "action": "reviews.count_judgeme", "params": {"mode": "baseline"},
+   "title": "Count Judge.me reviews before the import",
+   "instructions": "appspend records how many reviews Judge.me already has, so the check after the import counts only new ones.",
+   "env": ["JUDGEME_API_TOKEN", "JUDGEME_SHOP_DOMAIN"]
+  },
+  {
+   "id": "export", "kind": "merchant_action",
+   "title": "Export every review from {from_name}",
+   "instructions": "{v[export]} Save the file and give appspend its path.",
+   "inputs": [{"name": "export_file", "label": "Path to the {from_name} reviews CSV", "type": "file"}]
+  },
+  {
+   "id": "inspect", "kind": "auto", "action": "reviews.inspect_export",
+   "title": "Check what will carry over",
+   "instructions": "appspend reads the export and counts reviews that will import, reviews Judge.me rejects (no text), videos that won't come across and extra photos. Files over 5,000 reviews are split into parts.",
+   "inputs": [{"name": "export_file", "label": "Path to the {from_name} reviews CSV", "type": "file"}]
+  },
+  {
+   "id": "hello", "kind": "message", "message": "hello", "optional": true,
+   "title": "Tell Judge.me the migration is starting",
+   "instructions": "Optional. Review the draft and send it from your own account."
+  },
+  {
+   "id": "import", "kind": "merchant_action",
+   "title": "Import into Judge.me",
+   "instructions": "In Judge.me, go to Settings > Import reviews > Import from apps. Find {from_name}, click Import and upload the file (or each part file once, if appspend split it). {v[verify_box]} Tick 'I confirm my reviews are genuine' and click Import. Judge.me emails the result, usually within 5 minutes per file. Never upload the same file twice.",
+   "waits": "Judge.me, usually a few minutes per file"
+  },
+  {
+   "id": "verify", "kind": "verify", "action": "reviews.count_judgeme", "params": {"mode": "verify"},
+   "title": "Confirm the reviews arrived",
+   "instructions": "appspend compares Judge.me's review count with the number the export check expected. It passes at 95% or better.",
+   "env": ["JUDGEME_API_TOKEN", "JUDGEME_SHOP_DOMAIN"]
+  },
+  {
+   "id": "widgets", "kind": "merchant_action",
+   "title": "Swap the widgets",
+   "instructions": "In the theme editor, add Judge.me's Star Rating Badge and Review Widget app blocks to the product template, and the All Reviews page if you have store reviews. Remove the {from_name} blocks and turn off its app embed. Preview on a product with reviews before publishing. If some reviews had videos, re-upload those now."
+  },
+  {
+   "id": "live_check", "kind": "auto", "action": "storefront.check", "params": {"expect": "judgeme"},
+   "title": "Check Judge.me is live on the storefront",
+   "instructions": "appspend reads the storefront and confirms Judge.me's widget is loading."
+  },
+  {
+   "id": "approve_cancel", "kind": "approve", "irreversible": true,
+   "title": "Approve uninstalling {from_name}",
+   "instructions": "Uninstalling removes {from_name}'s data from its side. Keep your export file. Check the renewal date: uninstall before it, and cancel any annual contract directly with {from_name}."
+  },
+  {
+   "id": "cancel", "kind": "merchant_action", "cancels_old": true,
+   "title": "Uninstall {from_name}",
+   "instructions": "In Shopify admin, go to Settings > Apps, uninstall {from_name}, and confirm billing stops in Settings > Billing. If you pay {from_name} directly, cancel with them in writing."
+  },
+  {
+   "id": "final_check", "kind": "auto", "action": "storefront.check", "params": {"expect": "judgeme", "mode": "final"},
+   "title": "Check {from_name} is gone from the storefront",
+   "instructions": "appspend confirms Judge.me still loads and no {from_name} code is left behind."
+  }
+ ]
+}

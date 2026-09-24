@@ -157,7 +157,7 @@ def _is_script_url(detail: str) -> bool:
     return path.endswith(".js") or "/js/" in path or "/sdk" in path or "loader" in path
 
 
-def _cheaper_path(it: Item, path, have_bills: bool) -> Finding:
+def _cheaper_path(it: Item, path, have_bills: bool, store: str = "") -> Finding:
     best = path.best
     listed = path.incumbent_price.label()
     paying = f" You pay {_money(it.monthly)}/mo." if have_bills and it.monthly else f" {it.name} lists at {listed}."
@@ -167,6 +167,9 @@ def _cheaper_path(it: Item, path, have_bills: bool) -> Finding:
     if path.strategy == "replace" and best:
         title = f"Cheaper path for {it.name}: {best.name} ({best.price.label()})"
         action = f"List the {it.name} features your team uses and check each against {best.name} before the next renewal."
+        guided = _playbook_for(it.app.id if it.app else "")
+        if guided:
+            action += f" appspend has a guided migration for this: `appspend migrate start {store or '<store>'} --playbook {guided} --from {it.app.id}`."
         if have_bills and it.monthly and best.price.low is not None:
             saving = max(0.0, round(it.monthly - best.price.low, 2))
     elif path.strategy == "remove":
@@ -191,6 +194,22 @@ def _cheaper_path(it: Item, path, have_bills: bool) -> Finding:
         misses=list(best.misses) if best and path.strategy == "replace" else [],
         sources=[f"{_domain(s)} (checked {path.checked})" for s in sources],
     )
+
+
+def _playbook_for(app_id: str) -> str:
+    from .playbooks import for_app, load_all
+    global _PLAYBOOKS
+    if _PLAYBOOKS is None:
+        _PLAYBOOKS = load_all()
+    pb = for_app(app_id, _PLAYBOOKS) if app_id else None
+    return pb.id if pb else ""
+
+
+_PLAYBOOKS = None
+
+
+def _bare(store: str) -> str:
+    return store.split("//")[-1].removeprefix("www.").rstrip("/")
 
 
 def _domain(url: str) -> str:
@@ -385,7 +404,7 @@ def analyze(catalog: Catalog, scan: ScanResult | None = None, theme: ThemeResult
         if not have_bills and path.strategy in ("downgrade", "negotiate"):
             continue  # plan and contract advice is a guess until a bill shows what they pay
         covered.add(it.name)
-        findings.append(_cheaper_path(it, path, have_bills))
+        findings.append(_cheaper_path(it, path, have_bills, _bare(scan.store) if scan else ""))
 
     # 7. No researched path yet: fall back to the category's free option, bills only.
     if have_bills:

@@ -1,0 +1,115 @@
+{
+ "id": "loyalty-to-bon",
+ "title": "Move the loyalty program to BON Loyalty",
+ "category": "loyalty",
+ "to": "BON Loyalty",
+ "to_catalog_id": "",
+ "summary": "Rebuild the program's rules in BON, export customer points from the old app, let appspend turn them into BON's points file, have BON's team load it, spot-check balances, then switch the storefront and cancel the old app.",
+ "checked": "2026-09-24",
+ "variants": {
+  "yotpo_loyalty": {
+   "name": "Yotpo Loyalty",
+   "export": "In Yotpo Loyalty, go to Customers and click Export all. If you use VIP tiers, note each tier's name and threshold too."
+  },
+  "loyaltylion": {
+   "name": "LoyaltyLion",
+   "export": "In LoyaltyLion, go to Analytics > Exports and export Customers. It includes approved, pending and spent points plus tier. Export Tiers and Referrals as well if you use them."
+  },
+  "smile": {
+   "name": "Smile.io",
+   "export": "In Smile, go to Customers and export all customers as CSV. Export VIP and referral activity separately if you use them."
+  }
+ },
+ "loses": {
+  "all": [
+   "BON's import file holds points only: VIP tier status must be rebuilt in BON (send BON the tier export and ask them to match it).",
+   "Referral links from the old program stop working; BON issues new ones.",
+   "Points history (what was earned when) doesn't carry over, only current balances.",
+   "Customers with zero points aren't in the file; they join BON with nothing, as before."
+  ],
+  "loyaltylion": [
+   "Pending points (not yet approved) are left out. Approve or expire them before exporting."
+  ]
+ },
+ "mapping": [
+  {"from": "customer email", "to": "Email", "note": "must exist in Shopify customers; BON syncs from Shopify"},
+  {"from": "Shopify customer ID", "to": "Shopify Customer ID", "note": "filled from the Shopify customers export when the loyalty export lacks it"},
+  {"from": "current points balance", "to": "Points", "note": "whole numbers, rounded up"},
+  {"from": "VIP tier", "to": "BON VIP tier", "note": "rebuilt, not imported"}
+ ],
+ "messages": {
+  "hello": {
+   "to": "BON Loyalty support (live chat in the BON app)",
+   "subject": "Migrating {store} from {from_name}",
+   "body": "Hi BON team,\n\nWe're moving {store} from {from_name} to BON. We have {r[build][customers]:,} customers holding {r[build][points]:,} points, and we'll send the points file in your 3-column format. If we use VIP tiers, we'll send that export too so the tiers match. Can you import it and tell us when it's done?\n\nThanks"
+  }
+ },
+ "rollback": "Until the old app is cancelled, its program keeps running. If BON's balances look wrong, keep the old widget live and ask BON to redo the import.",
+ "sources": [
+  "https://bonloyalty.com/docs/customers/import-customer-data-via-csv-file/",
+  "https://bonloyalty.com/bon-vs-smile-io/",
+  "https://bonloyalty.com/bon-vs-loyaltylion/",
+  "https://apps.shopify.com/bon-loyalty-rewards"
+ ],
+ "steps": [
+  {
+   "id": "plan", "kind": "approve",
+   "title": "Agree the plan: {from_name} to BON",
+   "instructions": "Show the merchant what moves and what doesn't. BON's team imports points for free, and the old program keeps running until the switch."
+  },
+  {
+   "id": "install", "kind": "merchant_action",
+   "title": "Install BON and rebuild the program",
+   "instructions": "Install BON Loyalty from https://apps.shopify.com/bon-loyalty-rewards. Set earning rules, rewards and point values to match {from_name} exactly, so balances mean the same thing. Set up VIP tiers if you have them. Keep BON's widgets off for now."
+  },
+  {
+   "id": "export", "kind": "merchant_action",
+   "title": "Export customers and points from {from_name}",
+   "instructions": "{v[export]} Also export customers from Shopify admin (Customers > Export, all customers, CSV) so appspend can fill in Shopify customer IDs.",
+   "inputs": [
+    {"name": "export_file", "label": "Path to the {from_name} customer export", "type": "file"},
+    {"name": "shopify_customers_file", "label": "Path to the Shopify customers export", "type": "file", "optional": true}
+   ]
+  },
+  {
+   "id": "build", "kind": "auto", "action": "loyalty.build_bon_csv",
+   "title": "Build BON's points file",
+   "instructions": "appspend turns the export into BON's 3-column file (Shopify customer ID, email, points), leaves out zero balances, and picks 5 customers for a spot check after the import.",
+   "inputs": [
+    {"name": "export_file", "label": "Path to the {from_name} customer export", "type": "file"},
+    {"name": "shopify_customers_file", "label": "Path to the Shopify customers export", "type": "file", "optional": true}
+   ]
+  },
+  {
+   "id": "approve_freeze", "kind": "approve",
+   "title": "Approve the points cut-off",
+   "instructions": "Points earned in {from_name} after the export won't reach BON. Either re-export right before sending the file, or tell customers balances pause for a day."
+  },
+  {
+   "id": "send", "kind": "message", "message": "hello",
+   "title": "Send the points file to BON",
+   "instructions": "In BON, go to Customer Data > Import data and select {from_name} as the source app. Then send {workdir}/bon-points-import.csv through BON's live chat with this message. BON's team loads points by hand.",
+   "waits": "BON's team"
+  },
+  {
+   "id": "verify", "kind": "verify",
+   "title": "Spot-check five balances",
+   "instructions": "Look up these customers in BON and compare their points with the file: {r[build][spot_check_text]}. All five must match. Check the total customer count in BON too ({r[build][customers]} expected)."
+  },
+  {
+   "id": "approve_switch", "kind": "approve", "irreversible": true,
+   "title": "Approve the switch to BON",
+   "instructions": "Switching shows BON's widget and emails to customers and turns {from_name} off. Customers see new referral links. Consider a short email announcing the new program."
+  },
+  {
+   "id": "switch", "kind": "merchant_action",
+   "title": "Switch the storefront to BON",
+   "instructions": "Turn on BON's widget, account page and checkout points display. Turn off {from_name}'s embed and blocks in the theme editor, and stop its emails (including any loyalty flows in your email tool)."
+  },
+  {
+   "id": "cancel", "kind": "merchant_action", "cancels_old": true,
+   "title": "Cancel {from_name}",
+   "instructions": "Uninstall {from_name} in Shopify admin > Settings > Apps, and cancel any direct contract in writing. Keep the export file: it's your record of balances on the switch date."
+  }
+ ]
+}

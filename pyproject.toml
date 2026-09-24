@@ -17,4 +17,4 @@ appspend = "appspend.cli:main"
 packages = ["appspend"]
 
 [tool.setuptools.package-data]
-appspend = ["data/*.json"]
+appspend = ["data/*.json", "data/playbooks/*.json"]

@@ -1,0 +1,143 @@
+{
+ "id": "recharge-to-appstle",
+ "title": "Move subscriptions from Recharge to Appstle",
+ "category": "subscriptions",
+ "to": "Appstle Subscriptions",
+ "to_catalog_id": "appstle",
+ "summary": "Set up matching plans in Appstle, freeze changes in Recharge, export subscriptions and payment data, let Appstle's team load them paused, check the numbers, then stop Recharge billing and switch Appstle on the same day.",
+ "checked": "2026-09-24",
+ "variants": {
+  "recharge": {
+   "name": "Recharge",
+   "guide": "https://support.getrecharge.com/hc/en-us/articles/12394488475671-Migrating-away-from-Recharge"
+  }
+ },
+ "loses": {
+  "all": [
+   "Subscribers paying with PayPal, Apple Pay, Google Pay or SEPA can't be moved; they have to re-enter a card. appspend counts them from the payment methods export.",
+   "Payment tokens held in Shopify Payments need an export from Shopify Support, which Shopify says may cost extra.",
+   "Recharge flows (winback and similar emails) stop, and customers already in a flow keep getting its emails unless removed.",
+   "The customer portal changes to Appstle's, so saved links to the Recharge portal break."
+  ]
+ },
+ "mapping": [
+  {"from": "Subscriptions - All", "to": "Appstle subscription contracts", "note": "imported paused so nobody is charged twice"},
+  {"from": "Payment Methods - All, Customer - Payment Tokens", "to": "payment methods in Appstle", "note": "Appstle can't pull these for you; the merchant provides them"},
+  {"from": "Charges - Queued", "to": "next billing dates", "note": "check a few by hand after import"},
+  {"from": "Orders - Prepaid queued / processed", "to": "prepaid subscriptions", "note": "only if you sell prepaid plans"}
+ ],
+ "messages": {
+  "ask_old": {
+   "to": "Recharge (your account manager or support)",
+   "subject": "Our Recharge plan",
+   "body": "Hi,\n\nWe're reviewing our subscription tools and have a lower-cost option lined up for {store}. Before we decide, is there a better rate or lower transaction fee you can offer? Please send it in writing by the end of the week.\n\nThanks"
+  },
+  "hello": {
+   "to": "Appstle support (in-app chat, or Contact Us at appstle.com/migrations/subscriptions)",
+   "subject": "Migrating {store} from Recharge",
+   "body": "Hi Appstle team,\n\nWe'd like to move {store} from Recharge to Appstle using your free migration. We have about {r[inspect][active]} active subscriptions. Could you tell us how you'd like to receive the subscription and payment files securely, and anything we should set up first?\n\nThanks"
+  },
+  "customers": {
+   "to": "Subscribers whose payment method can't move ({r[inspect][at_risk_customers]} customers)",
+   "subject": "Please update your payment method",
+   "body": "Hi,\n\nWe've moved our subscriptions to a new system. Your subscription is safe, but the payment method you use can't come across. Please add a card here before your next delivery: [Appstle customer portal link]\n\nThanks"
+  }
+ },
+ "rollback": "Until Recharge is cancelled and Appstle subscriptions are activated, Recharge keeps billing as before. Appstle holds imported subscriptions paused, so nothing double-charges.",
+ "sources": [
+  "https://appstle.com/migrations/subscriptions/",
+  "https://support.getrecharge.com/hc/en-us/articles/12394488475671-Migrating-away-from-Recharge",
+  "https://apps.shopify.com/subscriptions-by-appstle"
+ ],
+ "steps": [
+  {
+   "id": "plan", "kind": "approve",
+   "title": "Agree the plan: Recharge to Appstle",
+   "instructions": "Show the merchant what moves and what doesn't. Appstle's migration is free on every plan, and most finish within a day. This is the riskiest switch in the tool: it touches live billing. Pick a week with no big launch."
+  },
+  {
+   "id": "ask_old", "kind": "message", "message": "ask_old", "optional": true,
+   "title": "Ask Recharge for a better price first",
+   "instructions": "Optional, and only if the merchant wants it. Review the draft and send it from your own account."
+  },
+  {
+   "id": "install", "kind": "merchant_action",
+   "title": "Install Appstle and mirror your plans",
+   "instructions": "Install Appstle Subscriptions from https://apps.shopify.com/subscriptions-by-appstle. Create subscription plans with the same products, frequencies and discounts as in Recharge. Keep Appstle's widget unpublished for now."
+  },
+  {
+   "id": "export", "kind": "merchant_action",
+   "title": "Export from Recharge",
+   "instructions": "In Recharge, go to Exports (Export Builder) and download: Subscriptions - All, Charges - Queued, Payment Methods - All, Customer - Payment Tokens, and Orders - Prepaid queued and processed if you sell prepaid plans. Give appspend the paths to the first and third files.",
+   "inputs": [
+    {"name": "subscriptions_file", "label": "Path to 'Subscriptions - All'", "type": "file"},
+    {"name": "payment_methods_file", "label": "Path to 'Payment Methods - All'", "type": "file", "optional": true}
+   ]
+  },
+  {
+   "id": "inspect", "kind": "auto", "action": "recharge.inspect_exports",
+   "title": "Count subscriptions and payment methods that can't move",
+   "instructions": "appspend counts active subscriptions and the subscribers whose payment method (PayPal, Apple Pay, Google Pay, SEPA) can't be moved.",
+   "inputs": [
+    {"name": "subscriptions_file", "label": "Path to 'Subscriptions - All'", "type": "file"},
+    {"name": "payment_methods_file", "label": "Path to 'Payment Methods - All'", "type": "file", "optional": true}
+   ]
+  },
+  {
+   "id": "hello", "kind": "message", "message": "hello",
+   "title": "Ask Appstle to run the migration",
+   "instructions": "Review the draft and send it from your own account. Appstle's team runs this migration, so this step is required. Wait for them to say how to send files."
+  },
+  {
+   "id": "processor", "kind": "merchant_action",
+   "title": "Get customer payment data from your processor",
+   "instructions": "Appstle needs a second file with customer payment data from your payment processor, and can't pull it for you. For Stripe, Braintree or Authorize.net, request the customer data export from them. For Shopify Payments, ask Shopify Support for the payment token export."
+  },
+  {
+   "id": "approve_freeze", "kind": "approve",
+   "title": "Approve freezing changes in Recharge",
+   "instructions": "Freezing stops new Recharge sign-ups and customer changes while files move. New customers can't subscribe until Appstle is live, usually a day or two. Do it right before sending files."
+  },
+  {
+   "id": "freeze", "kind": "merchant_action",
+   "title": "Freeze Recharge",
+   "instructions": "In Recharge: Storefront > Subscription Widget > Unpublish the subscription widget. Storefront > Customer Portal: turn off Reschedule upcoming regular orders and the other self-serve settings. Pause winback and other flows. Then download fresh exports so the files match the frozen state."
+  },
+  {
+   "id": "send", "kind": "vendor",
+   "title": "Send the files to Appstle",
+   "instructions": "Send the subscriptions file and the processor's customer file through the secure method Appstle gave you. Never send payment data by plain email or paste it into chat.",
+   "waits": "Appstle's team: 68% finish within a day, some take up to two weeks"
+  },
+  {
+   "id": "verify", "kind": "verify",
+   "title": "Check the paused subscriptions in Appstle",
+   "instructions": "Appstle loads subscriptions paused. Check the count matches the {r[inspect][active]} active subscriptions from the Recharge export. Open five subscriptions at random and compare product, price, frequency, next charge date and payment method with Recharge."
+  },
+  {
+   "id": "approve_switch", "kind": "approve", "irreversible": true,
+   "title": "Approve the billing switch",
+   "instructions": "On one day: stop Recharge billing, then activate subscriptions in Appstle. Doing it in that order means nobody is charged twice. Pick a day with few queued charges (the Charges - Queued export shows them)."
+  },
+  {
+   "id": "cancel", "kind": "merchant_action", "cancels_old": true,
+   "title": "Stop Recharge billing",
+   "instructions": "Cancel your Recharge account (Recharge's guide, step 4) so no further charges run, and uninstall the Recharge app."
+  },
+  {
+   "id": "activate", "kind": "merchant_action",
+   "title": "Activate Appstle",
+   "instructions": "In Appstle, activate the migrated subscriptions and publish the Appstle widget on product pages."
+  },
+  {
+   "id": "live_check", "kind": "auto", "action": "storefront.check", "params": {"expect": "appstle", "mode": "final"},
+   "title": "Check the storefront",
+   "instructions": "appspend confirms Appstle's widget loads and Recharge's code is gone."
+  },
+  {
+   "id": "customers", "kind": "message", "message": "customers", "optional": true,
+   "title": "Ask stuck subscribers to add a card",
+   "instructions": "Only if the inspect step found subscribers with PayPal, Apple Pay, Google Pay or SEPA. Send through your email tool from your own account, with the Appstle portal link filled in."
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+customer_id,payment_type,processor_name,default
+501,CREDIT_CARD,stripe,true
+502,PAYPAL,braintree,true
+503,APPLE_PAY,stripe,true
+504,CREDIT_CARD,shopify_payments,true

@@ -1,0 +1,6 @@
+subscription_id,customer_id,email,status,product_title,price,charge_interval_frequency
+1,501,ana@example.com,ACTIVE,Coffee,20.00,30
+2,502,ben@example.com,active,Coffee,20.00,30
+3,503,cy@example.com,cancelled,Tea,15.00,30
+4,504,di@example.com,active,Tea,15.00,14
+5,502,ben@example.com,active,Filters,5.00,60
