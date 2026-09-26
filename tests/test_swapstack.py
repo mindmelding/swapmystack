@@ -105,8 +105,8 @@ class ScanTests(unittest.TestCase):
         self.assertIn("cdn.unknownvendor.io", self.scan.third_party_hosts)
 
     def test_store_own_assets_never_match_a_vendor(self):
-        html = '<script>Shopify.shop="x"</script><link rel="preload" href="https://www.bradleymountain.com/cdn/shop/t/1/assets/a.js">'
-        r = scan_storefront("bradleymountain.com", CATALOG,
+        html = '<script>Shopify.shop="x"</script><link rel="preload" href="https://www.hollowpeak.com/cdn/shop/t/1/assets/a.js">'
+        r = scan_storefront("hollowpeak.com", CATALOG,
                             fetcher=lambda u: Page(u, 200, html) if u.endswith(".com/") else Page(u, 404, ""))
         self.assertEqual(r.detections, {})
 

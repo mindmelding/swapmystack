@@ -71,10 +71,10 @@ When the audit finds a cheaper path that Swap My Stack has a playbook for, the f
 
 ```
 $ swapstack migrate playbooks
-$ swapstack migrate start shoppigment.com --playbook reviews-to-judgeme --from yotpo
-$ swapstack migrate done  shoppigment-com--yotpo-to-judgeme plan --approved-by "Sam (owner)"
-$ swapstack migrate done  shoppigment-com--yotpo-to-judgeme export --input export_file=~/Downloads/yotpo.csv
-$ swapstack migrate run   shoppigment-com--yotpo-to-judgeme inspect
+$ swapstack migrate start linen-and-pine.example --playbook reviews-to-judgeme --from yotpo
+$ swapstack migrate done  linen-and-pine-example--yotpo-to-judgeme plan --approved-by "Sam (owner)"
+$ swapstack migrate done  linen-and-pine-example--yotpo-to-judgeme export --input export_file=~/Downloads/yotpo.csv
+$ swapstack migrate run   linen-and-pine-example--yotpo-to-judgeme inspect
 ```
 
 Each command prints the steps so far and exactly what to do next. Progress is saved in `~/.swapstack/migrations/`, so a switch can pause while a vendor works and pick up days later.

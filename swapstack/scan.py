@@ -187,7 +187,7 @@ def extract(html: str, page_url: str, catalog: Catalog, result: ScanResult) -> l
 
     for kind, u in parser.assets:
         if _is_first_party(u, store_host):
-            continue  # the store's own theme files: a name like "bradleymountain" must not match a vendor
+            continue  # the store's own theme files: a name like "hollowpeak" must not match a vendor
         app = catalog.match_url(u)
         if app:
             result.add(app.id, Evidence("script" if kind == "script" else kind, _short(u), label))
